@@ -1,0 +1,31 @@
+<section class="section-padding" style="padding-top:140px;">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-sub">Everything you need to know about Self Attendance Pro.</p>
+    </div>
+    <div class="faq-list" style="max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:12px;">
+      <div class="faq-item" style="background:var(--glass);backdrop-filter:blur(var(--blur));border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:var(--transition);">
+        <button class="faq-question" style="width:100%;padding:20px 24px;background:none;border:none;color:var(--white);font-family:var(--font);font-size:1rem;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;transition:var(--transition);">What is Self Attendance Pro?<span class="icon" style="font-size:1.2rem;transition:var(--transition);color:var(--text-secondary);"><i class="fas fa-chevron-down"></i></span></button>
+        <div class="faq-answer" style="max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.25,.46,.45,.94),padding .3s ease;padding:0 24px;color:var(--text-secondary);line-height:1.7;font-size:.95rem;">Self Attendance Pro is a premium personal attendance tracking app that helps you log work hours, calculate salary, track overtime, and generate reports — all from your mobile device.</div>
+      </div>
+      <!-- अन्य 9 प्रश्न इसी pattern में डालें (ऊपर दिए गए single-page version से copy करें) -->
+    </div>
+  </div>
+</section>
+<!-- FAQ JS (नीचे) -->
+<script>
+  (function(){
+    const items = document.querySelectorAll('.faq-item');
+    items.forEach(item=>{
+      const btn = item.querySelector('.faq-question');
+      btn.addEventListener('click', function(){
+        const isOpen = item.classList.contains('open');
+        items.forEach(i=>{ i.classList.remove('open'); i.querySelector('.faq-question').setAttribute('aria-expanded','false'); });
+        if(!isOpen){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+      });
+    });
+    if(items.length) { items[0].classList.add('open'); items[0].querySelector('.faq-question').setAttribute('aria-expanded','true'); }
+  })();
+</script>

@@ -1,0 +1,33 @@
+<section class="section-padding" style="padding-top:140px;">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-label">Contact</span>
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-sub">Have questions or feedback? We'd love to hear from you.</p>
+    </div>
+    <div class="contact-wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;background:var(--glass);backdrop-filter:blur(var(--blur));border:1px solid var(--border);border-radius:var(--radius);padding:48px;">
+      <div class="info">
+        <h3 style="font-size:1.6rem;font-weight:700;margin-bottom:12px;">Let's Talk</h3>
+        <p style="color:var(--text-secondary);margin-bottom:24px;line-height:1.7;">Reach out to us via email or social media. We respond within 24 hours.</p>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;"><i class="fas fa-envelope" style="color:var(--primary);font-size:1.2rem;"></i><a href="mailto:support@selfattendancepro.com" style="color:var(--text-secondary);">support@selfattendancepro.com</a></div>
+        <div class="social" style="display:flex;gap:16px;margin-top:20px;">
+          <a href="#" style="width:44px;height:44px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;transition:var(--transition);color:var(--text-secondary);font-size:1.2rem;"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="dev" style="margin-top:20px;font-size:14px;color:var(--text-secondary);">Developed by <strong style="color:var(--gold);">YOGESH</strong> <span style="color:var(--text-secondary);">•</span> <span style="color:var(--text-secondary);font-size:13px;">v3.2.0</span></div>
+      </div>
+      <form class="contact-form" id="contactForm" style="display:flex;flex-direction:column;gap:16px;" novalidate>
+        <input type="text" placeholder="Your Name" required style="padding:14px 20px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--white);font-family:var(--font);font-size:1rem;transition:var(--transition);outline:none;" />
+        <input type="email" placeholder="Your Email" required />
+        <input type="text" placeholder="Subject" />
+        <textarea placeholder="Your Message" required style="min-height:120px;resize:vertical;"></textarea>
+        <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e){ e.preventDefault(); const btn=this.querySelector('.btn'); const orig=btn.innerHTML; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Sending...'; btn.disabled=true; setTimeout(()=>{ btn.innerHTML='<i class="fas fa-check"></i> Sent!'; btn.style.background='#27ae60'; setTimeout(()=>{ btn.innerHTML=orig; btn.disabled=false; btn.style.background=''; this.reset(); },2500); },1800); });
+</script>

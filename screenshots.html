@@ -1,0 +1,45 @@
+<!-- मुख्य content (features.html की तरह, लेकिन section बदलें) -->
+<section class="section-padding" style="padding-top:140px;">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-label">Screenshots</span>
+      <h2 class="section-title">See It in Action</h2>
+      <p class="section-sub">A glimpse of the elegant, intuitive interface designed for productivity.</p>
+    </div>
+    <div class="screenshots-slider" data-aos="fade-up" style="position:relative;overflow:hidden;border-radius:var(--radius);background:var(--glass);backdrop-filter:blur(var(--blur));border:1px solid var(--border);padding:20px 0;">
+      <div class="slider-track" id="sliderTrack" style="display:flex;gap:24px;transition:transform .6s cubic-bezier(.25,.46,.45,.94);padding:0 20px;">
+        <div class="slide" style="min-width:200px;flex:0 0 200px;border-radius:20px;overflow:hidden;background:#1a1a2e;aspect-ratio:9/19;border:1px solid var(--border);"><img src="https://picsum.photos/seed/att1/400/800" alt="Screenshot 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+        <div class="slide"><img src="https://picsum.photos/seed/att2/400/800" alt="Screenshot 2" loading="lazy"/></div>
+        <div class="slide"><img src="https://picsum.photos/seed/att3/400/800" alt="Screenshot 3" loading="lazy"/></div>
+        <div class="slide"><img src="https://picsum.photos/seed/att4/400/800" alt="Screenshot 4" loading="lazy"/></div>
+        <div class="slide"><img src="https://picsum.photos/seed/att5/400/800" alt="Screenshot 5" loading="lazy"/></div>
+        <div class="slide"><img src="https://picsum.photos/seed/att6/400/800" alt="Screenshot 6" loading="lazy"/></div>
+        <div class="slide"><img src="https://picsum.photos/seed/att7/400/800" alt="Screenshot 7" loading="lazy"/></div>
+        <div class="slide"><img src="https://picsum.photos/seed/att8/400/800" alt="Screenshot 8" loading="lazy"/></div>
+      </div>
+      <div class="slider-controls" style="display:flex;justify-content:center;gap:16px;margin-top:28px;">
+        <button id="sliderPrev" style="width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--glass);color:var(--white);font-size:1.2rem;cursor:pointer;transition:var(--transition);backdrop-filter:blur(8px);"><i class="fas fa-chevron-left"></i></button>
+        <button id="sliderNext" style="width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:var(--glass);color:var(--white);font-size:1.2rem;cursor:pointer;transition:var(--transition);backdrop-filter:blur(8px);"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Slider JS (नीचे <script> में डालें) -->
+<script>
+  (function(){
+    const track = document.getElementById('sliderTrack');
+    const prev = document.getElementById('sliderPrev');
+    const next = document.getElementById('sliderNext');
+    let idx=0, slideWidth=200, gap=24, visible=4;
+    function updateSlider(){ const cw=track.parentElement.offsetWidth-40; if(cw<600){ visible=2; slideWidth=140; gap=16; } else if(cw<900){ visible=3; slideWidth=180; gap=20; } else { visible=4; slideWidth=200; gap=24; } const max=Math.max(0, track.children.length-visible); if(idx>max) idx=max; track.style.transform=`translateX(-${idx*(slideWidth+gap)}px)`; }
+    function nextSlide(){ const max=Math.max(0, track.children.length-visible); idx = idx<max ? idx+1 : 0; updateSlider(); }
+    function prevSlide(){ const max=Math.max(0, track.children.length-visible); idx = idx>0 ? idx-1 : max; updateSlider(); }
+    next.addEventListener('click', nextSlide); prev.addEventListener('click', prevSlide);
+    let auto = setInterval(nextSlide, 4000);
+    const container = track.parentElement;
+    container.addEventListener('mouseenter', ()=>clearInterval(auto));
+    container.addEventListener('mouseleave', ()=>{ clearInterval(auto); auto=setInterval(nextSlide,4000); });
+    window.addEventListener('resize', updateSlider);
+    setTimeout(updateSlider, 100);
+  })();
+</script>

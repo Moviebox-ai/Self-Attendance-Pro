@@ -1,0 +1,29 @@
+<section class="section-padding" style="padding-top:140px;">
+  <div class="container">
+    <div class="text-center" data-aos="fade-up">
+      <span class="section-label">Account</span>
+      <h2 class="section-title">Delete Account</h2>
+    </div>
+    <div style="max-width:700px;margin:0 auto;background:var(--glass);backdrop-filter:blur(var(--blur));border:1px solid var(--border);border-radius:var(--radius);padding:48px;">
+      <p>We're sorry to see you go. Deleting your account will permanently remove all your data, including attendance logs, salary history, and profile information. This action is <strong>irreversible</strong>.</p>
+      <h4 style="margin:24px 0 8px;font-weight:600;">How to Delete Your Account</h4>
+      <ul style="padding-left:24px;list-style:disc;color:var(--text-secondary);margin:8px 0 16px;">
+        <li>Open the Self Attendance Pro app and go to <strong>Settings</strong>.</li>
+        <li>Scroll down and tap on <strong>Account</strong>.</li>
+        <li>Select <strong>Delete Account</strong> and confirm your password.</li>
+        <li>Tap <strong>Permanently Delete</strong> to finalize.</li>
+      </ul>
+      <p style="color:var(--text-secondary);font-size:.95rem;margin-top:12px;">Alternatively, you can request account deletion by emailing us with the subject "Delete Account Request" from your registered email address.</p>
+      <button class="btn btn-delete" id="deleteAccountBtn" style="background:#e74c3c;box-shadow:0 8px 30px rgba(231,76,60,.3);margin-top:12px;"><i class="fas fa-trash-alt"></i> Request Account Deletion</button>
+      <p style="font-size:12px;color:var(--text-secondary);margin-top:10px;">A confirmation email will be sent to verify your identity.</p>
+    </div>
+  </div>
+</section>
+<script>
+  document.getElementById('deleteAccountBtn').addEventListener('click', function(){
+    if(confirm('Are you sure you want to request account deletion? This action is irreversible.')){
+      const orig=this.innerHTML; this.innerHTML='<i class="fas fa-spinner fa-spin"></i> Requesting...'; this.disabled=true;
+      setTimeout(()=>{ this.innerHTML='<i class="fas fa-check"></i> Request Sent!'; this.style.background='#27ae60'; setTimeout(()=>{ this.innerHTML=orig; this.disabled=false; this.style.background=''; },2500); },1500);
+    }
+  });
+</script>

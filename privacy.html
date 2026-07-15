@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - Self Attendance Pro</title>
+    <meta name="description" content="Privacy Policy for Self Attendance Pro. Learn how we collect, use, and protect your personal data." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ====== COMPLETE CSS (same as other pages) ====== */
+        :root {
+            --bg: #090414;
+            --bg-secondary: #17112B;
+            --primary: #6E3DFF;
+            --primary-hover: #884CFF;
+            --gold: #FDBA2D;
+            --white: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, .75);
+            --border: rgba(255, 255, 255, .08);
+            --glass: rgba(255, 255, 255, .06);
+            --blur: 20px;
+            --radius: 24px;
+            --shadow: 0 20px 60px rgba(0, 0, 0, .6);
+            --transition: all .4s cubic-bezier(.25, .46, .45, .94);
+            --font: 'Poppins', 'Inter', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        ul {
+            list-style: none;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 8px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section-padding {
+            padding: 100px 0;
+        }
+        .section-label {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            background: rgba(110, 61, 255, .15);
+            padding: 6px 18px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(110, 61, 255, .2);
+        }
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff 40%, rgba(255, 255, 255, .6));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 48px;
+            text-align: center;
+        }
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(var(--blur));
+            -webkit-backdrop-filter: blur(var(--blur));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-family: var(--font);
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 8px 30px rgba(110, 61, 255, .3);
+        }
+        .btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(110, 61, 255, .5);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            box-shadow: none;
+            color: var(--white);
+        }
+        .btn-outline:hover {
+            background: var(--glass);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        .btn-gold {
+            background: var(--gold);
+            color: #1a1a2e;
+            box-shadow: 0 8px 30px rgba(253, 186, 45, .3);
+        }
+        .btn-gold:hover {
+            background: #f5c842;
+            box-shadow: 0 12px 40px rgba(253, 186, 45, .5);
+        }
+        .btn .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .35);
+            transform: scale(0);
+            animation: rippleAnim .6s linear;
+            pointer-events: none;
+        }
+        @keyframes rippleAnim {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+            padding: 16px 0;
+            transition: var(--transition);
+            background: rgba(9, 4, 20, .6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid transparent;
+        }
+        .navbar.scrolled {
+            background: rgba(9, 4, 20, .92);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 0;
+        }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: -.5px;
+            color: var(--white);
+        }
+        .nav-logo i {
+            color: var(--primary);
+            font-size: 1.6rem;
+        }
+        .nav-logo span {
+            color: var(--primary);
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: .9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--white);
+            background: var(--glass);
+        }
+        .nav-links a.active {
+            color: var(--primary);
+            background: var(--glass);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--white);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--border);
+            margin-top: 40px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-brand .nav-logo {
+            margin-bottom: 12px;
+        }
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: .9rem;
+            max-width: 280px;
+            line-height: 1.7;
+        }
+        .footer-col h5 {
+            font-weight: 600;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+        .footer-col a {
+            display: block;
+            color: var(--text-secondary);
+            font-size: .9rem;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+        .footer-col a:hover {
+            color: var(--white);
+        }
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: .85rem;
+            color: var(--text-secondary);
+        }
+
+        .text-gold {
+            color: var(--gold);
+        }
+        .text-primary {
+            color: var(--primary);
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Legal Content */
+        .legal-content {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(var(--blur));
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 48px 56px;
+            position: relative;
+            z-index: 1;
+        }
+        .legal-content .last-updated {
+            color: var(--text-secondary);
+            font-size: .9rem;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .legal-content h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin: 32px 0 12px;
+            color: var(--white);
+        }
+        .legal-content h3:first-of-type {
+            margin-top: 0;
+        }
+        .legal-content p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        .legal-content ul {
+            padding-left: 24px;
+            margin: 8px 0 20px;
+        }
+        .legal-content ul li {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px;
+            line-height: 1.7;
+        }
+        .legal-content ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        .legal-content strong {
+            color: var(--white);
+        }
+        .legal-content a {
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        .legal-content a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+        .legal-content .highlight-box {
+            background: rgba(110, 61, 255, .08);
+            border-left: 3px solid var(--primary);
+            padding: 16px 24px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .legal-content .highlight-box p {
+            margin-bottom: 0;
+            color: var(--text-secondary);
+        }
+
+        /* Back button */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+        .back-link:hover {
+            color: var(--white);
+            transform: translateX(-4px);
+        }
+
+        /* AOS */
+        [data-aos] {
+            opacity: 0;
+            transition: opacity .7s ease, transform .7s ease;
+        }
+        [data-aos="fade-up"] {
+            transform: translateY(40px);
+        }
+        [data-aos].aos-animate {
+            opacity: 1;
+            transform: translateX(0) translateY(0) scale(1);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .legal-content {
+                padding: 32px 28px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(9, 4, 20, .98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 12px;
+                transform: translateY(-100%);
+                transition: transform .4s cubic-bezier(.25, .46, .45, .94);
+                padding: 40px;
+                z-index: 998;
+            }
+            .nav-links.open {
+                transform: translateY(0);
+            }
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 12px 24px;
+                width: 100%;
+                text-align: center;
+            }
+            .hamburger {
+                display: flex;
+                z-index: 999;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .section-padding {
+                padding: 60px 0;
+            }
+            .legal-content {
+                padding: 24px 18px;
+            }
+            .legal-content h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .legal-content {
+                padding: 18px 14px;
+            }
+            .legal-content ul {
+                padding-left: 12px;
+            }
+            .legal-content ul li {
+                padding-left: 14px;
+                font-size: .95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Particles -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Background Blobs -->
+    <div style="position:fixed;width:400px;height:400px;background:var(--primary);border-radius:50%;filter:blur(80px);opacity:.12;top:-150px;right:-100px;pointer-events:none;z-index:0;"></div>
+    <div style="position:fixed;width:300px;height:300px;background:var(--gold);border-radius:50%;filter:blur(80px);opacity:.08;bottom:-100px;left:-100px;pointer-events:none;z-index:0;"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-clipboard-check"></i>Self<span>Attendance</span>Pro
+            </a>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="features.html">Features</a>
+                <a href="screenshots.html">Screenshots</a>
+                <a href="benefits.html">Benefits</a>
+                <a href="how-it-works.html">How It Works</a>
+                <a href="wallet.html">Wallet</a>
+                <a href="faq.html">FAQ</a>
+                <a href="download.html">Download</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html" class="active">Privacy</a>
+                <a href="terms.html">Terms</a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="section-padding" style="padding-top:140px;">
+        <div class="container">
+            <div data-aos="fade-up">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i> Back to Home
+                </a>
+            </div>
+
+            <div class="text-center" data-aos="fade-up">
+                <span class="section-label"><i class="fas fa-shield-alt"></i> Privacy</span>
+                <h1 class="section-title">Privacy Policy</h1>
+                <p class="section-sub">Your privacy matters to us. Here's how we handle your data with care and transparency.</p>
+            </div>
+
+            <div class="legal-content" data-aos="fade-up" data-aos-delay="100">
+                <div class="last-updated">
+                    <i class="fas fa-calendar-alt" style="color:var(--primary);margin-right:8px;"></i>
+                    <strong>Last updated:</strong> July 15, 2026
+                </div>
+
+                <p>Self Attendance Pro ("we", "our", "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your personal information when you use our mobile application and website.</p>
+
+                <div class="highlight-box">
+                    <p><strong>TL;DR:</strong> We collect minimal data needed to provide attendance tracking. We never sell your data. You own your data completely.</p>
+                </div>
+
+                <h3>1. Information We Collect</h3>
+                <p>We collect only the information necessary to provide you with a seamless attendance tracking experience:</p>
+                <ul>
+                    <li><strong>Account Data:</strong> Name, email address, phone number, and profile photo (if provided) – used to identify you and personalize your experience.</li>
+                    <li><strong>Attendance Data:</strong> Clock-in/out times, break logs, overtime records, location (optional) – used to calculate your work hours and salary.</li>
+                    <li><strong>Device Data:</strong> Device model, operating system version, app version, and crash reports – used to improve app stability and performance.</li>
+                    <li><strong>Usage Data:</strong> How you interact with the app (features used, frequency) – used to understand user behavior and improve features.</li>
+                </ul>
+
+                <h3>2. How We Use Your Data</h3>
+                <p>We use your data exclusively for the following purposes:</p>
+                <ul>
+                    <li>To provide and maintain our attendance tracking services.</li>
+                    <li>To calculate salary, overtime, and generate accurate reports.</li>
+                    <li>To send you important notifications (you can opt out of non-essential communications).</li>
+                    <li>To ensure the security of your account and prevent fraud.</li>
+                    <li>To improve and optimize our app through analytics (anonymized).</li>
+                </ul>
+
+                <h3>3. Data Storage &amp; Security</h3>
+                <ul>
+                    <li>All data is stored on <strong>Firebase</strong> servers with AES-256 encryption at rest and TLS 1.2+ in transit.</li>
+                    <li>We implement industry-standard security measures, including regular security audits and penetration testing.</li>
+                    <li>Your password is hashed and salted – we never store plain-text passwords.</li>
+                    <li>You can export, update, or delete your data at any time from your account settings.</li>
+                </ul>
+
+                <h3>4. Third-Party Services</h3>
+                <p>We use trusted third-party services to power our app. These services comply with strict data protection standards:</p>
+                <ul>
+                    <li><strong>Firebase</strong> – Authentication, database, and cloud storage (<a href="https://firebase.google.com/privacy" target="_blank">Firebase Privacy Policy</a>).</li>
+                    <li><strong>Google Analytics</strong> – Anonymized usage analytics (<a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a>).</li>
+                    <li>We do <strong>not</strong> sell, rent, or trade your personal data with any third parties.</li>
+                </ul>
+
+                <h3>5. Your Rights</h3>
+                <p>You have full control over your personal data. Under GDPR and CCPA, you have the right to:</p>
+                <ul>
+                    <li><strong>Access:</strong> Request a copy of all data we hold about you.</li>
+                    <li><strong>Rectify:</strong> Update or correct inaccurate information.</li>
+                    <li><strong>Delete:</strong> Permanently delete your account and all associated data.</li>
+                    <li><strong>Restrict:</strong> Limit how we process your data.</li>
+                    <li><strong>Data Portability:</strong> Export your data in a machine-readable format.</li>
+                </ul>
+                <p>To exercise any of these rights, contact us at <a href="mailto:support@selfattendancepro.com">support@selfattendancepro.com</a>.</p>
+
+                <h3>6. Data Retention</h3>
+                <p>We retain your data for as long as your account is active. If you delete your account, all data is permanently removed from our systems within 30 days.</p>
+
+                <h3>7. Children's Privacy</h3>
+                <p>Our app is not intended for users under the age of 16. We do not knowingly collect data from children. If you believe a child has provided us with data, please contact us immediately.</p>
+
+                <h3>8. International Data Transfers</h3>
+                <p>Your data may be transferred to and processed in countries where we or our service providers operate. We ensure all transfers comply with applicable data protection laws, including GDPR's Standard Contractual Clauses.</p>
+
+                <h3>9. Cookies</h3>
+                <p>We use minimal cookies for authentication and session management. You can control cookie preferences through your browser settings.</p>
+
+                <h3>10. Changes to This Policy</h3>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any changes via email or in-app notification. Continued use of the app after changes constitutes your acceptance of the updated policy.</p>
+
+                <h3>11. Contact Us</h3>
+                <p>If you have any questions, concerns, or requests regarding this Privacy Policy, please reach out to us:</p>
+                <ul>
+                    <li><strong>Email:</strong> <a href="mailto:support@selfattendancepro.com">support@selfattendancepro.com</a></li>
+                    <li><strong>Response Time:</strong> We respond to all privacy inquiries within 48 hours.</li>
+                </ul>
+
+                <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);text-align:center;color:var(--text-secondary);font-size:.9rem;">
+                    <i class="fas fa-check-circle" style="color:var(--gold);"></i> We take your privacy seriously.
+                </div>
+            </div>
+
+            <div style="text-align:center;margin-top:32px;" data-aos="fade-up">
+                <a href="index.html" class="btn btn-outline">
+                    <i class="fas fa-arrow-left"></i> Return to Home
+                </a>
+                <a href="terms.html" class="btn" style="margin-left:12px;">
+                    <i class="fas fa-file-contract"></i> Terms &amp; Conditions
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo" style="font-size:1.2rem;">
+                        <i class="fas fa-clipboard-check"></i>Self<span>Attendance</span>Pro
+                    </a>
+                    <p>Track attendance, calculate salary, and export reports — all in one beautiful app.</p>
+                </div>
+                <div class="footer-col">
+                    <h5>Product</h5>
+                    <a href="features.html">Features</a>
+                    <a href="screenshots.html">Screenshots</a>
+                    <a href="benefits.html">Benefits</a>
+                    <a href="how-it-works.html">How It Works</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="delete-account.html">Delete Account</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Connect</h5>
+                    <a href="contact.html">Contact</a>
+                    <a href="mailto:support@selfattendancepro.com">support@selfattendancepro.com</a>
+                    <a href="download.html">Download</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Self Attendance Pro. All rights reserved.</span>
+                <span>Made with <i class="fas fa-heart" style="color:var(--gold);"></i> by <strong style="color:var(--white);">YOGESH</strong></span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // Particles
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [],
+                w, h;
+
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            class Particle {
+                constructor() { this.reset(); }
+                reset() {
+                    this.x = Math.random() * w;
+                    this.y = Math.random() * h;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.r = Math.random() * 2 + 1;
+                    this.a = Math.random() * 0.5 + 0.1;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) this.reset();
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(110,61,255,${this.a})`;
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, w, h);
+                for (const p of particles) { p.update();
+                    p.draw(); }
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 160) {
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(110,61,255,${0.12 * (1 - dist / 160)})`;
+                            ctx.lineWidth = 0.6;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                requestAnimationFrame(drawParticles);
+            }
+            drawParticles();
+
+            // Navbar
+            const navbar = document.getElementById('navbar');
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 60) navbar.classList.add('scrolled');
+                else navbar.classList.remove('scrolled');
+            });
+
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+                hamburger.classList.toggle('active');
+            });
+
+            // AOS
+            const aosElements = document.querySelectorAll('[data-aos]');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const delay = parseInt(entry.target.getAttribute('data-aos-delay')) || 0;
+                        setTimeout(() => {
+                            entry.target.classList.add('aos-animate');
+                        }, delay);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+            aosElements.forEach(el => observer.observe(el));
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,405 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ══════════════════════════════════════════════════════════════
+    //  CORE AUTH HELPERS
+    // ══════════════════════════════════════════════════════════════
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+
+    function currentUid() {
+      return request.auth != null ? request.auth.uid : 'anonymous';
+    }
+
+    // Email-based admin check — no Firestore read required.
+    function isAdmin() {
+      return isAuthenticated()
+          && request.auth.token.email in ['rohankumar53076@gmail.com', 'yogeshkumar53076@gmail.com'];
+    }
+
+    function isNotBanned() {
+      return !isAuthenticated() || !exists(/databases/$(database)/documents/bannedUsers/$(currentUid()));
+    }
+
+    function isActiveUser() {
+      return isNotBanned();
+    }
+
+    function isActiveOwner(uid) {
+      return isOwner(uid) && isNotBanned();
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  FIELD VALIDATORS
+    // ══════════════════════════════════════════════════════════════
+
+    function hasField(field) {
+      return field in request.resource.data;
+    }
+
+    function isValidStatus() {
+      return request.resource.data.status in ['PRESENT', 'HALF', 'HALF_DAY', 'ABSENT', 'NONE', 'Present', 'Half Day', 'Absent', 'Overtime', 'Holiday'];
+    }
+
+    function isValidDateFormat(dateStr) {
+      return dateStr.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}$');
+    }
+
+    function isValidHours(hours) {
+      return hours is number && hours >= 0 && hours <= 24;
+    }
+
+    function isValidSalary(salary) {
+      return salary is number && salary >= 0 && salary <= 10000000;
+    }
+
+    function isValidWorkingDays(days) {
+      return days is int && days >= 1 && days <= 31;
+    }
+
+    // Full profile write
+    function isValidUserProfileWrite() {
+      let data = request.resource.data;
+      return data.keys().hasAll(['uid', 'name', 'monthlySalary', 'workingDays', 'standardHours', 'overtimeRate'])
+          && data.uid is string
+          && data.name is string
+          && data.name.size() >= 2
+          && data.name.size() <= 100
+          && isValidSalary(data.monthlySalary)
+          && isValidWorkingDays(data.workingDays)
+          && isValidHours(data.standardHours)
+          && data.overtimeRate is number
+          && data.overtimeRate >= 0;
+    }
+
+    // Minimal create
+    function isValidUniqueIdOnlyWrite() {
+      let data = request.resource.data;
+      return data.keys().hasOnly(['uid', 'uniqueId'])
+          && data.uniqueId is string
+          && data.uniqueId.matches('^[0-9]{6}$');
+    }
+
+    // Partial merge write
+    function isValidUserMergeWrite() {
+      let data = request.resource.data;
+      return data.keys().hasAny(['uid', 'name', 'rewards', 'premiumUnlocks', 'leaderboard',
+                                  'monthlySalary', 'workingDays', 'standardHours', 'overtimeRate',
+                                  'email', 'uniqueId', 'axCoins', 'userId', 'lastUpdated'])
+          && (!('name' in data) || (data.name is string && data.name.size() >= 1 && data.name.size() <= 100))
+          && (!('monthlySalary' in data) || isValidSalary(data.monthlySalary))
+          && (!('workingDays' in data) || isValidWorkingDays(data.workingDays))
+          && (!('standardHours' in data) || isValidHours(data.standardHours))
+          && (!('overtimeRate' in data) || (data.overtimeRate is number && data.overtimeRate >= 0))
+          && (!('rewards' in data) || isValidRewardsMap(data.rewards))
+          && (!('leaderboard' in data) || isValidLeaderboardMap(data.leaderboard));
+    }
+
+    function isValidRewardsMap(rewards) {
+      return rewards is map
+          && (!('coinBalance' in rewards) || (rewards.coinBalance is int && rewards.coinBalance >= 0 && rewards.coinBalance <= 1000000))
+          && (!('totalCoinsEarned' in rewards) || (rewards.totalCoinsEarned is int && rewards.totalCoinsEarned >= 0))
+          && (!('dailySpinsUsed' in rewards) || (rewards.dailySpinsUsed is int && rewards.dailySpinsUsed >= 0 && rewards.dailySpinsUsed <= 10))
+          && (!('lastSpinDate' in rewards) || rewards.lastSpinDate is string)
+          && (!('lastSpinTimestampMs' in rewards) || rewards.lastSpinTimestampMs is int)
+          && (!('lastSpinIndex' in rewards) || (rewards.lastSpinIndex is int && rewards.lastSpinIndex >= 0));
+    }
+
+    function isValidLeaderboardMap(lb) {
+      return lb is map
+          && (!('currentStreak' in lb) || (lb.currentStreak is int && lb.currentStreak >= 0))
+          && (!('bestStreak' in lb) || (lb.bestStreak is int && lb.bestStreak >= 0));
+    }
+
+    function isValidAttendance() {
+      let data = request.resource.data;
+      return data.keys().hasAll(['date', 'status'])
+          && data.date is string
+          && isValidStatus();
+    }
+
+    function dateMatchesDocId(docId) {
+      return request.resource.data.date == docId;
+    }
+
+    // ── Coin / Wallet validators ──────────────────────────────────
+
+    function isValidTransactionType() {
+      return request.resource.data.type in [
+        'AD_REWARD', 'DAILY_LOGIN', 'STREAK_BONUS', 'FEATURE_UNLOCK',
+        'SUBSCRIPTION', 'REFERRAL', 'PRIZE_REDEMPTION', 'WITHDRAWAL',
+        'ADMIN_ADD', 'ADMIN_DEDUCT', 'ADMIN_RESET'
+      ];
+    }
+
+    function isValidCoinAmount() {
+      let amt = request.resource.data.amount;
+      return amt is int && amt >= -1000000 && amt <= 1000000;
+    }
+
+    function isValidTransaction() {
+      let data = request.resource.data;
+      return data.keys().hasAll(['type', 'amount', 'timestamp', 'description'])
+          && isValidTransactionType()
+          && isValidCoinAmount()
+          && data.description is string
+          && data.description.size() <= 500;
+    }
+
+    function isUserTransactionType() {
+      return request.resource.data.type in [
+        'AD_REWARD', 'DAILY_LOGIN', 'STREAK_BONUS', 'FEATURE_UNLOCK',
+        'SUBSCRIPTION', 'REFERRAL', 'PRIZE_REDEMPTION', 'WITHDRAWAL'
+      ];
+    }
+
+    function isValidBalanceUpdate() {
+      let newBal  = request.resource.data.balance;
+      let prevBal = ('balance' in resource.data) ? resource.data.balance : 0;
+      return newBal is int
+          && newBal >= 0
+          && newBal <= 10000000;
+    }
+
+    function isValidWalletCreate() {
+      let data = request.resource.data;
+      return (!('balance' in data) || (data.balance is int && data.balance >= 0));
+    }
+
+    function isNotTooFrequent() {
+      return !('lastUpdated' in resource.data)
+          || request.time > resource.data.lastUpdated + duration.value(1, 's');
+    }
+
+    function isBalanceIncrease() {
+      let newBal  = request.resource.data.balance;
+      let prevBal = ('balance' in resource.data) ? resource.data.balance : 0;
+      return 'balance' in request.resource.data && newBal > prevBal;
+    }
+
+    function isValidFeatureKey(key) {
+      return key in ['pdf_export', 'analytics', 'backup', 'salary_slip', 'remove_ads', 'theme_unlock'];
+    }
+
+    // ── Referral validator ─────────────────────────────────────────
+
+    function isValidReferral() {
+      let data = request.resource.data;
+      return data.keys().hasAll(['referrerId', 'createdAt'])
+          && data.referrerId is string
+          && data.createdAt is timestamp;
+    }
+
+    // ── Leaderboard / weekly-prize entry validators ────────────────
+
+    function isValidLeaderboardEntry() {
+      let data = request.resource.data;
+      return data.keys().hasAll(['uid', 'weeklyCoins'])
+          && data.uid is string
+          && data.weeklyCoins is int
+          && data.weeklyCoins >= 0
+          && data.weeklyCoins <= 10000000;
+    }
+
+    function isValidLeaderboardUpdate() {
+      return true;
+    }
+
+    function isValidNotificationToken() {
+      let data = request.resource.data;
+      return data.keys().hasAll(['token'])
+          && data.token is string
+          && data.token.size() <= 512;
+    }
+
+    function isValidPrizeRedemption() {
+      let data = request.resource.data;
+      return data.keys().hasAll(['uid', 'prizeId', 'coinCost', 'status'])
+          && data.uid is string
+          && data.prizeId is string && data.prizeId.size() <= 100
+          && data.coinCost is int && data.coinCost >= 0
+          && data.status in ['completed', 'pending', 'cancelled'];
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  ADMIN SETTINGS
+    // ══════════════════════════════════════════════════════════════
+
+    match /adminSettings/{configDoc} {
+      allow read: if true;
+      allow create, update: if isAdmin();
+      allow delete: if false;
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  BANNED USERS
+    // ══════════════════════════════════════════════════════════════
+
+    match /bannedUsers/{uid} {
+      allow read: if isAdmin() || isOwner(uid);
+      allow create, update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  USERS (profile + sub-collections)
+    // ══════════════════════════════════════════════════════════════
+
+    match /users/{uid} {
+      allow read: if true;
+      allow create, update: if true;
+      allow delete: if isOwner(uid) || isAdmin();
+
+      match /wallet/{walletDoc} {
+        allow read: if true;
+        allow create, update: if true;
+        allow delete: if false;
+      }
+
+      match /coinTransactions/{txId} {
+        allow read: if true;
+        allow create: if true;
+        allow update: if false;
+        allow delete: if isAdmin();
+      }
+
+      match /features/{featureKey} {
+        allow read: if true;
+        allow create, update: if true;
+        allow delete: if isAdmin();
+      }
+
+      match /notifications/{docId} {
+        allow read: if true;
+        allow create, update: if true;
+        allow delete: if isOwner(uid) || isAdmin();
+      }
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  UNIQUE USER IDS
+    // ══════════════════════════════════════════════════════════════
+
+    match /userIds/{code} {
+      allow get: if true;
+      allow list: if true;
+      allow create, update: if true;
+      allow delete: if isAdmin();
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  ATTENDANCE
+    // ══════════════════════════════════════════════════════════════
+
+    match /attendance/{docId} {
+      allow read: if true;
+      allow create, update, delete: if true;
+
+      match /days/{date} {
+        allow read, write: if true;
+      }
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  WITHDRAWALS
+    // ══════════════════════════════════════════════════════════════
+
+    match /withdrawals/{docId} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if isAdmin();
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  BACKUP
+    // ══════════════════════════════════════════════════════════════
+
+    match /backup/{docId} {
+      allow read, write: if true;
+
+      match /days/{date} {
+        allow read, write: if true;
+      }
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  REFERRALS & REFERRAL CODES
+    // ══════════════════════════════════════════════════════════════
+
+    match /referrals/{referralId} {
+      allow read, create, update: if true;
+      allow delete: if isAdmin();
+    }
+
+    match /referralCodes/{code} {
+      allow read, create, update: if true;
+      allow delete: if isAdmin();
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  WEEKLY PRIZE & LEADERBOARD
+    // ══════════════════════════════════════════════════════════════
+
+    match /weeklyPrize/{weekId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+
+      match /entries/{uid} {
+        allow read, write: if true;
+      }
+
+      match /winners/{uid} {
+        allow read: if true;
+        allow create, update, delete: if isAdmin();
+      }
+    }
+
+    match /leaderboard/{weekId} {
+      allow read: if true;
+
+      match /entries/{uid} {
+        allow read, write: if true;
+      }
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  PRIZE REDEMPTIONS
+    // ══════════════════════════════════════════════════════════════
+
+    match /prizeRedemptions/{docId} {
+      allow read, create: if true;
+      allow update, delete: if isAdmin();
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  ADMIN AUDIT LOG & PERMISSION ALERTS
+    // ══════════════════════════════════════════════════════════════
+
+    match /adminAuditLog/{docId} {
+      allow read: if isAdmin();
+      allow create: if true;
+      allow update, delete: if false;
+    }
+
+    match /permissionAlerts/{uid} {
+      allow read, write: if true;
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    //  CATCH-ALL
+    // ══════════════════════════════════════════════════════════════
+
+    match /{document=**} {
+      allow read, write: if true;
+    }
+
+  }
+}

@@ -572,6 +572,12 @@
             border: 1px solid rgba(16, 185, 129, 0.3);
         }
 
+        .status-badge.rejected {
+            background: rgba(244, 63, 94, 0.15);
+            color: #fb7185;
+            border: 1px solid rgba(244, 63, 94, 0.3);
+        }
+
         /* Footer */
         .footer {
             background: #05020E;
@@ -715,7 +721,13 @@
                         <!-- 2. NAME -->
                         <div class="form-group">
                             <label for="userNameInput"><i class="fa-solid fa-user text-gold"></i> 2. Full Name</label>
-                            <input type="text" id="userNameInput" class="form-control" placeholder="Auto-filled from My ID" required />
+                            <input type="text" id="userNameInput" class="form-control" placeholder="Auto-filled from My ID" readonly required />
+                        </div>
+
+                        <!-- AUTO-FILLED BALANCE -->
+                        <div class="form-group">
+                            <label for="availableCoinsInput"><i class="fa-solid fa-coins text-gold"></i> Total Available Coins</label>
+                            <input type="text" id="availableCoinsInput" class="form-control" placeholder="Auto-filled from My ID" readonly />
                         </div>
 
                         <!-- 3. WITHDRAWAL METHOD CHOICE -->
@@ -909,15 +921,42 @@
                 };
             }
 
-            // 2. Check in real Firestore 'users' collection
-            if (!foundUser && window.db) {
+            // 2. Prefer the real Firestore profile when available so the
+            // balance shown here stays in sync with admin decisions.
+            if (window.db) {
                 try {
                     const docSnap = await window.db.collection('users').doc(inputId).get();
                     if (docSnap.exists) {
                         const d = docSnap.data();
                         foundUser = {
                             name: d.name || d.displayName || '',
-                            coins: d.axCoins !== undefined ? d.axCoins : 2500
+                            coins: Number(
+                                d.axCoins ??
+                                d.coins ??
+                                d.rewards?.coinBalance ??
+                                d.rewards?.totalCoinsEarned ??
+                                2500
+                            )
+                        };
+                    }
+
+                    // Some app versions store the unique ID as a field on a
+                    // Firebase UID document instead of using it as the ID.
+                    const byUniqueId = await window.db.collection('users')
+                        .where('uniqueId', '==', inputId)
+                        .limit(1)
+                        .get();
+                    if (!byUniqueId.empty) {
+                        const d = byUniqueId.docs[0].data();
+                        foundUser = {
+                            name: d.name || d.displayName || '',
+                            coins: Number(
+                                d.axCoins ??
+                                d.coins ??
+                                d.rewards?.coinBalance ??
+                                d.rewards?.totalCoinsEarned ??
+                                2500
+                            )
                         };
                     }
                 } catch(e) {
@@ -930,6 +969,7 @@
                 userAxCoins = foundUser.coins;
                 localStorage.setItem('user_ax_coins', userAxCoins);
                 
+                document.getElementById('availableCoinsInput').value = `${userAxCoins.toLocaleString()} AX`;
                 document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
                 document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 100).toFixed(2)}`;
 
@@ -939,6 +979,7 @@
                     statusMsg.innerHTML = `<i class="fa-solid fa-circle-check text-emerald"></i> Real User Verified! Name: <strong>${foundUser.name}</strong> | Balance: <strong>${userAxCoins.toLocaleString()} AX Coins (₹${(userAxCoins/100).toFixed(2)})</strong>`;
                 }
             } else {
+                document.getElementById('availableCoinsInput').value = '';
                 if (statusMsg) {
                     statusMsg.innerHTML = `<i class="fa-solid fa-circle-info text-gold"></i> ID Ready. Please enter your name to complete registration and request payout.`;
                 }
@@ -952,6 +993,7 @@
             
             document.getElementById('userIdInput').value = savedUserId;
             document.getElementById('userNameInput').value = savedName;
+            document.getElementById('availableCoinsInput').value = `${userAxCoins.toLocaleString()} AX`;
 
             // Display current debited user coins
             document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
@@ -1068,15 +1110,27 @@
                 axCoins: coinsToWithdraw,
                 inrAmount: inrAmount,
                 conversionRate: "100 AX = ₹1",
-                status: "Pending ⏳",
+                status: "Pending",
                 timestamp: new Date().toISOString()
             };
+
+            // Save the request first so the admin panel always receives it.
+            // The balance is debited only after Firestore confirms the write.
+            let savedToCloud = false;
+            if (typeof saveWithdrawalToFirebase === 'function') {
+                savedToCloud = await saveWithdrawalToFirebase(newRecord);
+            }
+            if (!savedToCloud) {
+                showToast('Could not submit the request. Please try again.', 'error');
+                return;
+            }
 
             // DEBIT COINS FROM USER BALANCE
             userAxCoins -= coinsToWithdraw;
             localStorage.setItem('user_ax_coins', userAxCoins);
             localStorage.setItem('user_id', myId);
             localStorage.setItem('user_name', name);
+            document.getElementById('availableCoinsInput').value = `${userAxCoins.toLocaleString()} AX`;
 
             document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
             document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 100).toFixed(2)}`;
@@ -1092,16 +1146,11 @@
 
             // Sync updated debited balance to Firebase Firestore
             if (typeof updateUserBalanceInFirebase === 'function') {
-                updateUserBalanceInFirebase(myId, {
+                await updateUserBalanceInFirebase(myId, {
                     userId: myId,
                     name: name,
                     axCoins: userAxCoins
                 });
-            }
-
-            // Save to Firebase Firestore withdrawals
-            if (typeof saveWithdrawalToFirebase === 'function') {
-                saveWithdrawalToFirebase(newRecord);
             }
 
             renderHistoryTable();
@@ -1136,7 +1185,7 @@
                                 axCoins: d.axCoins || 1000,
                                 inrAmount: d.inrAmount || ((d.axCoins || 1000) / 100),
                                 timestamp: timeStr,
-                                status: d.status || 'Pending ⏳'
+                                status: d.status || 'Pending'
                             };
                         });
 
@@ -1145,8 +1194,16 @@
                         const reqIds = new Set(history.map(h => h.reqId));
                         
                         realDocs.forEach(rd => {
-                            if (!reqIds.has(rd.reqId)) {
+                            const existingIndex = history.findIndex(item => item.reqId === rd.reqId);
+                            if (existingIndex === -1) {
                                 history.push(rd);
+                            } else {
+                                // Keep the local copy in sync after an admin
+                                // approves or rejects the request.
+                                history[existingIndex] = {
+                                    ...history[existingIndex],
+                                    ...rd
+                                };
                             }
                         });
 
@@ -1186,7 +1243,7 @@
                     <td><strong style="color: var(--gold);">${(Number(item.axCoins) || 0).toLocaleString()} AX</strong></td>
                     <td><strong style="color: var(--emerald);">₹${(Number(item.inrAmount) || ((Number(item.axCoins) || 0) / 100) || 0).toFixed(2)}</strong></td>
                     <td><span style="font-size:0.82rem; color: var(--text-muted);">${item.timestamp ? new Date(item.timestamp).toLocaleDateString() : 'Today'}</span></td>
-                    <td><span class="status-badge pending">${item.status || 'Pending ⏳'}</span></td>
+                    <td><span class="status-badge ${String(item.status || 'Pending').toLowerCase().includes('approved') ? 'approved' : String(item.status || 'Pending').toLowerCase().includes('rejected') ? 'rejected' : 'pending'}">${item.status || 'Pending'}</span></td>
                 </tr>
             `).join('');
         }

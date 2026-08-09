@@ -994,7 +994,7 @@
                 const d = docSnap.exists ? docSnap.data() : {};
                 const name = d.name || user.displayName || user.email || 'User';
                 const uniqueId = d.uniqueId || '—';
-                userAxCoins = Number(d.axCoins ?? d.rewards?.coinBalance ?? 0);
+                userAxCoins = Number(d.rewards?.coinBalance ?? d.axCoins ?? 0);
 
                 currentProfile = { uid: user.uid, name, uniqueId };
 
@@ -1045,7 +1045,7 @@
                         // Same fix as the withdrawal debit: write both balance
                         // mirrors to one synced absolute value instead of two
                         // independent increments, so they can't drift apart.
-                        const trueBalance = Number(data.axCoins ?? data.rewards?.coinBalance ?? 0);
+                        const trueBalance = Number(data.rewards?.coinBalance ?? data.axCoins ?? 0);
                         const updatedBalance = trueBalance + totalRefund;
                         txn.set(userRef, {
                             axCoins: updatedBalance,
@@ -1058,7 +1058,7 @@
                 // Reflect any refund immediately in the UI
                 const fresh = await userRef.get();
                 const freshData = fresh.data() || {};
-                userAxCoins = Number(freshData.axCoins ?? freshData.rewards?.coinBalance ?? userAxCoins);
+                userAxCoins = Number(freshData.rewards?.coinBalance ?? freshData.axCoins ?? userAxCoins);
                 document.getElementById('dispAxCoins').textContent = `${userAxCoins.toLocaleString()} AX`;
                 document.getElementById('dispInrValue').textContent = `₹${(userAxCoins / 100).toFixed(2)}`;
             } catch (e) {
@@ -1186,7 +1186,7 @@
                 const newBalance = await window.db.runTransaction(async (txn) => {
                     const snap = await txn.get(userRef);
                     const data = snap.data() || {};
-                    const trueBalance = Number(data.axCoins ?? data.rewards?.coinBalance ?? 0);
+                    const trueBalance = Number(data.rewards?.coinBalance ?? data.axCoins ?? 0);
 
                     if (coinsToWithdraw > trueBalance) {
                         throw new Error(`Insufficient AX Coins! You have ${trueBalance} AX available in balance.`);

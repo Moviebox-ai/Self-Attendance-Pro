@@ -100,6 +100,13 @@ async function updateUserBalanceInFirebase(userId, userData) {
             ...userData,
             lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
         }, { merge: true });
+        // Mirror the balance inside the Android app's nested rewards map
+        // without replacing its spin/login metadata.
+        if (userData.axCoins !== undefined) {
+            await userRef.update({
+                "rewards.coinBalance": Number(userData.axCoins)
+            });
+        }
         console.log("User balance updated in Firestore for:", userId);
         return true;
     } catch (error) {

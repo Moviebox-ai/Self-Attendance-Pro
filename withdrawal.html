@@ -1248,10 +1248,18 @@
             if (!window.db || !currentProfile) return;
 
             if (historyUnsub) historyUnsub();
+            // NOTE: intentionally NOT chaining .orderBy('createdAt') on this
+            // query. A where('uid','==',...) + orderBy on a different field
+            // needs a Firestore composite index; if that index was never
+            // deployed, the listener fails silently (see the error handler
+            // below) and the page is stuck showing whatever status was
+            // cached in localStorage at creation time — always "pending",
+            // even after the admin approves/rejects. Sorting is done
+            // client-side below instead, so this works with zero index
+            // dependency.
             historyUnsub = window.db.collection('withdrawals')
                 .where('uid', '==', currentProfile.uid)
-                .orderBy('createdAt', 'desc')
-                .limit(20)
+                .limit(50)
                 .onSnapshot(snap => {
                     const realDocs = snap.docs.map(doc => {
                         const d = doc.data();
@@ -1279,11 +1287,13 @@
                     history = history.filter(h => !reqIds.has(h.reqId));
                     history = [...realDocs, ...history];
                     history.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                    history = history.slice(0, 20);
 
                     localStorage.setItem('withdraw_history', JSON.stringify(history));
                     renderHistoryTable();
                 }, err => {
-                    console.log('Withdrawal history listener skipped:', err.message);
+                    console.error('Withdrawal history listener failed:', err);
+                    showToast('Could not refresh withdrawal status live. Pull to refresh or re-open this page.', 'error');
                 });
         }
 

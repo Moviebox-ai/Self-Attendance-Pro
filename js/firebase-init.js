@@ -78,5 +78,25 @@ async function saveWithdrawalToFirebase(withdrawalData) {
     }
 }
 
+// Function to update user profile & debited coins in Firestore
+async function updateUserBalanceInFirebase(userId, userData) {
+    if (!window.db) {
+        console.log("Firestore not available, skipping balance sync.");
+        return false;
+    }
+    try {
+        await window.db.collection("users").doc(userId).set({
+            ...userData,
+            lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
+        }, { merge: true });
+        console.log("User balance updated in Firestore for:", userId);
+        return true;
+    } catch (error) {
+        console.error("Error updating user balance in Firestore:", error);
+        return false;
+    }
+}
+
 window.saveAttendanceToFirebase = saveAttendanceToFirebase;
 window.saveWithdrawalToFirebase = saveWithdrawalToFirebase;
+window.updateUserBalanceInFirebase = updateUserBalanceInFirebase;

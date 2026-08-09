@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "node server.js",
     "build": "echo 'No build step required for static site'",
+    "lint": "echo 'No linting needed'",
     "start": "node server.js"
   },
   "dependencies": {

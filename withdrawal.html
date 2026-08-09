@@ -727,11 +727,11 @@
                 <div class="stat-header">
                     <div>
                         <div class="stat-title">Conversion Rate</div>
-                        <div class="stat-value" style="color: var(--gold);">100 AX = ₹1</div>
+                        <div class="stat-value" style="color: var(--gold);">300 AX = ₹1</div>
                     </div>
                     <div class="stat-icon purple"><i class="fa-solid fa-arrow-trend-up"></i></div>
                 </div>
-                <div class="stat-sub">1 AX Coin = ₹0.01 INR Standard Value</div>
+                <div class="stat-sub">1,500 AX = ₹5 • 15,000 AX = ₹50</div>
             </div>
 
             <div class="stat-card">
@@ -742,7 +742,7 @@
                     </div>
                     <div class="stat-icon green"><i class="fa-solid fa-indian-rupee-sign"></i></div>
                 </div>
-                <div class="stat-sub">Min ₹10 (1,000 AX) • Max ₹50 (5,000 AX)</div>
+                <div class="stat-sub">Min ₹5 (1,500 AX) • Max ₹50 (15,000 AX)</div>
             </div>
         </div>
 
@@ -797,8 +797,19 @@
 
                         <!-- TOTAL AX COINS & CONVERSION RATE AMOUNT -->
                         <div class="form-group full">
-                            <label for="withdrawCoinsInput"><i class="fa-solid fa-coins text-gold"></i> Enter AX Coins to Withdraw (Min ₹10 - Max ₹50)</label>
-                            <input type="number" id="withdrawCoinsInput" class="form-control" placeholder="1,000 AX (₹10) to 5,000 AX (₹50)" min="1000" max="5000" value="1000" oninput="updateLiveConversion()" required />
+                            <label for="withdrawCoinsInput"><i class="fa-solid fa-coins text-gold"></i> Choose or Enter AX Coins to Withdraw</label>
+
+                            <!-- Quick Selection Packages -->
+                            <div style="display: flex; gap: 10px; margin-bottom: 8px; flex-wrap: wrap;">
+                                <button type="button" class="btn btn-outline" style="padding: 10px 16px; font-size: 0.9rem; flex: 1; border-color: rgba(255, 193, 7, 0.4);" onclick="setCoinPreset(1500)">
+                                    <i class="fa-solid fa-coins text-gold"></i> 1,500 AX = ₹5
+                                </button>
+                                <button type="button" class="btn btn-outline" style="padding: 10px 16px; font-size: 0.9rem; flex: 1; border-color: rgba(255, 193, 7, 0.4);" onclick="setCoinPreset(15000)">
+                                    <i class="fa-solid fa-coins text-gold"></i> 15,000 AX = ₹50
+                                </button>
+                            </div>
+
+                            <input type="number" id="withdrawCoinsInput" class="form-control" placeholder="1,500 AX (₹5) or 15,000 AX (₹50)" min="1500" max="15000" step="100" value="1500" oninput="updateLiveConversion()" required />
                         </div>
                     </div>
 
@@ -812,8 +823,8 @@
             <div class="info-card">
                 <div class="rate-box">
                     <div class="rate-title"><i class="fa-solid fa-bolt"></i> Official Conversion Rate</div>
-                    <div class="rate-value">100 AX Coins = ₹1.00 INR</div>
-                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px;">(1,000 AX = ₹10.00 | 5,000 AX = ₹50.00)</p>
+                    <div class="rate-value">300 AX Coins = ₹1.00 INR</div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px;">(1,500 AX = ₹5.00 | 15,000 AX = ₹50.00)</p>
                 </div>
 
                 <div class="calc-box">
@@ -822,11 +833,11 @@
                     </div>
                     <div class="calc-row">
                         <span style="color: var(--text-muted);">Coins Selected:</span>
-                        <span id="calcCoinsVal" style="font-weight: 700; color: var(--gold);">1,000 AX</span>
+                        <span id="calcCoinsVal" style="font-weight: 700; color: var(--gold);">1,500 AX</span>
                     </div>
                     <div class="calc-row">
                         <span style="color: var(--text-muted);">Rate:</span>
-                        <span>100 AX = ₹1</span>
+                        <span>300 AX = ₹1</span>
                     </div>
                     <div class="calc-row">
                         <span style="color: var(--text-muted);">Processing Fee:</span>
@@ -834,7 +845,7 @@
                     </div>
                     <div class="calc-row total">
                         <span>You Receive:</span>
-                        <span id="calcPayoutVal">₹10.00 INR</span>
+                        <span id="calcPayoutVal">₹5.00 INR</span>
                     </div>
                 </div>
 
@@ -845,11 +856,11 @@
                     <div class="rules-list">
                         <div class="rule-item">
                             <i class="fa-solid fa-circle-check"></i>
-                            <div><strong>Conversion Rate:</strong> 100 AX Coins = ₹1.00 INR</div>
+                            <div><strong>Conversion Rate:</strong> 300 AX Coins = ₹1.00 INR</div>
                         </div>
                         <div class="rule-item">
                             <i class="fa-solid fa-circle-check"></i>
-                            <div><strong>Withdrawal Limit:</strong> Min <strong>₹10 (1,000 AX)</strong> to Max <strong>₹50 (5,000 AX)</strong> per request.</div>
+                            <div><strong>Withdrawal Limit:</strong> Min <strong>₹5 (1,500 AX)</strong> to Max <strong>₹50 (15,000 AX)</strong> per request.</div>
                         </div>
                         <div class="rule-item">
                             <i class="fa-solid fa-calendar-days"></i>
@@ -1001,7 +1012,7 @@
                 document.getElementById('accName').textContent = name;
                 document.getElementById('accUniqueId').textContent = uniqueId;
                 document.getElementById('dispAxCoins').textContent = `${userAxCoins.toLocaleString()} AX`;
-                document.getElementById('dispInrValue').textContent = `₹${(userAxCoins / 100).toFixed(2)}`;
+                document.getElementById('dispInrValue').textContent = `₹${(userAxCoins / 300).toFixed(2)}`;
 
                 updateLiveConversion();
                 loadWithdrawalHistory();
@@ -1060,7 +1071,7 @@
                 const freshData = fresh.data() || {};
                 userAxCoins = Number(freshData.rewards?.coinBalance ?? freshData.axCoins ?? userAxCoins);
                 document.getElementById('dispAxCoins').textContent = `${userAxCoins.toLocaleString()} AX`;
-                document.getElementById('dispInrValue').textContent = `₹${(userAxCoins / 100).toFixed(2)}`;
+                document.getElementById('dispInrValue').textContent = `₹${(userAxCoins / 300).toFixed(2)}`;
             } catch (e) {
                 console.log('claimPendingRefunds skipped:', e.message);
             }
@@ -1087,13 +1098,19 @@
             }
         }
 
-        // Live Conversion Calculator (100 AX Coins = ₹1.00 INR)
+        // Preset Selector Helper (1,500 AX = ₹5, 15,000 AX = ₹50)
+        function setCoinPreset(coins) {
+            document.getElementById('withdrawCoinsInput').value = coins;
+            updateLiveConversion();
+        }
+
+        // Live Conversion Calculator (300 AX Coins = ₹1.00 INR -> 1,500 AX = ₹5, 15,000 AX = ₹50)
         function updateLiveConversion() {
             const coinsInput = parseFloat(document.getElementById('withdrawCoinsInput').value) || 0;
-            const inrVal = (coinsInput / 100).toFixed(2);
+            const inrVal = (coinsInput / 300).toFixed(2);
 
             document.getElementById('calcCoinsVal').innerText = `${coinsInput.toLocaleString()} AX`;
-            document.getElementById('calcPayoutVal').innerText = `₹${parseFloat(inrVal).toLocaleString()} INR`;
+            document.getElementById('calcPayoutVal').innerText = `₹${parseFloat(inrVal).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})} INR`;
         }
 
         // Handle Form Submission
@@ -1107,9 +1124,9 @@
 
             const coinsToWithdraw = parseInt(document.getElementById('withdrawCoinsInput').value);
 
-            // Min ₹10 (1,000 AX) and Max ₹50 (5,000 AX) check
-            if (coinsToWithdraw < 1000 || coinsToWithdraw > 5000) {
-                showToast('Withdrawal limit is 1,000 AX (₹10) to 5,000 AX (₹50) per request.', 'error');
+            // Min ₹5 (1,500 AX) and Max ₹50 (15,000 AX) check
+            if (coinsToWithdraw < 1500 || coinsToWithdraw > 15000) {
+                showToast('Withdrawal limit is 1,500 AX (₹5) to 15,000 AX (₹50) per request.', 'error');
                 return;
             }
 
@@ -1156,7 +1173,7 @@
                 methodDetails = `Bank: ${bankName} (${accNum.slice(-4)}), IFSC: ${ifsc}`;
             }
 
-            const inrAmount = coinsToWithdraw / 100;
+            const inrAmount = coinsToWithdraw / 300;
             const reqId = 'WR-' + Math.floor(100000 + Math.random() * 900000);
             const submitBtn = e.target.querySelector('button[type="submit"]');
             if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting…'; }
@@ -1214,7 +1231,7 @@
                     methodDetails: methodDetails,
                     axCoins: coinsToWithdraw,
                     inrAmount: inrAmount,
-                    conversionRate: "100 AX = ₹1",
+                    conversionRate: "300 AX = ₹1 (1500 AX = ₹5)",
                     timestamp: new Date().toISOString()
                 };
                 await window.saveWithdrawalToFirebase(newRecord);
@@ -1222,7 +1239,7 @@
                 // Reflect locally — use the exact synced value the transaction wrote
                 userAxCoins = newBalance;
                 document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
-                document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 100).toFixed(2)}`;
+                document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 300).toFixed(2)}`;
 
                 history.unshift(newRecord);
                 localStorage.setItem('withdraw_history', JSON.stringify(history));
@@ -1230,7 +1247,7 @@
                 renderHistoryTable();
                 showToast(`Withdrawal of ₹${inrAmount.toFixed(2)} submitted! ${coinsToWithdraw.toLocaleString()} AX debited. Admin will review within 24-48 hrs.`, 'success');
 
-                document.getElementById('withdrawCoinsInput').value = 1000;
+                document.getElementById('withdrawCoinsInput').value = 1500;
                 updateLiveConversion();
             } catch (err) {
                 console.error('Withdrawal submit failed:', err);
@@ -1275,7 +1292,7 @@
                             name: d.name || 'User',
                             methodDetails: d.methodDetails || 'UPI',
                             axCoins: d.amount || d.axCoins || 0,
-                            inrAmount: d.inrAmount || ((d.amount || 0) / 100),
+                            inrAmount: d.inrAmount || ((d.amount || 0) / 300),
                             timestamp: timeStr,
                             status: d.status || 'pending'
                         };
@@ -1321,7 +1338,7 @@
                     </td>
                     <td><span style="font-size:0.86rem;">${item.methodDetails || 'UPI'}</span></td>
                     <td><strong style="color: var(--gold);">${(Number(item.axCoins) || 0).toLocaleString()} AX</strong></td>
-                    <td><strong style="color: var(--emerald);">₹${(Number(item.inrAmount) || ((Number(item.axCoins) || 0) / 100) || 0).toFixed(2)}</strong></td>
+                    <td><strong style="color: var(--emerald);">₹${(Number(item.inrAmount) || ((Number(item.axCoins) || 0) / 300) || 0).toFixed(2)}</strong></td>
                     <td><span style="font-size:0.82rem; color: var(--text-muted);">${item.timestamp ? new Date(item.timestamp).toLocaleDateString() : 'Today'}</span></td>
                     <td>${withdrawalStatusBadge(item.status)}</td>
                 </tr>

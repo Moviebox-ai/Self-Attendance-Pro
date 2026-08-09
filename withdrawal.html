@@ -663,13 +663,60 @@
     </div>
 
     <div class="container">
+        <!-- SIGN-IN GATE — withdrawal requests now require the same
+             account (email/password or Google) used in the Self
+             Attendance Pro app, so a request can only ever be created
+             for the signed-in user's own wallet. -->
+        <div id="loginGate" class="withdraw-card" style="max-width: 480px; margin: 0 auto 32px;">
+            <div class="form-title"><i class="fa-solid fa-right-to-bracket text-gold"></i> Sign In to Continue</div>
+            <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 20px;">
+                Apne AX Coins withdraw karne ke liye, wahi account se sign in karein jo aap Self Attendance Pro app me use karte hain.
+            </p>
+            <div class="form-group">
+                <label for="loginEmailInput">Email</label>
+                <input type="email" id="loginEmailInput" class="form-control" placeholder="Your app login email" />
+            </div>
+            <div class="form-group">
+                <label for="loginPasswordInput">Password</label>
+                <input type="password" id="loginPasswordInput" class="form-control" placeholder="••••••••" />
+            </div>
+            <button type="button" class="btn btn-gold" style="width: 100%; margin-top: 6px;" onclick="handleEmailSignIn()">
+                <i class="fa-solid fa-right-to-bracket"></i> Sign In
+            </button>
+            <div style="text-align: center; margin: 16px 0; color: var(--text-muted); font-size: 0.85rem;">OR</div>
+            <button type="button" class="btn btn-outline" style="width: 100%;" onclick="handleGoogleSignIn()">
+                <i class="fa-brands fa-google"></i> Continue with Google
+            </button>
+            <p id="loginError" style="color: var(--rose); font-size: 0.85rem; margin-top: 14px; display: none;"></p>
+            <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 18px;">
+                Naya account? Pehle Self Attendance Pro app kholkar register karein, phir yahan wahi email/password se sign in karein.
+            </p>
+        </div>
+
+        <!-- ACCOUNT BAR — shown once signed in -->
+        <div id="accountBar" class="withdraw-card" style="display: none; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 24px;">
+            <div style="display: flex; align-items: center; gap: 14px;">
+                <div style="width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--gold));display:flex;align-items:center;justify-content:center;font-weight:800;">
+                    <i class="fa-solid fa-user text-white"></i>
+                </div>
+                <div>
+                    <div style="font-weight:700;" id="accName">—</div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted);">Unique ID: <strong id="accUniqueId" style="color: var(--gold);">—</strong></div>
+                </div>
+            </div>
+            <button class="btn btn-outline" style="padding: 8px 18px; font-size: 0.85rem;" onclick="handleSignOut()">
+                <i class="fa-solid fa-right-from-bracket"></i> Sign Out
+            </button>
+        </div>
+
+        <div id="withdrawContent" style="display: none;">
         <!-- STATS & BALANCE CARDS -->
         <div class="stats-grid">
             <div class="stat-card gold-card">
                 <div class="stat-header">
                     <div>
                         <div class="stat-title">Total AX Coins</div>
-                        <div class="stat-value" id="dispAxCoins">2,500 AX</div>
+                        <div class="stat-value" id="dispAxCoins">0 AX</div>
                     </div>
                     <div class="stat-icon"><i class="fa-solid fa-coins"></i></div>
                 </div>
@@ -691,7 +738,7 @@
                 <div class="stat-header">
                     <div>
                         <div class="stat-title">Estimated INR Value</div>
-                        <div class="stat-value" id="dispInrValue">₹25.00</div>
+                        <div class="stat-value" id="dispInrValue">₹0.00</div>
                     </div>
                     <div class="stat-icon green"><i class="fa-solid fa-indian-rupee-sign"></i></div>
                 </div>
@@ -709,30 +756,9 @@
 
                 <form id="withdrawalForm" onsubmit="handleWithdrawSubmit(event)">
                     <div class="form-grid">
-                        <!-- 1. MY ID -->
-                        <div class="form-group">
-                            <label for="userIdInput"><i class="fa-solid fa-id-card text-gold"></i> 1. My ID (User / Member ID)</label>
-                            <input type="text" id="userIdInput" class="form-control" placeholder="e.g. AX-984210" oninput="autoLookupUserByID()" onchange="autoLookupUserByID()" required />
-                            <small id="idLookupStatus" style="font-size: 0.82rem; color: var(--gold); display: block; margin-top: 5px; min-height: 20px;">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i> Type My ID to auto-fill Name & Total Coins
-                            </small>
-                        </div>
-
-                        <!-- 2. NAME -->
-                        <div class="form-group">
-                            <label for="userNameInput"><i class="fa-solid fa-user text-gold"></i> 2. Full Name</label>
-                            <input type="text" id="userNameInput" class="form-control" placeholder="Auto-filled from My ID" readonly required />
-                        </div>
-
-                        <!-- AUTO-FILLED BALANCE -->
-                        <div class="form-group">
-                            <label for="availableCoinsInput"><i class="fa-solid fa-coins text-gold"></i> Total Available Coins</label>
-                            <input type="text" id="availableCoinsInput" class="form-control" placeholder="Auto-filled from My ID" readonly />
-                        </div>
-
-                        <!-- 3. WITHDRAWAL METHOD CHOICE -->
+                        <!-- WITHDRAWAL METHOD CHOICE -->
                         <div class="form-group full">
-                            <label><i class="fa-solid fa-credit-card text-gold"></i> 3. Choose Withdrawal Method</label>
+                            <label><i class="fa-solid fa-credit-card text-gold"></i> Choose Withdrawal Method</label>
                             <div class="payment-method-selector">
                                 <button type="button" class="method-btn active" id="btnUpi" onclick="selectPaymentMethod('upi')">
                                     <i class="fa-solid fa-qrcode"></i> UPI ID
@@ -769,9 +795,9 @@
                             </div>
                         </div>
 
-                        <!-- 4. TOTAL AX COINS & CONVERSION RATE AMOUNT -->
+                        <!-- TOTAL AX COINS & CONVERSION RATE AMOUNT -->
                         <div class="form-group full">
-                            <label for="withdrawCoinsInput"><i class="fa-solid fa-coins text-gold"></i> 4. Enter AX Coins to Withdraw (Min ₹10 - Max ₹50)</label>
+                            <label for="withdrawCoinsInput"><i class="fa-solid fa-coins text-gold"></i> Enter AX Coins to Withdraw (Min ₹10 - Max ₹50)</label>
                             <input type="number" id="withdrawCoinsInput" class="form-control" placeholder="1,000 AX (₹10) to 5,000 AX (₹50)" min="1000" max="5000" value="1000" oninput="updateLiveConversion()" required />
                         </div>
                     </div>
@@ -868,6 +894,7 @@
                 </table>
             </div>
         </div>
+        </div><!-- /#withdrawContent -->
     </div>
 
     <!-- FOOTER -->
@@ -889,122 +916,149 @@
     <script src="js/firebase-init.js"></script>
 
     <!-- WITHDRAWAL SCRIPT -->
+    <!-- WITHDRAWAL SCRIPT -->
     <script>
         let currentMethod = 'upi';
-        let userAxCoins = parseInt(localStorage.getItem('user_ax_coins'));
-        if (isNaN(userAxCoins)) {
-            userAxCoins = 2500; // Initial default balance for user session
-            localStorage.setItem('user_ax_coins', userAxCoins);
-        }
+        let userAxCoins = 0;
+        let currentProfile = null;   // { uid, name, uniqueId }
+        let historyUnsub = null;
 
-        // Auto-Lookup Real User Name & Coins when My ID is filled
-        async function autoLookupUserByID() {
-            const inputId = document.getElementById('userIdInput').value.trim().toUpperCase();
-            const nameInput = document.getElementById('userNameInput');
-            const statusMsg = document.getElementById('idLookupStatus');
+        // ── Auth: Email/Password ────────────────────────────────────────
+        async function handleEmailSignIn() {
+            const email = document.getElementById('loginEmailInput').value.trim();
+            const pass  = document.getElementById('loginPasswordInput').value;
+            const errEl = document.getElementById('loginError');
+            errEl.style.display = 'none';
 
-            if (!inputId) {
-                if (statusMsg) statusMsg.innerHTML = '<i class="fa-solid fa-id-card"></i> Enter your My ID';
+            if (!email || !pass) {
+                errEl.textContent = 'Please enter both email and password.';
+                errEl.style.display = 'block';
                 return;
             }
-
-            let foundUser = null;
-
-            // 1. Check in localStorage registered users or current user session
-            const storedUsers = JSON.parse(localStorage.getItem('registered_users') || '{}');
-            if (storedUsers[inputId]) {
-                foundUser = storedUsers[inputId];
-            } else if (inputId === (localStorage.getItem('user_id') || '').toUpperCase()) {
-                foundUser = {
-                    name: localStorage.getItem('user_name') || '',
-                    coins: parseInt(localStorage.getItem('user_ax_coins')) || userAxCoins
+            try {
+                await window.auth.signInWithEmailAndPassword(email, pass);
+                // onAuthStateChanged below takes over from here
+            } catch (e) {
+                const msgs = {
+                    'auth/user-not-found': 'No account found with this email. Register in the app first.',
+                    'auth/wrong-password': 'Incorrect password.',
+                    'auth/invalid-credential': 'Invalid email or password.',
+                    'auth/invalid-email': 'Invalid email address.',
+                    'auth/too-many-requests': 'Too many attempts. Please wait and try again.',
                 };
-            }
-
-            // 2. Prefer the real Firestore profile when available so the
-            // balance shown here stays in sync with admin decisions.
-            if (window.db) {
-                try {
-                    const docSnap = await window.db.collection('users').doc(inputId).get();
-                    if (docSnap.exists) {
-                        const d = docSnap.data();
-                        foundUser = {
-                            name: d.name || d.displayName || '',
-                            coins: Number(
-                                d.axCoins ??
-                                d.coins ??
-                                d.rewards?.coinBalance ??
-                                d.rewards?.totalCoinsEarned ??
-                                2500
-                            )
-                        };
-                    }
-
-                    // Some app versions store the unique ID as a field on a
-                    // Firebase UID document instead of using it as the ID.
-                    const byUniqueId = await window.db.collection('users')
-                        .where('uniqueId', '==', inputId)
-                        .limit(1)
-                        .get();
-                    if (!byUniqueId.empty) {
-                        const d = byUniqueId.docs[0].data();
-                        foundUser = {
-                            name: d.name || d.displayName || '',
-                            coins: Number(
-                                d.axCoins ??
-                                d.coins ??
-                                d.rewards?.coinBalance ??
-                                d.rewards?.totalCoinsEarned ??
-                                2500
-                            )
-                        };
-                    }
-                } catch(e) {
-                    console.log("Firestore lookup skipped:", e);
-                }
-            }
-
-            if (foundUser && foundUser.name) {
-                nameInput.value = foundUser.name;
-                userAxCoins = foundUser.coins;
-                localStorage.setItem('user_ax_coins', userAxCoins);
-                
-                document.getElementById('availableCoinsInput').value = `${userAxCoins.toLocaleString()} AX`;
-                document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
-                document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 100).toFixed(2)}`;
-
-                updateLiveConversion();
-
-                if (statusMsg) {
-                    statusMsg.innerHTML = `<i class="fa-solid fa-circle-check text-emerald"></i> Real User Verified! Name: <strong>${foundUser.name}</strong> | Balance: <strong>${userAxCoins.toLocaleString()} AX Coins (₹${(userAxCoins/100).toFixed(2)})</strong>`;
-                }
-            } else {
-                document.getElementById('availableCoinsInput').value = '';
-                if (statusMsg) {
-                    statusMsg.innerHTML = `<i class="fa-solid fa-circle-info text-gold"></i> ID Ready. Please enter your name to complete registration and request payout.`;
-                }
+                errEl.textContent = msgs[e.code] || e.message;
+                errEl.style.display = 'block';
             }
         }
 
-        // Initialize Page
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedUserId = localStorage.getItem('user_id') || 'AX-984210';
-            const savedName = localStorage.getItem('user_name') || 'Rahul Kumar';
-            
-            document.getElementById('userIdInput').value = savedUserId;
-            document.getElementById('userNameInput').value = savedName;
-            document.getElementById('availableCoinsInput').value = `${userAxCoins.toLocaleString()} AX`;
+        // ── Auth: Google ─────────────────────────────────────────────────
+        async function handleGoogleSignIn() {
+            const errEl = document.getElementById('loginError');
+            errEl.style.display = 'none';
+            try {
+                const provider = new firebase.auth.GoogleAuthProvider();
+                await window.auth.signInWithPopup(provider);
+            } catch (e) {
+                errEl.textContent = e.message || 'Google sign-in failed.';
+                errEl.style.display = 'block';
+            }
+        }
 
-            // Display current debited user coins
-            document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
-            document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 100).toFixed(2)}`;
+        function handleSignOut() {
+            if (historyUnsub) { historyUnsub(); historyUnsub = null; }
+            window.auth.signOut();
+        }
 
-            // Trigger auto-lookup on page load
-            autoLookupUserByID();
+        // ── Auth state → show gate or withdrawal content ────────────────
+        function initAuthWatcher() {
+            if (!window.auth) { setTimeout(initAuthWatcher, 300); return; }
+            window.auth.onAuthStateChanged(async (user) => {
+                if (user) {
+                    await onSignedIn(user);
+                } else {
+                    currentProfile = null;
+                    document.getElementById('loginGate').style.display = 'block';
+                    document.getElementById('accountBar').style.display = 'none';
+                    document.getElementById('withdrawContent').style.display = 'none';
+                }
+            });
+        }
 
-            updateLiveConversion();
-            loadWithdrawalHistory();
-        });
+        async function onSignedIn(user) {
+            document.getElementById('loginGate').style.display = 'none';
+            document.getElementById('accountBar').style.display = 'flex';
+            document.getElementById('withdrawContent').style.display = 'block';
+
+            try {
+                const docSnap = await window.db.collection('users').doc(user.uid).get();
+                const d = docSnap.exists ? docSnap.data() : {};
+                const name = d.name || user.displayName || user.email || 'User';
+                const uniqueId = d.uniqueId || '—';
+                userAxCoins = Number(d.axCoins ?? d.rewards?.coinBalance ?? 0);
+
+                currentProfile = { uid: user.uid, name, uniqueId };
+
+                document.getElementById('accName').textContent = name;
+                document.getElementById('accUniqueId').textContent = uniqueId;
+                document.getElementById('dispAxCoins').textContent = `${userAxCoins.toLocaleString()} AX`;
+                document.getElementById('dispInrValue').textContent = `₹${(userAxCoins / 100).toFixed(2)}`;
+
+                updateLiveConversion();
+                loadWithdrawalHistory();
+                claimPendingRefunds(); // credit back any coins from requests admin rejected
+            } catch (e) {
+                console.error('Failed to load profile:', e);
+                showToast('Could not load your profile. Please refresh and try again.', 'error');
+            }
+        }
+
+        // Any request an admin marked "rejected" needs its coins credited
+        // back. Only the owner can write their own users/{uid} doc, so this
+        // runs client-side on sign-in and records which withdrawal IDs have
+        // already been refunded (inside the user's own doc) to avoid
+        // double-crediting.
+        async function claimPendingRefunds() {
+            if (!currentProfile) return;
+            try {
+                const rejectedSnap = await window.db.collection('withdrawals')
+                    .where('uid', '==', currentProfile.uid)
+                    .where('status', '==', 'rejected')
+                    .get();
+                if (rejectedSnap.empty) return;
+
+                const userRef = window.db.collection('users').doc(currentProfile.uid);
+                await window.db.runTransaction(async (txn) => {
+                    const userSnap = await txn.get(userRef);
+                    const already = new Set((userSnap.data() || {}).refundedWithdrawalIds || []);
+                    let totalRefund = 0;
+                    const newlyRefunded = [];
+
+                    rejectedSnap.forEach(doc => {
+                        if (!already.has(doc.id)) {
+                            totalRefund += Number(doc.data().amount || 0);
+                            newlyRefunded.push(doc.id);
+                        }
+                    });
+
+                    if (totalRefund > 0) {
+                        txn.set(userRef, {
+                            axCoins: firebase.firestore.FieldValue.increment(totalRefund),
+                            rewards: { coinBalance: firebase.firestore.FieldValue.increment(totalRefund) },
+                            refundedWithdrawalIds: firebase.firestore.FieldValue.arrayUnion(...newlyRefunded)
+                        }, { merge: true });
+                    }
+                });
+
+                // Reflect any refund immediately in the UI
+                const fresh = await userRef.get();
+                const freshData = fresh.data() || {};
+                userAxCoins = Number(freshData.axCoins ?? freshData.rewards?.coinBalance ?? userAxCoins);
+                document.getElementById('dispAxCoins').textContent = `${userAxCoins.toLocaleString()} AX`;
+                document.getElementById('dispInrValue').textContent = `₹${(userAxCoins / 100).toFixed(2)}`;
+            } catch (e) {
+                console.log('claimPendingRefunds skipped:', e.message);
+            }
+        }
 
         // Payment Method Toggle
         function selectPaymentMethod(method) {
@@ -1040,14 +1094,12 @@
         async function handleWithdrawSubmit(e) {
             e.preventDefault();
 
-            const myId = document.getElementById('userIdInput').value.trim();
-            const name = document.getElementById('userNameInput').value.trim();
-            const coinsToWithdraw = parseInt(document.getElementById('withdrawCoinsInput').value);
-
-            if (!myId || !name) {
-                showToast('Please enter your My ID and Name.', 'error');
+            if (!currentProfile) {
+                showToast('Please sign in first.', 'error');
                 return;
             }
+
+            const coinsToWithdraw = parseInt(document.getElementById('withdrawCoinsInput').value);
 
             // Min ₹10 (1,000 AX) and Max ₹50 (5,000 AX) check
             if (coinsToWithdraw < 1000 || coinsToWithdraw > 5000) {
@@ -1060,12 +1112,12 @@
                 return;
             }
 
-            // Monthly 2 Times Withdrawal Limit Check
+            // Monthly 2 Times Withdrawal Limit Check (based on this device's cached history)
             const now = new Date();
             const curMonth = now.getMonth();
             const curYear = now.getFullYear();
             let history = JSON.parse(localStorage.getItem('withdraw_history') || '[]');
-            
+
             const monthlyCount = history.filter(item => {
                 if (!item.timestamp) return false;
                 const d = new Date(item.timestamp);
@@ -1100,121 +1152,102 @@
 
             const inrAmount = coinsToWithdraw / 100;
             const reqId = 'WR-' + Math.floor(100000 + Math.random() * 900000);
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Submitting…'; }
 
-            const newRecord = {
-                reqId: reqId,
-                myId: myId,
-                name: name,
-                method: currentMethod,
-                methodDetails: methodDetails,
-                axCoins: coinsToWithdraw,
-                inrAmount: inrAmount,
-                conversionRate: "100 AX = ₹1",
-                status: "Pending",
-                timestamp: new Date().toISOString()
-            };
+            try {
+                // Debit coins from the user's OWN wallet — allowed because the
+                // request is authenticated as this exact uid (Firestore rules
+                // only let the owner or nobody update users/{uid}).
+                await window.db.collection('users').doc(currentProfile.uid).set({
+                    axCoins: firebase.firestore.FieldValue.increment(-coinsToWithdraw),
+                    rewards: { coinBalance: firebase.firestore.FieldValue.increment(-coinsToWithdraw) }
+                }, { merge: true });
 
-            // Save the request first so the admin panel always receives it.
-            // The balance is debited only after Firestore confirms the write.
-            let savedToCloud = false;
-            if (typeof saveWithdrawalToFirebase === 'function') {
-                savedToCloud = await saveWithdrawalToFirebase(newRecord);
+                // Create the withdrawal request — `uid`, `amount` and `status`
+                // are the fields the security rules require.
+                const newRecord = {
+                    uid: currentProfile.uid,
+                    amount: coinsToWithdraw,
+                    status: 'pending',
+                    reqId: reqId,
+                    uniqueId: currentProfile.uniqueId,
+                    name: currentProfile.name,
+                    method: currentMethod,
+                    methodDetails: methodDetails,
+                    axCoins: coinsToWithdraw,
+                    inrAmount: inrAmount,
+                    conversionRate: "100 AX = ₹1",
+                    timestamp: new Date().toISOString()
+                };
+                await window.saveWithdrawalToFirebase(newRecord);
+
+                // Reflect locally
+                userAxCoins -= coinsToWithdraw;
+                document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
+                document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 100).toFixed(2)}`;
+
+                history.unshift(newRecord);
+                localStorage.setItem('withdraw_history', JSON.stringify(history));
+
+                renderHistoryTable();
+                showToast(`Withdrawal of ₹${inrAmount.toFixed(2)} submitted! ${coinsToWithdraw.toLocaleString()} AX debited. Admin will review within 24-48 hrs.`, 'success');
+
+                document.getElementById('withdrawCoinsInput').value = 1000;
+                updateLiveConversion();
+            } catch (err) {
+                console.error('Withdrawal submit failed:', err);
+                showToast('Something went wrong submitting your request. Please try again.', 'error');
+            } finally {
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Withdrawal Request'; }
             }
-            if (!savedToCloud) {
-                showToast('Could not submit the request. Please try again.', 'error');
-                return;
-            }
-
-            // DEBIT COINS FROM USER BALANCE
-            userAxCoins -= coinsToWithdraw;
-            localStorage.setItem('user_ax_coins', userAxCoins);
-            localStorage.setItem('user_id', myId);
-            localStorage.setItem('user_name', name);
-            document.getElementById('availableCoinsInput').value = `${userAxCoins.toLocaleString()} AX`;
-
-            document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
-            document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 100).toFixed(2)}`;
-
-            // Register in local registered users
-            let registered = JSON.parse(localStorage.getItem('registered_users') || '{}');
-            registered[myId.toUpperCase()] = { name: name, coins: userAxCoins };
-            localStorage.setItem('registered_users', JSON.stringify(registered));
-
-            // Save to Local History
-            history.unshift(newRecord);
-            localStorage.setItem('withdraw_history', JSON.stringify(history));
-
-            // Sync updated debited balance to Firebase Firestore
-            if (typeof updateUserBalanceInFirebase === 'function') {
-                await updateUserBalanceInFirebase(myId, {
-                    userId: myId,
-                    name: name,
-                    axCoins: userAxCoins
-                });
-            }
-
-            renderHistoryTable();
-            showToast(`Withdrawal of ₹${inrAmount.toFixed(2)} submitted! ${coinsToWithdraw.toLocaleString()} AX debited. Remaining: ${userAxCoins.toLocaleString()} AX`, 'success');
-
-            // Reset form input
-            document.getElementById('withdrawCoinsInput').value = 1000;
-            updateLiveConversion();
         }
 
-        // Load & Render History Table with real Firestore + local history
-        async function loadWithdrawalHistory() {
+        // Load & Render History Table — only the signed-in user's OWN
+        // requests (Firestore rules only allow reading withdrawals where
+        // resource.data.uid == the signed-in uid, unless you're admin).
+        function loadWithdrawalHistory() {
             renderHistoryTable();
+            if (!window.db || !currentProfile) return;
 
-            if (window.db) {
-                try {
-                    const snap = await window.db.collection('withdrawals').orderBy('createdAt', 'desc').limit(20).get();
-                    if (!snap.empty) {
-                        const realDocs = snap.docs.map(doc => {
-                            const d = doc.data();
-                            let timeStr = new Date().toISOString();
-                            if (d.createdAt && d.createdAt.toDate) {
-                                timeStr = d.createdAt.toDate().toISOString();
-                            } else if (d.timestamp) {
-                                timeStr = d.timestamp;
-                            }
-                            return {
-                                reqId: d.reqId || ('WR-' + doc.id.substring(0, 6)),
-                                myId: d.myId || 'AX-USER',
-                                name: d.name || 'User',
-                                methodDetails: d.methodDetails || 'UPI',
-                                axCoins: d.axCoins || 1000,
-                                inrAmount: d.inrAmount || ((d.axCoins || 1000) / 100),
-                                timestamp: timeStr,
-                                status: d.status || 'Pending'
-                            };
-                        });
+            if (historyUnsub) historyUnsub();
+            historyUnsub = window.db.collection('withdrawals')
+                .where('uid', '==', currentProfile.uid)
+                .orderBy('createdAt', 'desc')
+                .limit(20)
+                .onSnapshot(snap => {
+                    const realDocs = snap.docs.map(doc => {
+                        const d = doc.data();
+                        let timeStr = new Date().toISOString();
+                        if (d.createdAt && d.createdAt.toDate) {
+                            timeStr = d.createdAt.toDate().toISOString();
+                        } else if (d.timestamp) {
+                            timeStr = d.timestamp;
+                        }
+                        return {
+                            reqId: d.reqId || ('WR-' + doc.id.substring(0, 6)),
+                            myId: d.uniqueId || '—',
+                            name: d.name || 'User',
+                            methodDetails: d.methodDetails || 'UPI',
+                            axCoins: d.amount || d.axCoins || 0,
+                            inrAmount: d.inrAmount || ((d.amount || 0) / 100),
+                            timestamp: timeStr,
+                            status: d.status || 'pending'
+                        };
+                    });
 
-                        // Merge real docs into withdraw_history without duplicates
-                        let history = JSON.parse(localStorage.getItem('withdraw_history') || '[]');
-                        const reqIds = new Set(history.map(h => h.reqId));
-                        
-                        realDocs.forEach(rd => {
-                            const existingIndex = history.findIndex(item => item.reqId === rd.reqId);
-                            if (existingIndex === -1) {
-                                history.push(rd);
-                            } else {
-                                // Keep the local copy in sync after an admin
-                                // approves or rejects the request.
-                                history[existingIndex] = {
-                                    ...history[existingIndex],
-                                    ...rd
-                                };
-                            }
-                        });
+                    let history = JSON.parse(localStorage.getItem('withdraw_history') || '[]');
+                    const reqIds = new Set(realDocs.map(h => h.reqId));
+                    // Drop any local-only duplicates, prefer the live Firestore copy
+                    history = history.filter(h => !reqIds.has(h.reqId));
+                    history = [...realDocs, ...history];
+                    history.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
 
-                        history.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
-                        localStorage.setItem('withdraw_history', JSON.stringify(history));
-                        renderHistoryTable();
-                    }
-                } catch(err) {
-                    console.log("Firestore history sync skipped:", err);
-                }
-            }
+                    localStorage.setItem('withdraw_history', JSON.stringify(history));
+                    renderHistoryTable();
+                }, err => {
+                    console.log('Withdrawal history listener skipped:', err.message);
+                });
         }
 
         function renderHistoryTable() {
@@ -1225,7 +1258,7 @@
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="7" style="text-align:center; padding: 30px; color: var(--text-muted);">
-                            No real withdrawal requests submitted yet.
+                            No withdrawal requests submitted yet.
                         </td>
                     </tr>
                 `;
@@ -1237,15 +1270,25 @@
                     <td><strong style="color: var(--gold);">${item.reqId || 'WR-000000'}</strong></td>
                     <td>
                         <div><strong>${item.name || 'User'}</strong></div>
-                        <div style="font-size: 0.78rem; color: var(--text-muted);">${item.myId || 'AX-USER'}</div>
+                        <div style="font-size: 0.78rem; color: var(--text-muted);">${item.myId || ''}</div>
                     </td>
                     <td><span style="font-size:0.86rem;">${item.methodDetails || 'UPI'}</span></td>
                     <td><strong style="color: var(--gold);">${(Number(item.axCoins) || 0).toLocaleString()} AX</strong></td>
                     <td><strong style="color: var(--emerald);">₹${(Number(item.inrAmount) || ((Number(item.axCoins) || 0) / 100) || 0).toFixed(2)}</strong></td>
                     <td><span style="font-size:0.82rem; color: var(--text-muted);">${item.timestamp ? new Date(item.timestamp).toLocaleDateString() : 'Today'}</span></td>
-                    <td><span class="status-badge ${String(item.status || 'Pending').toLowerCase().includes('approved') ? 'approved' : String(item.status || 'Pending').toLowerCase().includes('rejected') ? 'rejected' : 'pending'}">${item.status || 'Pending'}</span></td>
+                    <td>${withdrawalStatusBadge(item.status)}</td>
                 </tr>
             `).join('');
+        }
+
+        // Maps enum status ('pending'/'completed'/'rejected'/'cancelled')
+        // to a display badge.
+        function withdrawalStatusBadge(status) {
+            const s = (status || 'pending').toLowerCase();
+            if (s === 'completed' || s === 'approved') return '<span class="status-badge approved">✅ Approved</span>';
+            if (s === 'rejected') return '<span class="status-badge rejected">❌ Rejected</span>';
+            if (s === 'cancelled') return '<span class="status-badge rejected">🚫 Cancelled</span>';
+            return '<span class="status-badge pending">⏳ Pending</span>';
         }
 
         // Toast Helper
@@ -1253,7 +1296,7 @@
             const container = document.getElementById('toastContainer');
             const toast = document.createElement('div');
             toast.className = 'toast-item';
-            
+
             let icon = 'fa-circle-info text-gold';
             if (type === 'success') icon = 'fa-circle-check text-emerald';
             if (type === 'error') icon = 'fa-triangle-exclamation text-rose';
@@ -1267,6 +1310,12 @@
                 setTimeout(() => toast.remove(), 400);
             }, 3500);
         }
+
+        // Kick things off
+        document.addEventListener('DOMContentLoaded', () => {
+            updateLiveConversion();
+            initAuthWatcher();
+        });
     </script>
 </body>
 </html>

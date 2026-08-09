@@ -1029,7 +1029,8 @@
                 const userRef = window.db.collection('users').doc(currentProfile.uid);
                 await window.db.runTransaction(async (txn) => {
                     const userSnap = await txn.get(userRef);
-                    const already = new Set((userSnap.data() || {}).refundedWithdrawalIds || []);
+                    const data = userSnap.data() || {};
+                    const already = new Set(data.refundedWithdrawalIds || []);
                     let totalRefund = 0;
                     const newlyRefunded = [];
 
@@ -1041,9 +1042,14 @@
                     });
 
                     if (totalRefund > 0) {
+                        // Same fix as the withdrawal debit: write both balance
+                        // mirrors to one synced absolute value instead of two
+                        // independent increments, so they can't drift apart.
+                        const trueBalance = Number(data.axCoins ?? data.rewards?.coinBalance ?? 0);
+                        const updatedBalance = trueBalance + totalRefund;
                         txn.set(userRef, {
-                            axCoins: firebase.firestore.FieldValue.increment(totalRefund),
-                            rewards: { coinBalance: firebase.firestore.FieldValue.increment(totalRefund) },
+                            axCoins: updatedBalance,
+                            rewards: { coinBalance: updatedBalance },
                             refundedWithdrawalIds: firebase.firestore.FieldValue.arrayUnion(...newlyRefunded)
                         }, { merge: true });
                     }
@@ -1159,10 +1165,41 @@
                 // Debit coins from the user's OWN wallet — allowed because the
                 // request is authenticated as this exact uid (Firestore rules
                 // only let the owner or nobody update users/{uid}).
-                await window.db.collection('users').doc(currentProfile.uid).set({
-                    axCoins: firebase.firestore.FieldValue.increment(-coinsToWithdraw),
-                    rewards: { coinBalance: firebase.firestore.FieldValue.increment(-coinsToWithdraw) }
-                }, { merge: true });
+                //
+                // IMPORTANT: `axCoins` (flat mirror) and `rewards.coinBalance`
+                // (nested, used by the Android app) are two separate fields.
+                // Blindly running FieldValue.increment(-amount) on BOTH lets
+                // them drift out of sync — e.g. an older account that never
+                // had an `axCoins` field gets it created starting from 0,
+                // so a withdrawal can send it negative while the nested
+                // field is still correct, and any screen that reads
+                // `axCoins ?? rewards.coinBalance` then shows the wrong
+                // (including near-zero/negative) balance even though the
+                // real balance was correctly debited elsewhere.
+                //
+                // Fix: read the TRUE current balance inside a transaction
+                // (preferring axCoins, falling back to rewards.coinBalance
+                // for older accounts), verify it still covers this
+                // withdrawal, then write BOTH mirrors to the exact same
+                // computed value so they can never diverge again.
+                const userRef = window.db.collection('users').doc(currentProfile.uid);
+                const newBalance = await window.db.runTransaction(async (txn) => {
+                    const snap = await txn.get(userRef);
+                    const data = snap.data() || {};
+                    const trueBalance = Number(data.axCoins ?? data.rewards?.coinBalance ?? 0);
+
+                    if (coinsToWithdraw > trueBalance) {
+                        throw new Error(`Insufficient AX Coins! You have ${trueBalance} AX available in balance.`);
+                    }
+
+                    const updatedBalance = trueBalance - coinsToWithdraw;
+                    txn.set(userRef, {
+                        axCoins: updatedBalance,
+                        rewards: { coinBalance: updatedBalance }
+                    }, { merge: true });
+
+                    return updatedBalance;
+                });
 
                 // Create the withdrawal request — `uid`, `amount` and `status`
                 // are the fields the security rules require.
@@ -1182,8 +1219,8 @@
                 };
                 await window.saveWithdrawalToFirebase(newRecord);
 
-                // Reflect locally
-                userAxCoins -= coinsToWithdraw;
+                // Reflect locally — use the exact synced value the transaction wrote
+                userAxCoins = newBalance;
                 document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
                 document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 100).toFixed(2)}`;
 
@@ -1197,7 +1234,7 @@
                 updateLiveConversion();
             } catch (err) {
                 console.error('Withdrawal submit failed:', err);
-                showToast('Something went wrong submitting your request. Please try again.', 'error');
+                showToast(err.message || 'Something went wrong submitting your request. Please try again.', 'error');
             } finally {
                 if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Withdrawal Request'; }
             }

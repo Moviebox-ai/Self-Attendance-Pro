@@ -85,7 +85,18 @@ async function updateUserBalanceInFirebase(userId, userData) {
         return false;
     }
     try {
-        await window.db.collection("users").doc(userId).set({
+        let userRef = window.db.collection("users").doc(userId);
+        const directSnapshot = await userRef.get();
+        if (!directSnapshot.exists) {
+            const byUniqueId = await window.db.collection("users")
+                .where("uniqueId", "==", userId)
+                .limit(1)
+                .get();
+            if (!byUniqueId.empty) {
+                userRef = window.db.collection("users").doc(byUniqueId.docs[0].id);
+            }
+        }
+        await userRef.set({
             ...userData,
             lastUpdated: firebase.firestore.FieldValue.serverTimestamp()
         }, { merge: true });

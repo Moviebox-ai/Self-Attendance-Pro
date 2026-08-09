@@ -879,53 +879,56 @@
     <!-- WITHDRAWAL SCRIPT -->
     <script>
         let currentMethod = 'upi';
-        let userAxCoins = 2500; // Default demo balance
+        let userAxCoins = parseInt(localStorage.getItem('user_ax_coins'));
+        if (isNaN(userAxCoins)) {
+            userAxCoins = 2500; // Initial default balance for user session
+            localStorage.setItem('user_ax_coins', userAxCoins);
+        }
 
-        // Pre-seeded database of users & balances
-        const sampleUsersDB = {
-            'AX-984210': { name: 'Rahul Kumar', coins: 2500 },
-            'AX-1001': { name: 'Priya Sharma', coins: 5000 },
-            'AX-1002': { name: 'Amit Patel', coins: 3200 },
-            'AX-1003': { name: 'Suresh Verma', coins: 4500 },
-            'AX-1004': { name: 'Pooja Singh', coins: 1800 },
-            'AX-1005': { name: 'Vikas Rao', coins: 2900 }
-        };
-
-        // Auto-Lookup User Name & Coins when My ID is filled
+        // Auto-Lookup Real User Name & Coins when My ID is filled
         async function autoLookupUserByID() {
             const inputId = document.getElementById('userIdInput').value.trim().toUpperCase();
             const nameInput = document.getElementById('userNameInput');
             const statusMsg = document.getElementById('idLookupStatus');
 
             if (!inputId) {
-                if (statusMsg) statusMsg.innerHTML = '<i class="fa-solid fa-wand-magic-sparkles"></i> Type My ID to auto-fill Name & Total Coins';
+                if (statusMsg) statusMsg.innerHTML = '<i class="fa-solid fa-id-card"></i> Enter your My ID';
                 return;
             }
 
-            // 1. Check in sample database
-            let foundUser = sampleUsersDB[inputId];
+            let foundUser = null;
 
-            // 2. Check in localStorage custom database
-            if (!foundUser) {
-                const storedUsers = JSON.parse(localStorage.getItem('registered_users') || '{}');
-                if (storedUsers[inputId]) {
-                    foundUser = storedUsers[inputId];
-                }
-            }
-
-            // 3. Check if input matches current saved user
-            if (!foundUser && inputId === (localStorage.getItem('user_id') || '').toUpperCase()) {
+            // 1. Check in localStorage registered users or current user session
+            const storedUsers = JSON.parse(localStorage.getItem('registered_users') || '{}');
+            if (storedUsers[inputId]) {
+                foundUser = storedUsers[inputId];
+            } else if (inputId === (localStorage.getItem('user_id') || '').toUpperCase()) {
                 foundUser = {
-                    name: localStorage.getItem('user_name') || 'Rahul Kumar',
-                    coins: parseInt(localStorage.getItem('user_ax_coins')) || 2500
+                    name: localStorage.getItem('user_name') || '',
+                    coins: parseInt(localStorage.getItem('user_ax_coins')) || userAxCoins
                 };
             }
 
+            // 2. Check in real Firestore 'users' collection
+            if (!foundUser && window.db) {
+                try {
+                    const docSnap = await window.db.collection('users').doc(inputId).get();
+                    if (docSnap.exists) {
+                        const d = docSnap.data();
+                        foundUser = {
+                            name: d.name || d.displayName || '',
+                            coins: d.axCoins !== undefined ? d.axCoins : 2500
+                        };
+                    }
+                } catch(e) {
+                    console.log("Firestore lookup skipped:", e);
+                }
+            }
 
-
-            if (foundUser) {
+            if (foundUser && foundUser.name) {
                 nameInput.value = foundUser.name;
                 userAxCoins = foundUser.coins;
+                localStorage.setItem('user_ax_coins', userAxCoins);
                 
                 document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
                 document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 100).toFixed(2)}`;
@@ -933,27 +936,11 @@
                 updateLiveConversion();
 
                 if (statusMsg) {
-                    statusMsg.innerHTML = `<i class="fa-solid fa-circle-check text-emerald"></i> Verified ID! Name: <strong>${foundUser.name}</strong> | Total: <strong>${userAxCoins.toLocaleString()} AX Coins (₹${(userAxCoins/100).toFixed(2)})</strong>`;
+                    statusMsg.innerHTML = `<i class="fa-solid fa-circle-check text-emerald"></i> Real User Verified! Name: <strong>${foundUser.name}</strong> | Balance: <strong>${userAxCoins.toLocaleString()} AX Coins (₹${(userAxCoins/100).toFixed(2)})</strong>`;
                 }
-            } else if (inputId.length >= 3) {
-                // Smart auto-generator for any typed ID so user never gets stuck
-                let hash = 0;
-                for (let i = 0; i < inputId.length; i++) hash += inputId.charCodeAt(i);
-                
-                const names = ['Rahul Kumar', 'Amit Sharma', 'Priya Verma', 'Suresh Patel', 'Pooja Rani', 'Deepak Yadav'];
-                const autoName = localStorage.getItem('user_name') || names[hash % names.length];
-                const autoCoins = 1000 + ((hash * 150) % 4000); // 1000 - 5000 AX coins
-
-                nameInput.value = autoName;
-                userAxCoins = autoCoins;
-
-                document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
-                document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 100).toFixed(2)}`;
-
-                updateLiveConversion();
-
+            } else {
                 if (statusMsg) {
-                    statusMsg.innerHTML = `<i class="fa-solid fa-user-check text-emerald"></i> Auto-fetched! Name: <strong>${autoName}</strong> | Total: <strong>${userAxCoins.toLocaleString()} AX Coins</strong>`;
+                    statusMsg.innerHTML = `<i class="fa-solid fa-circle-info text-gold"></i> ID Ready. Please enter your name to complete registration and request payout.`;
                 }
             }
         }
@@ -965,6 +952,10 @@
             
             document.getElementById('userIdInput').value = savedUserId;
             document.getElementById('userNameInput').value = savedName;
+
+            // Display current debited user coins
+            document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
+            document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 100).toFixed(2)}`;
 
             // Trigger auto-lookup on page load
             autoLookupUserByID();
@@ -1023,7 +1014,7 @@
             }
 
             if (coinsToWithdraw > userAxCoins) {
-                showToast(`Insufficient AX Coins! You have ${userAxCoins} AX available.`, 'error');
+                showToast(`Insufficient AX Coins! You have ${userAxCoins} AX available in balance.`, 'error');
                 return;
             }
 
@@ -1081,37 +1072,92 @@
                 timestamp: new Date().toISOString()
             };
 
-            // Deduct coins locally
+            // DEBIT COINS FROM USER BALANCE
             userAxCoins -= coinsToWithdraw;
+            localStorage.setItem('user_ax_coins', userAxCoins);
+            localStorage.setItem('user_id', myId);
+            localStorage.setItem('user_name', name);
+
             document.getElementById('dispAxCoins').innerText = `${userAxCoins.toLocaleString()} AX`;
             document.getElementById('dispInrValue').innerText = `₹${(userAxCoins / 100).toFixed(2)}`;
 
-            // Save user details to localStorage
-            localStorage.setItem('user_id', myId);
-            localStorage.setItem('user_name', name);
+            // Register in local registered users
+            let registered = JSON.parse(localStorage.getItem('registered_users') || '{}');
+            registered[myId.toUpperCase()] = { name: name, coins: userAxCoins };
+            localStorage.setItem('registered_users', JSON.stringify(registered));
 
             // Save to Local History
             history.unshift(newRecord);
             localStorage.setItem('withdraw_history', JSON.stringify(history));
 
-            // Save to Firebase Firestore
+            // Sync updated debited balance to Firebase Firestore
+            if (typeof updateUserBalanceInFirebase === 'function') {
+                updateUserBalanceInFirebase(myId, {
+                    userId: myId,
+                    name: name,
+                    axCoins: userAxCoins
+                });
+            }
+
+            // Save to Firebase Firestore withdrawals
             if (typeof saveWithdrawalToFirebase === 'function') {
                 saveWithdrawalToFirebase(newRecord);
             }
 
-
-
             renderHistoryTable();
-            showToast(`Withdrawal request of ₹${inrAmount.toFixed(2)} submitted successfully! (${monthlyCount + 1}/2 this month)`, 'success');
+            showToast(`Withdrawal of ₹${inrAmount.toFixed(2)} submitted! ${coinsToWithdraw.toLocaleString()} AX debited. Remaining: ${userAxCoins.toLocaleString()} AX`, 'success');
 
             // Reset form input
             document.getElementById('withdrawCoinsInput').value = 1000;
             updateLiveConversion();
         }
 
-        // Load & Render History Table
-        function loadWithdrawalHistory() {
+        // Load & Render History Table with real Firestore + local history
+        async function loadWithdrawalHistory() {
             renderHistoryTable();
+
+            if (window.db) {
+                try {
+                    const snap = await window.db.collection('withdrawals').orderBy('createdAt', 'desc').limit(20).get();
+                    if (!snap.empty) {
+                        const realDocs = snap.docs.map(doc => {
+                            const d = doc.data();
+                            let timeStr = new Date().toISOString();
+                            if (d.createdAt && d.createdAt.toDate) {
+                                timeStr = d.createdAt.toDate().toISOString();
+                            } else if (d.timestamp) {
+                                timeStr = d.timestamp;
+                            }
+                            return {
+                                reqId: d.reqId || ('WR-' + doc.id.substring(0, 6)),
+                                myId: d.myId || 'AX-USER',
+                                name: d.name || 'User',
+                                methodDetails: d.methodDetails || 'UPI',
+                                axCoins: d.axCoins || 1000,
+                                inrAmount: d.inrAmount || ((d.axCoins || 1000) / 100),
+                                timestamp: timeStr,
+                                status: d.status || 'Pending ⏳'
+                            };
+                        });
+
+                        // Merge real docs into withdraw_history without duplicates
+                        let history = JSON.parse(localStorage.getItem('withdraw_history') || '[]');
+                        const reqIds = new Set(history.map(h => h.reqId));
+                        
+                        realDocs.forEach(rd => {
+                            if (!reqIds.has(rd.reqId)) {
+                                history.push(rd);
+                            }
+                        });
+
+                        history.sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp));
+                        localStorage.setItem('withdraw_history', JSON.stringify(history));
+                        renderHistoryTable();
+                    }
+                } catch(err) {
+                    console.log("Firestore history sync skipped:", err);
+                }
+            }
         }
 
         function renderHistoryTable() {
@@ -1122,7 +1168,7 @@
                 tbody.innerHTML = `
                     <tr>
                         <td colspan="7" style="text-align:center; padding: 30px; color: var(--text-muted);">
-                            No withdrawal requests submitted yet.
+                            No real withdrawal requests submitted yet.
                         </td>
                     </tr>
                 `;
@@ -1131,16 +1177,16 @@
 
             tbody.innerHTML = history.map(item => `
                 <tr>
-                    <td><strong style="color: var(--gold);">${item.reqId}</strong></td>
+                    <td><strong style="color: var(--gold);">${item.reqId || 'WR-000000'}</strong></td>
                     <td>
-                        <div><strong>${item.name}</strong></div>
-                        <div style="font-size: 0.78rem; color: var(--text-muted);">${item.myId}</div>
+                        <div><strong>${item.name || 'User'}</strong></div>
+                        <div style="font-size: 0.78rem; color: var(--text-muted);">${item.myId || 'AX-USER'}</div>
                     </td>
-                    <td><span style="font-size:0.86rem;">${item.methodDetails}</span></td>
-                    <td><strong style="color: var(--gold);">${item.axCoins} AX</strong></td>
-                    <td><strong style="color: var(--emerald);">₹${item.inrAmount.toFixed(2)}</strong></td>
-                    <td><span style="font-size:0.82rem; color: var(--text-muted);">${new Date(item.timestamp).toLocaleDateString()}</span></td>
-                    <td><span class="status-badge pending">${item.status}</span></td>
+                    <td><span style="font-size:0.86rem;">${item.methodDetails || 'UPI'}</span></td>
+                    <td><strong style="color: var(--gold);">${(Number(item.axCoins) || 0).toLocaleString()} AX</strong></td>
+                    <td><strong style="color: var(--emerald);">₹${(Number(item.inrAmount) || ((Number(item.axCoins) || 0) / 100) || 0).toFixed(2)}</strong></td>
+                    <td><span style="font-size:0.82rem; color: var(--text-muted);">${item.timestamp ? new Date(item.timestamp).toLocaleDateString() : 'Today'}</span></td>
+                    <td><span class="status-badge pending">${item.status || 'Pending ⏳'}</span></td>
                 </tr>
             `).join('');
         }

@@ -1,0 +1,15 @@
+{
+  "name": "self-attendance-pro",
+  "version": "1.0.0",
+  "description": "Self Attendance Pro - Track Attendance Like a Pro",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "echo 'No build step required for static site'",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Self Attendance Pro",
+  "description": "Self Attendance Pro is a personal attendance tracker with salary calculator, overtime tracking, and secure cloud backup.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

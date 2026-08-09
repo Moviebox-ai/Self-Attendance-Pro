@@ -3,74 +3,64 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Self Attendance Pro - Track Attendance Like a Pro</title>
-    <meta name="description" content="Self Attendance Pro is a premium personal attendance tracker with salary calculator, overtime tracking, and secure cloud backup. Download now." />
-    <meta name="keywords" content="attendance tracker, salary calculator, overtime tracking, cloud backup, firebase login, personal attendance" />
+    <title>Self Attendance Pro - Features & Benefits | Smart Attendance & Salary Tracker</title>
+    <meta name="description" content="Self Attendance Pro ke sabhi features aur feyde jane. Auto salary calculator, overtime tracking, cloud backup aur attendance management ek jagah." />
+    <meta name="keywords" content="Self Attendance Pro, Attendance Tracker Features, Salary Calculator App, Overtime Calculator, Attendance Benefits, Attendance App Download" />
     <link rel="canonical" href="https://selfattendancepro.com/" />
-    <meta property="og:title" content="Self Attendance Pro - Track Attendance Like a Pro" />
-    <meta property="og:description" content="Premium personal attendance tracker with salary calculator, overtime tracking, and secure cloud backup." />
+    <meta property="og:title" content="Self Attendance Pro - Features & Benefits" />
+    <meta property="og:description" content="Self Attendance Pro ke sabhi features aur feyde jane. Auto salary calculator, overtime tracking aur cloud backup." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://selfattendancepro.com/" />
     <meta property="og:image" content="assets/feature-graphic.png" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Self Attendance Pro - Track Attendance Like a Pro" />
-    <meta name="twitter:description" content="Premium personal attendance tracker with salary calculator, overtime tracking, and secure cloud backup." />
-    <meta name="twitter:image" content="assets/feature-graphic.png" />
-    <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#090414" />
+    <meta name="theme-color" content="#080414" />
     <link rel="icon" type="image/png" href="assets/app-icon.png" />
     <link rel="apple-touch-icon" href="assets/app-icon.png" />
-    <meta name="google-site-verification" content="Wr0ygJan6KZjhsPRjCY7KdSYhid9KU2BDSvPN0-hXTA" />
 
-    <!-- Google Font: Poppins -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-    <!-- Font Awesome 6 (Free) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            "name": "Self Attendance Pro",
-            "applicationCategory": "ProductivityApplication",
-            "operatingSystem": "Android, iOS",
-            "description": "Premium personal attendance tracker with salary calculator, overtime tracking, and secure cloud backup.",
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            }
-        }
-    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <style>
         /* ============================================================
-                   CSS VARIABLES & RESET
-                   ============================================================ */
+           CSS VARIABLES & SYSTEM DESIGN
+           ============================================================ */
         :root {
-            --bg: #090414;
-            --bg-secondary: #17112B;
-            --primary: #6E3DFF;
-            --primary-hover: #884CFF;
-            --gold: #FDBA2D;
+            --bg: #080414;
+            --bg-secondary: #110A24;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --bg-card-hover: rgba(255, 255, 255, 0.08);
+            --primary: #7C4DFF;
+            --primary-hover: #9166FF;
+            --primary-light: rgba(124, 77, 255, 0.15);
+            --gold: #FFC107;
+            --gold-hover: #FFD54F;
+            --emerald: #10B981;
+            --rose: #EF4444;
+            --cyan: #06B6D4;
             --white: #FFFFFF;
-            --text-secondary: rgba(255, 255, 255, .75);
-            --border: rgba(255, 255, 255, .08);
-            --glass: rgba(255, 255, 255, .06);
-            --blur: 20px;
-            --radius: 24px;
-            --shadow: 0 20px 60px rgba(0, 0, 0, .6);
-            --transition: all .4s cubic-bezier(.25, .46, .45, .94);
-            --font: 'Poppins', 'Inter', sans-serif;
+            --text-primary: #FFFFFF;
+            --text-secondary: rgba(255, 255, 255, 0.72);
+            --text-muted: rgba(255, 255, 255, 0.45);
+            --border: rgba(255, 255, 255, 0.09);
+            --border-highlight: rgba(124, 77, 255, 0.35);
+            --glass: rgba(255, 255, 255, 0.05);
+            --blur: 24px;
+            --radius-sm: 12px;
+            --radius-md: 20px;
+            --radius-lg: 28px;
+            --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.6);
+            --glow: 0 0 40px rgba(124, 77, 255, 0.25);
+            --transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
         }
 
-        *,
-        *::before,
-        *::after {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -79,17 +69,16 @@
         html {
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
-            max-width: 100vw;
         }
 
         body {
-            font-family: var(--font);
+            font-family: var(--font-body);
             background: var(--bg);
-            color: var(--white);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
         }
 
         a {
@@ -102,86 +91,81 @@
             display: block;
         }
 
-        ul {
-            list-style: none;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 8px;
-        }
-
         .container {
-            max-width: 1200px;
+            max-width: 1240px;
             margin: 0 auto;
             padding: 0 24px;
         }
 
         .section-padding {
-            padding: 100px 0;
+            padding: 90px 0;
+        }
+
+        .text-center {
+            text-align: center;
         }
 
         .section-label {
-            display: inline-block;
-            font-size: 13px;
-            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--primary);
-            background: rgba(110, 61, 255, .15);
+            color: var(--primary-hover);
+            background: var(--primary-light);
             padding: 6px 18px;
             border-radius: 50px;
             margin-bottom: 16px;
-            border: 1px solid rgba(110, 61, 255, .2);
+            border: 1px solid rgba(124, 77, 255, 0.25);
         }
 
         .section-title {
-            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4.5vw, 3.2rem);
             font-weight: 800;
             line-height: 1.15;
             margin-bottom: 16px;
-            background: linear-gradient(135deg, #fff 40%, rgba(255, 255, 255, .6));
+            background: linear-gradient(135deg, #FFFFFF 40%, rgba(255, 255, 255, 0.65));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .section-sub {
-            font-size: 1.1rem;
+            font-size: 1.08rem;
             color: var(--text-secondary);
-            max-width: 600px;
+            max-width: 680px;
             margin: 0 auto 48px;
             text-align: center;
         }
 
-        /* ============================================================
-                   GLASS CARD
-                   ============================================================ */
-        .glass {
-            background: var(--glass);
+        /* Glass Card */
+        .glass-card {
+            background: var(--bg-card);
             backdrop-filter: blur(var(--blur));
             -webkit-backdrop-filter: blur(var(--blur));
             border: 1px solid var(--border);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
         }
 
-        /* ============================================================
-                   BUTTONS
-                   ============================================================ */
+        .glass-card:hover {
+            border-color: var(--border-highlight);
+            box-shadow: var(--shadow-lg), var(--glow);
+            transform: translateY(-4px);
+        }
+
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
-            padding: 14px 32px;
-            border-radius: 60px;
-            font-family: var(--font);
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-family: var(--font-body);
             font-weight: 600;
             font-size: 1rem;
             border: none;
@@ -189,89 +173,77 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), #6200EE);
             color: #fff;
-            box-shadow: 0 8px 30px rgba(110, 61, 255, .3);
+            box-shadow: 0 8px 24px rgba(124, 77, 255, 0.35);
+            user-select: none;
         }
 
         .btn:hover {
-            background: var(--primary-hover);
             transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(110, 61, 255, .5);
+            box-shadow: 0 12px 32px rgba(124, 77, 255, 0.5);
+            background: linear-gradient(135deg, var(--primary-hover), #7000FF);
         }
 
         .btn-outline {
-            background: transparent;
+            background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--border);
-            box-shadow: none;
             color: var(--white);
+            box-shadow: none;
         }
 
         .btn-outline:hover {
-            background: var(--glass);
+            background: rgba(255, 255, 255, 0.12);
             border-color: var(--primary);
-            box-shadow: none;
-            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(124, 77, 255, 0.2);
         }
 
         .btn-gold {
-            background: var(--gold);
-            color: #1a1a2e;
-            box-shadow: 0 8px 30px rgba(253, 186, 45, .3);
-        }
-        .btn-gold:hover {
-            background: #f5c842;
-            box-shadow: 0 12px 40px rgba(253, 186, 45, .5);
+            background: linear-gradient(135deg, var(--gold), #FF8F00);
+            color: #0E0720;
+            font-weight: 700;
+            box-shadow: 0 8px 24px rgba(255, 193, 7, 0.35);
         }
 
+        .btn-gold:hover {
+            background: linear-gradient(135deg, var(--gold-hover), #FFA000);
+            box-shadow: 0 12px 32px rgba(255, 193, 7, 0.5);
+        }
+
+        /* Ripple Effect */
         .btn .ripple {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, .35);
+            background: rgba(255, 255, 255, 0.4);
             transform: scale(0);
-            animation: rippleAnim .6s linear;
+            animation: rippleAnim 0.6s linear;
             pointer-events: none;
         }
-
         @keyframes rippleAnim {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
+            to { transform: scale(4); opacity: 0; }
         }
 
         /* ============================================================
-                   NAVBAR
-                   ============================================================ */
+           NAVBAR
+           ============================================================ */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 999;
-            padding: 16px 0;
+            z-index: 1000;
+            padding: 18px 0;
             transition: var(--transition);
-            background: rgba(9, 4, 20, .6);
-            border-bottom: 1px solid transparent;
-            /* backdrop-filter intentionally lives on ::before, not here --
-               filter/backdrop-filter on this element would create a new
-               containing block for position:fixed descendants (.nav-links'
-               mobile menu), trapping it inside the navbar's own box instead
-               of covering the viewport. */
-        }
-        .navbar::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(8, 4, 20, 0.75);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .navbar.scrolled {
-            background: rgba(9, 4, 20, .92);
+            background: rgba(8, 4, 20, 0.94);
             border-bottom: 1px solid var(--border);
-            padding: 10px 0;
+            padding: 12px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .navbar .container {
@@ -283,51 +255,48 @@
         .nav-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            font-family: var(--font-heading);
             font-weight: 800;
-            font-size: 1.3rem;
-            letter-spacing: -.5px;
+            font-size: 1.35rem;
             color: var(--white);
         }
 
-        .nav-logo i {
-            color: var(--primary);
-            font-size: 1.6rem;
+        .nav-logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary), var(--gold));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(124, 77, 255, 0.4);
         }
 
         .nav-logo span {
-            color: var(--primary);
+            color: var(--primary-hover);
         }
 
         .nav-links {
             display: flex;
             align-items: center;
             gap: 8px;
-        flex-wrap: wrap;
         }
 
         .nav-links a {
             padding: 8px 16px;
             border-radius: 40px;
-            font-size: .9rem;
+            font-size: 0.92rem;
             font-weight: 500;
             color: var(--text-secondary);
             transition: var(--transition);
-            position: relative;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
+        .nav-links a:hover {
             color: var(--white);
-            background: var(--glass);
-        }
-
-        .nav-links a.active {
-            color: var(--primary);
-        }
-
-        .nav-cta {
-            display: none;
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .hamburger {
@@ -335,38 +304,28 @@
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
-            padding: 4px;
+            padding: 6px;
             background: none;
             border: none;
         }
 
         .hamburger span {
             display: block;
-            width: 26px;
+            width: 25px;
             height: 2.5px;
             background: var(--white);
             border-radius: 4px;
             transition: var(--transition);
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 6px);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -6px);
-        }
-
         /* ============================================================
-                   HERO
-                   ============================================================ */
+           HERO
+           ============================================================ */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 120px 0 60px;
+            padding: 130px 0 70px;
             position: relative;
             overflow: hidden;
         }
@@ -383,1205 +342,919 @@
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             font-size: 13px;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-secondary);
-            background: var(--glass);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(12px);
             border: 1px solid var(--border);
-            padding: 6px 18px 6px 10px;
+            padding: 6px 18px 6px 12px;
             border-radius: 50px;
             margin-bottom: 24px;
         }
 
-        .hero-badge i {
-            color: var(--gold);
-            font-size: 14px;
+        .hero-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--emerald);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--emerald);
+            animation: pulseDot 1.8s infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.3); }
         }
 
         .hero h1 {
-            font-size: clamp(2.8rem, 7vw, 4.8rem);
+            font-family: var(--font-heading);
+            font-size: clamp(2.6rem, 5.5vw, 4.2rem);
             font-weight: 900;
-            line-height: 1.05;
+            line-height: 1.1;
             margin-bottom: 20px;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #fff 30%, rgba(255, 255, 255, .5));
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary-hover), var(--gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
 
         .hero p {
-            font-size: 1.15rem;
+            font-size: 1.12rem;
             color: var(--text-secondary);
-            max-width: 480px;
             margin-bottom: 36px;
-            line-height: 1.8;
+            line-height: 1.7;
         }
 
         .hero-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 16px;
+            margin-bottom: 36px;
         }
 
-        /* Hero Visual */
+        .hero-features-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .hero-feat-tag {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .hero-feat-tag i {
+            color: var(--emerald);
+        }
+
+        /* Phone Visual */
         .hero-visual {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             position: relative;
         }
 
         .phone-mockup {
-            width: 280px;
-            height: 560px;
-            background: linear-gradient(145deg, #1a1a2e, #2d1b69);
-            border-radius: 40px;
-            border: 2px solid rgba(255, 255, 255, .12);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, .6), 0 0 60px rgba(110, 61, 255, .15);
+            width: 290px;
+            height: 580px;
+            background: linear-gradient(145deg, #1A1133, #2B1654);
+            border-radius: 44px;
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 50px rgba(124, 77, 255, 0.25);
             position: relative;
-            padding: 14px;
-            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
-            transition: transform .6s ease;
-        }
-
-        .phone-mockup:hover {
-            transform: perspective(1000px) rotateY(-2deg) rotateX(2deg) scale(1.02);
+            padding: 12px;
         }
 
         .phone-screen {
             width: 100%;
             height: 100%;
-            border-radius: 28px;
-            background: linear-gradient(135deg, #0f0a1f, #1a0f3a);
+            border-radius: 34px;
+            background: #0D071E;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
             position: relative;
         }
 
-        .phone-screen .app-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 12px;
+        .phone-screen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.4s ease;
         }
-        .phone-screen .app-name {
-            font-weight: 700;
-            font-size: 1.2rem;
-            letter-spacing: -.5px;
-        }
-        .phone-screen .app-name span {
-            color: var(--primary);
-        }
-        .phone-screen .app-tag {
-            font-size: 11px;
-            color: var(--text-secondary);
-            margin-top: 4px;
-        }
-        .phone-screen .stats-row {
+
+        .phone-tabs {
             display: flex;
-            gap: 20px;
+            gap: 8px;
             margin-top: 20px;
-            font-size: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 6px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .phone-tab-btn {
+            background: none;
+            border: none;
             color: var(--text-secondary);
-        }
-        .phone-screen .stats-row i {
-            color: var(--gold);
-        }
-
-        .phone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 28px;
-            background: #0a0618;
-            border-radius: 0 0 16px 16px;
-            z-index: 3;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        /* Floating elements */
+        .phone-tab-btn.active {
+            color: var(--white);
+            background: var(--primary);
+        }
+
+        /* Floating Cards */
         .float-card {
             position: absolute;
-            background: var(--glass);
+            background: rgba(23, 14, 48, 0.9);
             backdrop-filter: blur(16px);
-            border: 1px solid var(--border);
+            border: 1px solid var(--border-highlight);
             border-radius: 16px;
             padding: 12px 18px;
-            font-size: 13px;
-            font-weight: 500;
+            font-size: 0.85rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 10px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, .4);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
             animation: floatY 4s ease-in-out infinite;
-            pointer-events: none;
+            z-index: 5;
             color: var(--white);
         }
 
         .float-card i {
             color: var(--gold);
-            font-size: 16px;
+            font-size: 1.2rem;
         }
 
-        .float-card:nth-child(2) {
+        .float-card.top-left {
             top: 10%;
-            right: -10%;
-            animation-delay: .8s;
+            left: -18%;
+            animation-delay: 0s;
         }
-        .float-card:nth-child(3) {
-            bottom: 20%;
-            left: -12%;
-            animation-delay: 1.6s;
-        }
-        .float-card:nth-child(4) {
-            bottom: 5%;
-            right: -5%;
-            animation-delay: 2.4s;
-            font-size: 11px;
+
+        .float-card.bottom-right {
+            bottom: 18%;
+            right: -18%;
+            animation-delay: 1.8s;
         }
 
         @keyframes floatY {
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-14px);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
         }
 
-        /* Background Blobs */
         .blob {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: .3;
+            filter: blur(100px);
+            opacity: 0.28;
             pointer-events: none;
             z-index: 0;
         }
-        .blob-1 {
-            width: 400px;
-            height: 400px;
-            background: var(--primary);
-            top: -150px;
-            right: -100px;
-            animation: blobAnim 8s ease-in-out infinite alternate;
-        }
-        .blob-2 {
-            width: 300px;
-            height: 300px;
-            background: var(--gold);
-            bottom: -100px;
-            left: -100px;
-            opacity: .15;
-            animation: blobAnim 10s ease-in-out infinite alternate-reverse;
-        }
-        .blob-3 {
-            width: 200px;
-            height: 200px;
-            background: #9b59b6;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: .08;
-            animation: blobAnim 12s ease-in-out infinite alternate;
-        }
-
-        @keyframes blobAnim {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            100% {
-                transform: translate(40px, -30px) scale(1.2);
-            }
-        }
+        .blob-1 { width: 500px; height: 500px; background: var(--primary); top: -150px; right: -100px; }
+        .blob-2 { width: 400px; height: 400px; background: var(--gold); bottom: -150px; left: -100px; opacity: 0.15; }
 
         /* ============================================================
-                   FEATURES
-                   ============================================================ */
+           SECTION 1: APP FEATURES (WHAT APP DOES)
+           ============================================================ */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
         }
 
         .feature-card {
-            padding: 32px 24px;
-            text-align: center;
-            transition: var(--transition);
-            cursor: default;
-            background: var(--glass);
-            backdrop-filter: blur(var(--blur));
+            padding: 32px 26px;
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-md);
+            background: var(--bg-card);
             border: 1px solid var(--border);
-            border-radius: var(--radius);
+            transition: var(--transition);
         }
 
         .feature-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(110, 61, 255, .3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+            background: var(--bg-card-hover);
+            border-color: var(--border-highlight);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg), var(--glow);
         }
 
-        .feature-card .icon {
-            font-size: 2.4rem;
-            color: var(--primary);
-            margin-bottom: 16px;
-            display: inline-block;
+        .feature-icon-box {
+            width: 58px;
+            height: 58px;
+            background: var(--primary-light);
+            border: 1px solid rgba(124, 77, 255, 0.3);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--primary-hover);
+            margin-bottom: 22px;
+            transition: var(--transition);
         }
 
-        .feature-card h4 {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+        .feature-card:hover .feature-icon-box {
+            background: var(--primary);
+            color: var(--white);
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--white);
         }
 
         .feature-card p {
-            font-size: .9rem;
+            font-size: 0.94rem;
             color: var(--text-secondary);
-            line-height: 1.5;
+            line-height: 1.65;
         }
 
-        /* ============================================================
-                   SCREENSHOTS
-                   ============================================================ */
-        .screenshots-slider {
-            position: relative;
-            overflow: hidden;
-            border-radius: var(--radius);
-            background: var(--glass);
-            backdrop-filter: blur(var(--blur));
-            border: 1px solid var(--border);
-            padding: 20px 0;
-        }
-
-        .slider-track {
-            display: flex;
-            gap: 24px;
-            transition: transform .6s cubic-bezier(.25, .46, .45, .94);
-            padding: 0 20px;
-        }
-
-        .slider-track .slide {
-            min-width: 200px;
-            flex: 0 0 200px;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #1a1a2e;
-            aspect-ratio: 9 / 19;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .slider-track .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .slider-track .slide:hover img {
-            transform: scale(1.04);
-        }
-
-        .slider-controls {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-top: 28px;
-        }
-
-        .slider-controls button {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            border: 1px solid var(--border);
-            background: var(--glass);
-            color: var(--white);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-            backdrop-filter: blur(8px);
-        }
-
-        .slider-controls button:hover {
-            background: var(--primary);
-            border-color: var(--primary);
-            transform: scale(1.05);
-        }
-
-        /* ============================================================
-                   HOW IT WORKS
-                   ============================================================ */
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            position: relative;
-            max-width: 700px;
-            margin: 0 auto;
-            padding-left: 40px;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 12px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--primary), var(--gold), var(--primary));
-            opacity: .4;
-        }
-
-        .timeline-item {
-            position: relative;
-            padding: 24px 0 24px 40px;
-            border-left: 2px solid transparent;
-            transition: var(--transition);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -28px;
-            top: 28px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--primary);
-            border: 3px solid var(--bg);
-            box-shadow: 0 0 0 4px rgba(110, 61, 255, .3);
-            transition: var(--transition);
-        }
-
-        .timeline-item:hover::before {
-            background: var(--gold);
-            box-shadow: 0 0 0 6px rgba(253, 186, 45, .2);
-        }
-
-        .timeline-item .step-num {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--primary);
+        .feature-badge {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
-        }
-
-        .timeline-item h4 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 4px 0 6px;
-        }
-
-        .timeline-item p {
-            font-size: .95rem;
-            color: var(--text-secondary);
-            line-height: 1.5;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-top: 16px;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--gold);
+            border: 1px solid rgba(255, 193, 7, 0.25);
         }
 
         /* ============================================================
-                   BENEFITS
-                   ============================================================ */
+           SECTION 2: APP BENEFITS (KYA FYDA HOGA)
+           ============================================================ */
+        .benefits-section {
+            background: linear-gradient(180deg, var(--bg) 0%, var(--bg-secondary) 50%, var(--bg) 100%);
+            position: relative;
+        }
+
         .benefits-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
         }
 
         .benefit-card {
-            padding: 28px 20px;
-            text-align: center;
-            background: var(--glass);
-            backdrop-filter: blur(var(--blur));
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border);
-            border-radius: var(--radius);
+            border-radius: var(--radius-md);
+            padding: 32px;
             transition: var(--transition);
-        }
-
-        .benefit-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(110, 61, 255, .2);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, .4);
-        }
-
-        .benefit-card .icon {
-            font-size: 2rem;
-            color: var(--gold);
-            margin-bottom: 12px;
-        }
-
-        .benefit-card h5 {
-            font-size: 1rem;
-            font-weight: 600;
-        }
-
-        /* ============================================================
-                   WALLET (COMING SOON)
-                   ============================================================ */
-        .wallet-card {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 60px 48px;
-            text-align: center;
-            background: var(--glass);
-            backdrop-filter: blur(var(--blur));
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .wallet-card .badge-soon {
-            display: inline-block;
-            background: var(--gold);
-            color: #1a1a2e;
-            font-weight: 700;
-            font-size: 12px;
-            padding: 4px 16px;
-            border-radius: 50px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-
-        .wallet-card .icon-big {
-            font-size: 4rem;
-            color: var(--gold);
-            margin-bottom: 16px;
-        }
-
-        .wallet-card h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .wallet-card p {
-            color: var(--text-secondary);
-            max-width: 440px;
-            margin: 0 auto 24px;
-            line-height: 1.7;
-        }
-
-        .wallet-card .glow-gold {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--gold);
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: .08;
-            top: -80px;
-            right: -80px;
-        }
-
-        /* ============================================================
-                   DOWNLOAD
-                   ============================================================ */
-        .download-wrap {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: center;
-            background: var(--glass);
-            backdrop-filter: blur(var(--blur));
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 56px 48px;
-        }
-
-        .download-wrap .left h2 {
-            font-size: clamp(1.8rem, 4vw, 2.8rem);
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 12px;
-        }
-
-        .download-wrap .left p {
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            max-width: 400px;
-        }
-
-        .download-buttons {
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
             gap: 16px;
         }
 
-        .download-buttons .btn {
-            padding: 12px 28px;
+        .benefit-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--emerald);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
+            transform: translateY(-4px);
         }
 
-        .download-buttons .btn i {
-            font-size: 1.4rem;
-        }
-
-        .download-wrap .right {
+        .benefit-header {
             display: flex;
-            justify-content: center;
             align-items: center;
+            gap: 16px;
         }
 
-        .download-wrap .right .phone-mini {
-            width: 180px;
-            height: 340px;
-            background: linear-gradient(145deg, #1a1a2e, #2d1b69);
-            border-radius: 32px;
-            border: 1px solid var(--border);
-            padding: 10px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, .5);
-        }
-
-        .download-wrap .right .phone-mini .screen-mini {
-            width: 100%;
-            height: 100%;
-            border-radius: 22px;
-            background: linear-gradient(135deg, #0f0a1f, #1a0f3a);
+        .benefit-num {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--emerald);
+            font-weight: 800;
+            font-size: 1.1rem;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 13px;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            flex-shrink: 0;
+        }
+
+        .benefit-header h3 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .benefit-card p {
+            font-size: 0.95rem;
             color: var(--text-secondary);
+            line-height: 1.65;
         }
 
-        .download-wrap .right .phone-mini .screen-mini i {
-            font-size: 2.6rem;
-            color: var(--primary);
-            margin-bottom: 8px;
+        .benefit-highlight {
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 3px solid var(--emerald);
+            padding: 10px 14px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.86rem;
+            color: var(--white);
+            font-weight: 600;
         }
 
-        /* ============================================================
-                   FAQ
-                   ============================================================ */
-        .faq-list {
-            max-width: 800px;
-            margin: 0 auto;
+        /* User Role Benefits Tabs */
+        .role-benefits-wrapper {
+            margin-top: 60px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-highlight);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+        }
+
+        .role-nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 32px;
+        }
+
+        .role-tab-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .role-tab-btn.active,
+        .role-tab-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            box-shadow: 0 6px 20px rgba(124, 77, 255, 0.4);
+        }
+
+        .role-content-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .role-text-side h3 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            color: var(--gold);
+        }
+
+        .role-text-side p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .role-check-list {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .faq-item {
-            background: var(--glass);
-            backdrop-filter: blur(var(--blur));
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: var(--transition);
-        }
-
-        .faq-item:hover {
-            border-color: rgba(110, 61, 255, .2);
-        }
-
-        .faq-question {
-            width: 100%;
-            padding: 20px 24px;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-family: var(--font);
-            font-size: 1rem;
-            font-weight: 600;
-            text-align: left;
-            cursor: pointer;
+        .role-check-item {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 16px;
-            transition: var(--transition);
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: var(--white);
         }
 
-        .faq-question:hover {
-            color: var(--primary);
+        .role-check-item i {
+            color: var(--emerald);
+            font-size: 1.1rem;
+            margin-top: 3px;
         }
 
-        .faq-question .icon {
-            font-size: 1.2rem;
-            transition: var(--transition);
-            color: var(--text-secondary);
-            flex-shrink: 0;
+        .role-badge-box {
+            background: linear-gradient(135deg, rgba(124, 77, 255, 0.2), rgba(255, 193, 7, 0.15));
+            border: 1px solid var(--border-highlight);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            text-align: center;
         }
 
-        .faq-item.open .faq-question .icon {
-            transform: rotate(180deg);
-            color: var(--primary);
+        .role-badge-box i {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 16px;
         }
 
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .4s cubic-bezier(.25, .46, .45, .94), padding .3s ease;
-            padding: 0 24px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            font-size: .95rem;
-        }
-
-        .faq-item.open .faq-answer {
-            max-height: 400px;
-            padding: 0 24px 24px;
+        .role-badge-box h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 8px;
         }
 
         /* ============================================================
-                   CONTACT
-                   ============================================================ */
-        .contact-wrap {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            background: var(--glass);
-            backdrop-filter: blur(var(--blur));
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 48px;
+           SECTION 3: LIVE INTERACTIVE SIMULATOR (FEATURE DEMO)
+           ============================================================ */
+        .sim-container {
+            background: linear-gradient(145deg, rgba(23, 14, 48, 0.8), rgba(13, 7, 30, 0.95));
+            border: 1px solid var(--border-highlight);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), var(--glow);
         }
 
-        .contact-wrap .info h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .contact-wrap .info p {
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            line-height: 1.7;
-        }
-
-        .contact-wrap .info .social {
+        .sim-tabs-header {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
             gap: 16px;
-            margin-top: 20px;
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .contact-wrap .info .social a {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
+        .sim-tabs-nav {
+            display: flex;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 6px;
+            border-radius: 40px;
             border: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+
+        .sim-tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
             display: flex;
             align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-            color: var(--text-secondary);
-            font-size: 1.2rem;
+            gap: 8px;
         }
 
-        .contact-wrap .info .social a:hover {
+        .sim-tab-btn.active {
+            color: var(--white);
             background: var(--primary);
-            border-color: var(--primary);
-            color: #fff;
-            transform: translateY(-3px);
+            box-shadow: 0 4px 16px rgba(124, 77, 255, 0.4);
         }
 
-        .contact-wrap .info .dev {
-            margin-top: 20px;
-            font-size: 14px;
-            color: var(--text-secondary);
+        .sim-panel {
+            display: none;
         }
-        .contact-wrap .info .dev strong {
-            color: var(--gold);
+        .sim-panel.active {
+            display: block;
         }
 
-        .contact-form {
+        /* Clock-In Simulator */
+        .clockin-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .clockin-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            text-align: center;
+        }
+
+        .clock-time {
+            font-family: 'Poppins', monospace;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--white);
+            margin: 16px 0;
+            text-shadow: 0 0 20px rgba(124, 77, 255, 0.5);
+        }
+
+        /* Salary Calculator */
+        .calc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .calc-group {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 6px;
         }
 
-        .contact-form input,
-        .contact-form textarea {
-            padding: 14px 20px;
-            border-radius: 12px;
+        .calc-group label {
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .calc-group input,
+        .calc-group select {
+            background: rgba(0, 0, 0, 0.4);
             border: 1px solid var(--border);
-            background: rgba(255, 255, 255, .04);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
             color: var(--white);
-            font-family: var(--font);
-            font-size: 1rem;
-            transition: var(--transition);
+            font-size: 0.95rem;
             outline: none;
         }
 
-        .contact-form input:focus,
-        .contact-form textarea:focus {
+        .calc-group input:focus,
+        .calc-group select:focus {
             border-color: var(--primary);
-            background: rgba(255, 255, 255, .06);
-            box-shadow: 0 0 0 4px rgba(110, 61, 255, .1);
         }
 
-        .contact-form textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .contact-form .btn {
-            align-self: flex-start;
-        }
-
-        /* ============================================================
-                   FOOTER
-                   ============================================================ */
-        .footer {
-            padding: 60px 0 30px;
-            border-top: 1px solid var(--border);
-            margin-top: 40px;
-        }
-
-        .footer-grid {
+        .calc-results {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-brand .nav-logo {
-            margin-bottom: 12px;
-        }
-
-        .footer-brand p {
-            color: var(--text-secondary);
-            font-size: .9rem;
-            max-width: 280px;
-            line-height: 1.7;
-        }
-
-        .footer-col h5 {
-            font-weight: 600;
-            margin-bottom: 16px;
-            font-size: 1rem;
-        }
-
-        .footer-col a {
-            display: block;
-            color: var(--text-secondary);
-            font-size: .9rem;
-            padding: 4px 0;
-            transition: var(--transition);
-        }
-
-        .footer-col a:hover {
-            color: var(--white);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid var(--border);
-            padding-top: 24px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 16px;
-            font-size: .85rem;
-            color: var(--text-secondary);
         }
 
-        /* ============================================================
-                   POLICY / TERMS / DELETE (Collapsible sections)
-                   ============================================================ */
-        .legal-section {
-            background: var(--glass);
-            backdrop-filter: blur(var(--blur));
+        .calc-res-box {
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 32px 36px;
-            margin-bottom: 24px;
-            transition: var(--transition);
-        }
-
-        .legal-section .toggle-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .legal-section .toggle-header h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
-        .legal-section .toggle-header i {
-            transition: var(--transition);
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-        }
-
-        .legal-section.open .toggle-header i {
-            transform: rotate(180deg);
-            color: var(--primary);
-        }
-
-        .legal-section .content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .5s cubic-bezier(.25, .46, .45, .94), padding .3s ease;
-            padding: 0;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        .legal-section.open .content {
-            max-height: 2000px;
-            padding-top: 24px;
-        }
-
-        .legal-section .content h4 {
-            color: var(--white);
-            margin: 20px 0 8px;
-            font-weight: 600;
-        }
-
-        .legal-section .content h4:first-of-type {
-            margin-top: 0;
-        }
-
-        .legal-section .content ul {
-            padding-left: 24px;
-            list-style: disc;
-            color: var(--text-secondary);
-            margin: 8px 0 16px;
-        }
-
-        .legal-section .content ul li {
-            margin-bottom: 6px;
-        }
-
-        .btn-delete {
-            background: #e74c3c;
-            box-shadow: 0 8px 30px rgba(231, 76, 60, .3);
-            margin-top: 12px;
-        }
-
-        .btn-delete:hover {
-            background: #c0392b;
-            box-shadow: 0 12px 40px rgba(231, 76, 60, .5);
-        }
-
-        /* ============================================================
-                   AOS-LIKE ANIMATIONS
-                   ============================================================ */
-        [data-aos] {
-            opacity: 0;
-            transition: opacity .7s ease, transform .7s ease;
-        }
-
-        [data-aos="fade-up"] {
-            transform: translateY(40px);
-        }
-        [data-aos="fade-left"] {
-            transform: translateX(-40px);
-        }
-        [data-aos="fade-right"] {
-            transform: translateX(40px);
-        }
-        [data-aos="zoom"] {
-            transform: scale(.9);
-        }
-        [data-aos="scale"] {
-            transform: scale(.8);
-        }
-
-        [data-aos].aos-animate {
-            opacity: 1;
-            transform: translateX(0) translateY(0) scale(1);
-        }
-
-        /* ============================================================
-                   COUNTERS
-                   ============================================================ */
-        .counter-wrap {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin: 40px 0;
+            border-radius: var(--radius-sm);
+            padding: 20px;
             text-align: center;
         }
 
-        .counter-item .number {
-            font-size: 2.6rem;
+        .calc-res-box .amt {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--white);
         }
 
-        .counter-item .label {
-            font-size: .9rem;
-            color: var(--text-secondary);
-            margin-top: 4px;
+        .calc-res-box.total {
+            background: linear-gradient(135deg, rgba(124, 77, 255, 0.2), rgba(255, 193, 7, 0.15));
+            border-color: var(--border-highlight);
         }
+        .calc-res-box.total .amt { color: var(--gold); }
 
-        /* ============================================================
-                   RESPONSIVE
-                   ============================================================ */
-        @media (max-width: 1024px) {
-            .hero .container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .hero p {
-                margin: 0 auto 36px;
-            }
-            .hero-buttons {
-                justify-content: center;
-            }
-            .hero-visual {
-                order: -1;
-            }
-            .phone-mockup {
-                width: 220px;
-                height: 440px;
-            }
-            .float-card {
-                display: none;
-            }
-            .download-wrap {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 40px 24px;
-            }
-            .download-wrap .left p {
-                margin: 0 auto 24px;
-            }
-            .download-buttons {
-                justify-content: center;
-            }
-            .contact-wrap {
-                grid-template-columns: 1fr;
-                padding: 32px 24px;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .counter-wrap {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(9, 4, 20, .98);
-                backdrop-filter: blur(20px);
-                flex-direction: column;
-                justify-content: center;
-                gap: 12px;
-                transform: translateY(-100%);
-                transition: transform .4s cubic-bezier(.25, .46, .45, .94);
-                padding: 40px;
-                z-index: 998;
-            }
-
-            .nav-links.open {
-                transform: translateY(0);
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-                padding: 12px 24px;
-                width: 100%;
-                text-align: center;
-            }
-
-            .hamburger {
-                display: flex;
-                z-index: 999;
-            }
-
-            .hero h1 {
-                font-size: clamp(2.2rem, 10vw, 3.2rem);
-            }
-
-            .phone-mockup {
-                width: 180px;
-                height: 360px;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .slider-track .slide {
-                min-width: 140px;
-                flex: 0 0 140px;
-            }
-
-            .wallet-card {
-                padding: 40px 24px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-
-            .section-padding {
-                padding: 60px 0;
-            }
-
-            .legal-section {
-                padding: 24px 20px;
-            }
-
-            .contact-wrap {
-                padding: 24px 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-            .counter-wrap {
-                grid-template-columns: 1fr 1fr;
-                gap: 16px;
-            }
-            .counter-item .number {
-                font-size: 2rem;
-            }
-            .hero-buttons .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            .download-buttons .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            .slider-track .slide {
-                min-width: 120px;
-                flex: 0 0 120px;
-            }
-            .container {
-                padding: 0 16px;
-            }
-        }
-
-        /* ============================================================
-                   PARTICLES CANVAS
-                   ============================================================ */
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* ============================================================
-                   GLOW PULSE
-                   ============================================================ */
-        .glow-pulse {
-            animation: glowPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes glowPulse {
-            0%,
-            100% {
-                box-shadow: 0 0 20px rgba(110, 61, 255, .15);
-            }
-            50% {
-                box-shadow: 0 0 40px rgba(110, 61, 255, .35);
-            }
-        }
-
-        /* ============================================================
-                   TYPOGRAPHY HELPERS
-                   ============================================================ */
-        .text-gold {
-            color: var(--gold);
-        }
-        .text-primary {
-            color: var(--primary);
-        }
-        .text-center {
-            text-align: center;
-        }
-        .mx-auto {
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .mt-16 {
+        /* Calendar View */
+        .cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
             margin-top: 16px;
         }
-        .mt-24 {
-            margin-top: 24px;
+
+        .cal-head {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            padding: 6px;
         }
-        .mt-40 {
-            margin-top: 40px;
+
+        .cal-cell {
+            aspect-ratio: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
         }
-        .gap-8 {
-            gap: 8px;
+
+        .cal-cell:hover { transform: scale(1.06); border-color: var(--primary); }
+        .cal-cell.p { background: rgba(16, 185, 129, 0.2); border-color: rgba(16, 185, 129, 0.5); color: var(--emerald); }
+        .cal-cell.a { background: rgba(239, 68, 68, 0.2); border-color: rgba(239, 68, 68, 0.5); color: var(--rose); }
+        .cal-cell.ot { background: rgba(124, 77, 255, 0.25); border-color: rgba(124, 77, 255, 0.6); color: var(--primary-hover); }
+
+        /* Spin Game */
+        .spin-game-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
-        .flex-center {
+
+        .wheel-wrap {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 20px 0;
+        }
+
+        .wheel-canvas {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            box-shadow: 0 0 30px rgba(255, 193, 7, 0.3);
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 14px solid transparent;
+            border-right: 14px solid transparent;
+            border-top: 24px solid var(--gold);
+            z-index: 10;
+        }
+
+        /* ============================================================
+           SECTION 4: SCREENSHOTS GALLERY & LIGHTBOX
+           ============================================================ */
+        .screenshots-slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .screen-card {
+            min-width: 210px;
+            flex: 0 0 210px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            aspect-ratio: 9/19;
+            scroll-snap-align: start;
+            cursor: pointer;
+            transition: var(--transition);
+            background: #110B22;
+            position: relative;
+        }
+
+        .screen-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .screen-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6), var(--glow);
+        }
+
+        .screen-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .screen-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(8, 4, 20, 0.85), transparent 60%);
+            display: flex;
+            align-items: flex-end;
+            padding: 16px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .screen-card:hover .screen-overlay { opacity: 1; }
+
+        .screen-overlay span {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        /* Lightbox Modal */
+        .lightbox-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(5, 2, 14, 0.95);
+            backdrop-filter: blur(20px);
             display: flex;
             align-items: center;
             justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+            padding: 24px;
+        }
+
+        .lightbox-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+            text-align: center;
+        }
+
+        .lightbox-img {
+            width: 100%;
+            border-radius: 32px;
+            border: 2px solid var(--border-highlight);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -48px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ============================================================
+           SECTION 5: DOWNLOAD CTA & FOOTER
+           ============================================================ */
+        .cta-banner {
+            background: linear-gradient(135deg, #1C0F3F, #2F1261);
+            border: 1px solid var(--border-highlight);
+            border-radius: var(--radius-lg);
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), var(--glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-banner h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: var(--white);
+        }
+
+        .cta-banner p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 36px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer {
+            background: #05020E;
+            border-top: 1px solid var(--border);
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        /* Toast Container */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .toast-item {
+            background: rgba(18, 11, 36, 0.95);
+            border: 1px solid var(--border-highlight);
+            border-left: 4px solid var(--primary);
+            padding: 12px 20px;
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: toastIn 0.35s ease forwards;
+            pointer-events: auto;
+        }
+        @keyframes toastIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* RESPONSIVE BREAKPOINTS */
+        @media (max-width: 992px) {
+            .hero .container,
+            .role-content-box,
+            .clockin-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .hero-visual {
+                margin-top: 40px;
+            }
+            .float-card.top-left { left: 0; }
+            .float-card.bottom-right { right: 0; }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #0D071E;
+                flex-direction: column;
+                padding: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-links.active { display: flex; }
+            .hamburger { display: flex; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ============================================================
-    PARTICLES CANVAS
-    ============================================================ -->
-    <canvas id="particles-canvas"></canvas>
-
-    <!-- ============================================================
-    BACKGROUND BLOBS
-    ============================================================ -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-
-    <!-- ============================================================
-    NAVBAR
-    ============================================================ -->
-    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
         <div class="container">
-            <a href="#" class="nav-logo" aria-label="Self Attendance Pro Home">
-                <i class="fas fa-clipboard-check"></i>
-                Self<span>Attendance</span>Pro
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                Self Attendance <span>Pro</span>
             </a>
 
-            <div class="nav-links" id="navLinks" role="menubar">
-                <a href="#home" role="menuitem" class="active">Home</a>
-                <a href="#features" role="menuitem">Features</a>
-                <a href="#screenshots" role="menuitem">Screenshots</a>
-                <a href="#benefits" role="menuitem">Benefits</a>
-                <a href="#how-it-works" role="menuitem">How It Works</a>
-                <a href="#wallet" role="menuitem">Wallet</a>
-                <a href="#faq" role="menuitem">FAQ</a>
-                <a href="#download" role="menuitem">Download</a>
-                <a href="#contact" role="menuitem">Contact</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#features">App Features</a>
+                <a href="#benefits">Kya Fyda Hoga?</a>
+                <a href="#roles">Kiske Liye Hai?</a>
+                <a href="#demo">Live Demo</a>
+                <a href="withdrawal.html" style="color: var(--gold); font-weight:700;"><i class="fa-solid fa-wallet"></i> Withdrawal Money</a>
+                <a href="#download" class="btn btn-outline" style="padding: 8px 20px; font-size: 0.88rem;"><i class="fa-brands fa-google-play"></i> Download App</a>
             </div>
 
-            <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -1589,1057 +1262,679 @@
         </div>
     </nav>
 
-    <!-- ============================================================
-    HERO
-    ============================================================ -->
-    <section class="hero" id="home" aria-labelledby="hero-title">
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
         <div class="container">
-            <div class="hero-content" data-aos="fade-up">
+            <div class="hero-content">
                 <div class="hero-badge">
-                    <i class="fas fa-check-circle"></i>
-                    Trusted Personal Attendance Tracker
+                    <span class="pulse-dot"></span>
+                    Smart Attendance & Salary Tracker
                 </div>
-                <h1 id="hero-title">Track Attendance<br />Like a Pro.</h1>
-                <p>Effortlessly log your work hours, calculate salary, track overtime, and export reports — all in one beautiful app.</p>
+                <h1>Track Attendance, Overtime & <span>Salary Like a Pro</span></h1>
+                <p>Self Attendance Pro aapki daily duty, overtime hours, absent/present records aur monthly salary ka 100% accurate hisab rakhta hai. Koi diary ya register ki zaroorat nahi!</p>
+
                 <div class="hero-buttons">
-                    <a href="#download" class="btn">
-                        <i class="fas fa-download"></i> Download App
-                    </a>
-                    <a href="#features" class="btn btn-outline">
-                        <i class="fas fa-play-circle"></i> Watch Demo
-                    </a>
+                    <a href="#download" class="btn"><i class="fa-brands fa-google-play"></i> Get on Play Store</a>
+                    <a href="#demo" class="btn btn-gold"><i class="fa-solid fa-play"></i> Try Live Demo</a>
+                </div>
+
+                <div class="hero-features-list">
+                    <div class="hero-feat-tag"><i class="fa-solid fa-circle-check"></i> 1-Tap Daily Attendance</div>
+                    <div class="hero-feat-tag"><i class="fa-solid fa-circle-check"></i> Auto Overtime Calculation</div>
+                    <div class="hero-feat-tag"><i class="fa-solid fa-circle-check"></i> Cloud Backup (Firebase)</div>
+                    <div class="hero-feat-tag"><i class="fa-solid fa-circle-check"></i> PDF & Excel Statements</div>
                 </div>
             </div>
 
-            <div class="hero-visual" data-aos="fade-left" data-aos-delay="200">
+            <div class="hero-visual">
                 <div class="phone-mockup">
-                    <div class="phone-notch"></div>
                     <div class="phone-screen">
-                        <div class="app-icon"><i class="fas fa-clipboard-check"></i></div>
-                        <div class="app-name">Self<span>Attendance</span></div>
-                        <div class="app-tag">Pro • v3.2</div>
-                        <div class="stats-row">
-                            <span><i class="fas fa-calendar-check"></i> 12d</span>
-                            <span><i class="fas fa-clock"></i> 8.5h</span>
-                            <span><i class="fas fa-coins"></i> 240</span>
-                        </div>
-                        <div style="margin-top:16px;font-size:10px;color:rgba(255,255,255,.3);">— Today's Stats —</div>
+                        <img id="heroPhoneImg" src="assets/screen-dashboard.png" alt="Self Attendance Pro Dashboard" />
                     </div>
                 </div>
 
-                <!-- Floating Cards -->
-                <div class="float-card" style="top:5%;right:-8%;">
-                    <i class="fas fa-calendar-day"></i> 12 Days
+                <div class="float-card top-left">
+                    <i class="fa-solid fa-wallet"></i>
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted);">Estimated Salary</div>
+                        <div style="font-size: 0.95rem; font-weight: 800; color: var(--gold);">₹28,450.00</div>
+                    </div>
                 </div>
-                <div class="float-card" style="bottom:25%;left:-10%;">
-                    <i class="fas fa-coins"></i> 1,240 AttenX
+
+                <div class="float-card bottom-right">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <div>
+                        <div style="font-size: 0.72rem; color: var(--text-muted);">Total Overtime</div>
+                        <div style="font-size: 0.95rem; font-weight: 800; color: var(--emerald);">+18.5 Hours</div>
+                    </div>
                 </div>
-                <div class="float-card" style="bottom:5%;right:-2%;">
-                    <i class="fas fa-chart-line"></i> +18% This Month
+
+                <div class="phone-tabs">
+                    <button class="phone-tab-btn active" onclick="switchHeroScreen('assets/screen-dashboard.png', this)">Dashboard</button>
+                    <button class="phone-tab-btn" onclick="switchHeroScreen('assets/screen-calendar.png', this)">Calendar</button>
+                    <button class="phone-tab-btn" onclick="switchHeroScreen('assets/screen-spin.png', this)">Spin Wheel</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-    COUNTERS
-    ============================================================ -->
-    <div class="container" data-aos="fade-up">
-        <div class="counter-wrap">
-            <div class="counter-item">
-                <div class="number" data-count="15000">0</div>
-                <div class="label">Active Users</div>
-            </div>
-            <div class="counter-item">
-                <div class="number" data-count="2.4">0</div>
-                <div class="label">Million Hours Tracked</div>
-            </div>
-            <div class="counter-item">
-                <div class="number" data-count="98">0</div>
-                <div class="label">% Satisfaction</div>
-            </div>
-            <div class="counter-item">
-                <div class="number" data-count="4.9">0</div>
-                <div class="label">App Store Rating</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ============================================================
-    FEATURES
-    ============================================================ -->
-    <section class="section-padding" id="features" aria-labelledby="features-title">
+    <!-- SECTION 1: APP FEATURES (WHAT APP DOES) -->
+    <section class="section-padding" id="features">
         <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <span class="section-label">Features</span>
-                <h2 class="section-title" id="features-title">Everything You Need</h2>
-                <p class="section-sub">Designed for modern professionals who value time, accuracy, and simplicity.</p>
+            <div class="text-center">
+                <span class="section-label"><i class="fa-solid fa-bolt"></i> Powerful Capabilities</span>
+                <h2 class="section-title">App Ke Top Features</h2>
+                <p class="section-sub">Self Attendance Pro me aapko milte hain wo saare features jo aapke kaam aur salary ka hisab bilkul easy aur transparent banate hain.</p>
             </div>
 
             <div class="features-grid">
-                <div class="feature-card" data-aos="zoom" data-aos-delay="0">
-                    <div class="icon"><i class="fas fa-calendar-alt"></i></div>
-                    <h4>Attendance Calendar</h4>
-                    <p>Visual calendar with daily logs, weekly summaries, and monthly overviews.</p>
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-calendar-check"></i></div>
+                    <h3>1-Tap Daily Attendance</h3>
+                    <p>Subah duty aate hi 1-tap me apni daily attendance mark karein. Present, Absent aur Half-day record turant save hota hai.</p>
+                    <span class="feature-badge">Instant Record</span>
                 </div>
-                <div class="feature-card" data-aos="zoom" data-aos-delay="50">
-                    <div class="icon"><i class="fas fa-calculator"></i></div>
-                    <h4>Salary Calculator</h4>
-                    <p>Auto-calculate your pay based on hours worked, overtime, and rates.</p>
+
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-calculator"></i></div>
+                    <h3>Auto Salary & Overtime Calculation</h3>
+                    <p>Aapki per-day wage, hourly rate, fixed monthly salary aur custom Overtime multipliers (1.5x, 2.0x) ke hisab se exact salary count karta hai.</p>
+                    <span class="feature-badge">100% Accurate</span>
                 </div>
-                <div class="feature-card" data-aos="zoom" data-aos-delay="100">
-                    <div class="icon"><i class="fas fa-clock"></i></div>
-                    <h4>Overtime Tracking</h4>
-                    <p>Automatically detect and log overtime hours with precision.</p>
+
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-calendar-days"></i></div>
+                    <h3>Visual Monthly Calendar View</h3>
+                    <p>Color-coded calendar me dekhein kis din Present rahe, kis din Absent, Half-Day, ya Overtime ki. Pure mahine ka snapshot ek jagah.</p>
+                    <span class="feature-badge">Color Coded</span>
                 </div>
-                <div class="feature-card" data-aos="zoom" data-aos-delay="150">
-                    <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
-                    <h4>Cloud Backup</h4>
-                    <p>Securely sync your data across all devices with real-time backup.</p>
+
+                <!-- Feature 4 -->
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                    <h3>Firebase Cloud Sync & Secure Backup</h3>
+                    <p>Aapka data Google Firebase par encrypted store hota hai. Phone khone ya badalne par bhi login karke saara data wapas paayein.</p>
+
+                    <span class="feature-badge">Zero Data Loss</span>
                 </div>
-                <div class="feature-card" data-aos="zoom" data-aos-delay="200">
-                    <div class="icon"><i class="fas fa-fire"></i></div>
-                    <h4>Firebase Login</h4>
-                    <p>Fast, secure authentication with Google, email, and phone.</p>
+
+                <!-- Feature 5 -->
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-file-pdf"></i></div>
+                    <h3>PDF & Excel Report Export</h3>
+                    <p>Apni monthly attendance sheet aur salary report ko PDF ya Excel format me download karein aur direct HR ya Manager ko WhatsApp par bhejein.</p>
+                    <span class="feature-badge">1-Click Share</span>
                 </div>
-                <div class="feature-card" data-aos="zoom" data-aos-delay="250">
-                    <div class="icon"><i class="fas fa-lock"></i></div>
-                    <h4>Secure Data</h4>
-                    <p>Enterprise-grade encryption protects your personal information.</p>
+
+                <!-- Feature 6 -->
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-dharmachakra"></i></div>
+                    <h3>AttenX Coins & Spin Rewards</h3>
+                    <p>Daily app open karne aur regular attendance punch karne par milte hain AttenX Coins. Lucky spin wheel se bonus rewards jeetein.</p>
+                    <span class="feature-badge">Daily Fun Rewards</span>
                 </div>
-                <div class="feature-card" data-aos="zoom" data-aos-delay="300">
-                    <div class="icon"><i class="fas fa-file-pdf"></i></div>
-                    <h4>Export Reports</h4>
-                    <p>Generate and share professional PDF or CSV reports instantly.</p>
+
+                <!-- Feature 7 -->
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-sliders"></i></div>
+                    <h3>Custom Shift & Wage Settings</h3>
+                    <p>Flexible shift settings — chahe aap hourly basis par kaam karte ho, daily wages par, ya monthly salary par, har type ke job ke liye perfect.</p>
+                    <span class="feature-badge">Fully Customizable</span>
                 </div>
-                <div class="feature-card" data-aos="zoom" data-aos-delay="350">
-                    <div class="icon"><i class="fas fa-bell"></i></div>
-                    <h4>Notifications</h4>
-                    <p>Smart reminders for clock-in, breaks, and pending approvals.</p>
-                </div>
-                <div class="feature-card" data-aos="zoom" data-aos-delay="400">
-                    <div class="icon"><i class="fas fa-wifi"></i></div>
-                    <h4>Offline Mode</h4>
-                    <p>Track attendance even without internet — sync when back online.</p>
+
+                <!-- Feature 8 -->
+                <div class="feature-card">
+                    <div class="feature-icon-box"><i class="fa-solid fa-moon"></i></div>
+                    <h3>Dark Mode & Offline Support</h3>
+                    <p>Eye-safe sleek dark theme battery bachati hai. Internet na hone par bhi offline record karein, online hote hi auto-sync ho jayega.</p>
+                    <span class="feature-badge">Offline Friendly</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-    SCREENSHOTS
-    ============================================================ -->
-    <section class="section-padding" id="screenshots" aria-labelledby="screenshots-title" style="padding-top:0;">
+    <!-- SECTION 2: APP BENEFITS (SABKO KYA FYDA HOGA?) -->
+    <section class="section-padding benefits-section" id="benefits">
         <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <span class="section-label">Screenshots</span>
-                <h2 class="section-title" id="screenshots-title">See It in Action</h2>
-                <p class="section-sub">A glimpse of the elegant, intuitive interface designed for productivity.</p>
-            </div>
-
-            <div class="screenshots-slider" data-aos="fade-up">
-                <div class="slider-track" id="sliderTrack">
-                    <div class="slide"><img src="assets/screen-splash.png" alt="Self Attendance Pro splash screen" loading="lazy" /></div>
-                    <div class="slide"><img src="assets/screen-login.png" alt="Self Attendance Pro login screen" loading="lazy" /></div>
-                    <div class="slide"><img src="assets/screen-dashboard.png" alt="Self Attendance Pro dashboard screen" loading="lazy" /></div>
-                    <div class="slide"><img src="assets/screen-calendar.png" alt="Self Attendance Pro calendar screen" loading="lazy" /></div>
-                    <div class="slide"><img src="assets/screen-spin.png" alt="Self Attendance Pro daily reward spin screen" loading="lazy" /></div>
-                    <div class="slide"><img src="assets/screen-settings.png" alt="Self Attendance Pro settings screen" loading="lazy" /></div>
-                </div>
-                <div class="slider-controls">
-                    <button id="sliderPrev" aria-label="Previous slide"><i class="fas fa-chevron-left"></i></button>
-                    <button id="sliderNext" aria-label="Next slide"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    BENEFITS
-    ============================================================ -->
-    <section class="section-padding" id="benefits" aria-labelledby="benefits-title" style="padding-top:0;">
-        <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <span class="section-label">Benefits</span>
-                <h2 class="section-title" id="benefits-title">Why Choose Self Attendance Pro</h2>
-                <p class="section-sub">Built for professionals who demand accuracy, security, and simplicity.</p>
+            <div class="text-center">
+                <span class="section-label" style="color: var(--emerald); background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3);">
+                    <i class="fa-solid fa-circle-nodes"></i> Value & Advantages
+                </span>
+                <h2 class="section-title">Is App Ko Use Karne Se Kya Fyda Hoga?</h2>
+                <p class="section-sub">Aam diary ya memory par bharosa karne ke bajaye Self Attendance Pro use karne ke ye 5 sabse bade feyde hain:</p>
             </div>
 
             <div class="benefits-grid">
-                <div class="benefit-card" data-aos="scale" data-aos-delay="0">
-                    <div class="icon"><i class="fas fa-clock"></i></div>
-                    <h5>Save Time</h5>
-                </div>
-                <div class="benefit-card" data-aos="scale" data-aos-delay="50">
-                    <div class="icon"><i class="fas fa-rocket"></i></div>
-                    <h5>Increase Productivity</h5>
-                </div>
-                <div class="benefit-card" data-aos="scale" data-aos-delay="100">
-                    <div class="icon"><i class="fas fa-check-circle"></i></div>
-                    <h5>Easy Tracking</h5>
-                </div>
-                <div class="benefit-card" data-aos="scale" data-aos-delay="150">
-                    <div class="icon"><i class="fas fa-cloud"></i></div>
-                    <h5>Cloud Sync</h5>
-                </div>
-                <div class="benefit-card" data-aos="scale" data-aos-delay="200">
-                    <div class="icon"><i class="fas fa-shield-alt"></i></div>
-                    <h5>Secure</h5>
-                </div>
-                <div class="benefit-card" data-aos="scale" data-aos-delay="250">
-                    <div class="icon"><i class="fas fa-bolt"></i></div>
-                    <h5>Fast</h5>
-                </div>
-                <div class="benefit-card" data-aos="scale" data-aos-delay="300">
-                    <div class="icon"><i class="fas fa-bullseye"></i></div>
-                    <h5>Accurate</h5>
-                </div>
-                <div class="benefit-card" data-aos="scale" data-aos-delay="350">
-                    <div class="icon"><i class="fas fa-heart"></i></div>
-                    <h5>Loved by Users</h5>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    HOW IT WORKS
-    ============================================================ -->
-    <section class="section-padding" id="how-it-works" aria-labelledby="how-title" style="padding-top:0;">
-        <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <span class="section-label">How It Works</span>
-                <h2 class="section-title" id="how-title">Get Started in 5 Simple Steps</h2>
-                <p class="section-sub">From sign-up to salary report — everything you need to track attendance like a pro.</p>
-            </div>
-
-            <div class="timeline" data-aos="fade-up">
-                <div class="timeline-item" data-aos="fade-right" data-aos-delay="0">
-                    <div class="step-num">Step 1</div>
-                    <h4>Create Account</h4>
-                    <p>Sign up with email, Google, or phone — it takes just 30 seconds.</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
-                    <div class="step-num">Step 2</div>
-                    <h4>Setup Profile</h4>
-                    <p>Add your work schedule, hourly rate, and notification preferences.</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
-                    <div class="step-num">Step 3</div>
-                    <h4>Mark Attendance</h4>
-                    <p>Tap to clock in/out, add breaks, and log overtime with ease.</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
-                    <div class="step-num">Step 4</div>
-                    <h4>Track Salary</h4>
-                    <p>Watch your earnings grow in real-time with automatic calculations.</p>
-                </div>
-                <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
-                    <div class="step-num">Step 5</div>
-                    <h4>Export Reports</h4>
-                    <p>Generate professional PDF or CSV reports for payroll or personal records.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    WALLET (COMING SOON)
-    ============================================================ -->
-    <section class="section-padding" id="wallet" aria-labelledby="wallet-title" style="padding-top:0;">
-        <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <span class="section-label">Wallet</span>
-                <h2 class="section-title" id="wallet-title">AttenX Coins <span class="text-gold">Coming Soon</span></h2>
-            </div>
-
-            <div class="wallet-card" data-aos="zoom">
-                <div class="glow-gold"></div>
-                <div class="badge-soon"><i class="fas fa-clock"></i> Coming Soon</div>
-                <div class="icon-big"><i class="fas fa-coins"></i></div>
-                <h3>AttenX Wallet</h3>
-                <p>Earn AttenX coins by tracking your attendance consistently. After the official launch, you'll be able to redeem your coins for exclusive rewards, premium features, and more.</p>
-                <p style="font-size:.9rem;color:rgba(255,255,255,.4);">* No real-money guarantees. Rewards are subject to availability.</p>
-                <div style="display:inline-flex;gap:12px;margin-top:8px;flex-wrap:wrap;justify-content:center;">
-                    <span style="background:var(--glass);padding:6px 16px;border-radius:50px;font-size:13px;border:1px solid var(--border);"><i class="fas fa-calendar-check text-gold"></i> Daily Streak</span>
-                    <span style="background:var(--glass);padding:6px 16px;border-radius:50px;font-size:13px;border:1px solid var(--border);"><i class="fas fa-trophy text-gold"></i> Milestones</span>
-                    <span style="background:var(--glass);padding:6px 16px;border-radius:50px;font-size:13px;border:1px solid var(--border);"><i class="fas fa-gift text-gold"></i> Redeem</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    DOWNLOAD
-    ============================================================ -->
-    <section class="section-padding" id="download" aria-labelledby="download-title" style="padding-top:0;">
-        <div class="container">
-            <div class="download-wrap" data-aos="fade-up">
-                <div class="left">
-                    <span class="section-label" style="margin-bottom:8px;">Download</span>
-                    <h2 id="download-title">Get the App <span class="text-gold">Now</span></h2>
-                    <p>Available for Android. iOS coming soon. Start tracking your attendance today — it's free!</p>
-                    <div class="download-buttons">
-                        <a href="https://play.google.com/store/apps/details?id=com.aaryo.selfattendance" class="btn btn-gold" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-google-play"></i> Play Store
-                        </a>
-                        <a href="#" class="btn btn-outline" style="pointer-events:none;opacity:.6;">
-                            <i class="fab fa-apple"></i> iOS <span style="font-size:11px;background:var(--gold);color:#1a1a2e;padding:0 8px;border-radius:12px;margin-left:4px;">Soon</span>
-                        </a>
+                <!-- Benefit 1 -->
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <div class="benefit-num">01</div>
+                        <h3>No Payment Disputes</h3>
                     </div>
-                    <div style="display:flex;gap:20px;margin-top:20px;flex-wrap:wrap;font-size:13px;color:var(--text-secondary);">
-                        <span><i class="fas fa-check-circle text-gold"></i> Free forever</span>
-                        <span><i class="fas fa-check-circle text-gold"></i> No ads</span>
-                        <span><i class="fas fa-check-circle text-gold"></i> Offline mode</span>
+                    <p>Salary ke waqt hone wale sabhi jhanjhato se chhutkara. Aapke paas hoga exact proof ki aapne kis din kitne ghante overtime kiya.</p>
+                    <div class="benefit-highlight"><i class="fa-solid fa-shield-check"></i> Har overtime minute ka sahi hisab milta hai.</div>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <div class="benefit-num">02</div>
+                        <h3>Save 15+ Hours Every Month</h3>
+                    </div>
+                    <p>Paper register likhne aur mahine ke aakhir me ghanto calculator chalane ki zaroorat nahi. Sab kuch automatic count hota hai.</p>
+                    <div class="benefit-highlight"><i class="fa-solid fa-clock"></i> Manual calculation ka tension khatam.</div>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <div class="benefit-num">03</div>
+                        <h3>100% Security & Lifetime Access</h3>
+                    </div>
+                    <p>Aapki physical diary ghoom sakti hai ya phat sakti hai, lekin cloud par saved attendance hamesha safe rehti hai.</p>
+                    <div class="benefit-highlight"><i class="fa-solid fa-lock"></i> Secured with Google Firebase cloud.</div>
+                </div>
+
+                <!-- Benefit 4 -->
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <div class="benefit-num">04</div>
+                        <h3>HR Proof Report Ready</h3>
+                    </div>
+                    <p>WhatsApp par boss ya HR ko attendance ka clear breakdown PDF bhejein. Official formatting ke sath professional impression bane.</p>
+                    <div class="benefit-highlight"><i class="fa-solid fa-file-arrow-down"></i> Clean PDF & Excel Export in 1 click.</div>
+                </div>
+
+                <!-- Benefit 5 -->
+                <div class="benefit-card">
+                    <div class="benefit-header">
+                        <div class="benefit-num">05</div>
+                        <h3>Earn While You Log</h3>
+                    </div>
+                    <p>Roz duty log karne ka boring task ab exciting hai. AttenX Coins kamayein aur lucky wheel spin karke rewards unlock karein.</p>
+                    <div class="benefit-highlight"><i class="fa-solid fa-gift"></i> Daily check-in coins & rewards.</div>
+                </div>
+            </div>
+
+            <!-- ROLE-BASED BENEFITS -->
+            <div class="role-benefits-wrapper" id="roles">
+                <div class="text-center" style="margin-bottom: 24px;">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800;">Aapke Job Profile Ke Hisab Se Feyde</h3>
+                    <p style="color: var(--text-secondary);">Select karein aap kis category me aate hain:</p>
+                </div>
+
+                <div class="role-nav-tabs">
+                    <button class="role-tab-btn active" onclick="showRoleContent('salaried', this)"><i class="fa-solid fa-user-tie"></i> Salaried Employee</button>
+                    <button class="role-tab-btn" onclick="showRoleContent('daily', this)"><i class="fa-solid fa-person-digging"></i> Daily Wage Worker</button>
+                    <button class="role-tab-btn" onclick="showRoleContent('shift', this)"><i class="fa-solid fa-user-clock"></i> Shift & Guard Staff</button>
+                    <button class="role-tab-btn" onclick="showRoleContent('freelance', this)"><i class="fa-solid fa-laptop-code"></i> Freelancer / Contractor</button>
+                </div>
+
+                <!-- Content 1: Salaried -->
+                <div class="role-content-box" id="role-salaried">
+                    <div class="role-text-side">
+                        <h3>Salaried Employees Ke Liye</h3>
+                        <p>Monthly salary, casual leaves, paid leaves aur overtime hours ko track karne ka sabse asaan tarika.</p>
+                        <div class="role-check-list">
+                            <div class="role-check-item"><i class="fa-solid fa-circle-check"></i> Monthly expected net payout in real-time.</div>
+                            <div class="role-check-item"><i class="fa-solid fa-circle-check"></i> Leave balance track karein taaki salary cut na ho.</div>
+                            <div class="role-check-item"><i class="fa-solid fa-circle-check"></i> Payslip verify karne ke liye complete log.</div>
+                        </div>
+                    </div>
+                    <div class="role-badge-box">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <h4>Salaried Companion</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Monthly Salary & Payslip Verification</p>
                     </div>
                 </div>
-                <div class="right">
-                    <div class="phone-mini">
-                        <div class="screen-mini">
-                            <i class="fas fa-clipboard-check"></i>
-                            <div style="font-weight:600;font-size:14px;color:#fff;">Self Attendance</div>
-                            <div style="font-size:11px;">v3.2 • Ready</div>
-                            <div style="display:flex;gap:8px;margin-top:12px;font-size:18px;">
-                                <i class="fas fa-check-circle" style="color:var(--gold);"></i>
-                                <i class="fas fa-check-circle" style="color:var(--gold);"></i>
-                                <i class="fas fa-check-circle" style="color:var(--gold);"></i>
-                            </div>
+
+                <!-- Content 2: Daily Wage -->
+                <div class="role-content-box" id="role-daily" style="display: none;">
+                    <div class="role-text-side">
+                        <h3>Daily & Hourly Workers Ke Liye</h3>
+                        <p>Har din ka kitna rupees bana, kitne ghante extra duty ki, sab ka hisab turant aapki jeb me.</p>
+                        <div class="role-check-list">
+                            <div class="role-check-item"><i class="fa-solid fa-circle-check"></i> Per-day aur per-hour calculation support.</div>
+                            <div class="role-check-item"><i class="fa-solid fa-circle-check"></i> Advance payment log karne ki facility.</div>
+                            <div class="role-check-item"><i class="fa-solid fa-circle-check"></i> Total weekly payout balance live dekhein.</div>
+                        </div>
+                    </div>
+                    <div class="role-badge-box">
+                        <i class="fa-solid fa-coins"></i>
+                        <h4>Wage Manager</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Daily Rate & Overtime Multipliers</p>
+                    </div>
+                </div>
+
+                <!-- Content 3: Shift Staff -->
+                <div class="role-content-box" id="role-shift" style="display: none;">
+                    <div class="role-text-side">
+                        <h3>Security Guards & Shift Workers</h3>
+                        <p>Day shift, Night shift aur double duty continuous hours ko bina kisi confusion ke record karein.</p>
+                        <div class="role-check-list">
+                            <div class="role-check-item"><i class="fa-solid fa-circle-check"></i> Night shift crossing 12 AM support.</div>
+                            <div class="role-check-item"><i class="fa-solid fa-circle-check"></i> Double duty & extra shift tags.</div>
+                            <div class="role-check-item"><i class="fa-solid fa-circle-check"></i> Site location / shift notes.</div>
+                        </div>
+                    </div>
+                    <div class="role-badge-box">
+                        <i class="fa-solid fa-shield-halved"></i>
+                        <h4>Shift Guard Pro</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Multi-Shift & Night Duty Specialist</p>
+                    </div>
+                </div>
+
+                <!-- Content 4: Freelance -->
+                <div class="role-content-box" id="role-freelance" style="display: none;">
+                    <div class="role-text-side">
+                        <h3>Freelancers & Contractors</h3>
+                        <p>Multiple projects aur clients ke working hours log karein aur billable hours ka PDF report bhejein.</p>
+                        <div class="role-check-list">
+                            <div class="role-check-item"><i class="fa-solid fa-circle-check"></i> Client billable hours clock.</div>
+                            <div class="role-check-item"><i class="fa-solid fa-circle-check"></i> Export detailed timesheets.</div>
+                            <div class="role-check-item"><i class="fa-solid fa-circle-check"></i> Invoice attachment ready logs.</div>
+                        </div>
+                    </div>
+                    <div class="role-badge-box">
+                        <i class="fa-solid fa-laptop-file"></i>
+                        <h4>Timesheet Pro</h4>
+                        <p style="font-size: 0.9rem; color: var(--text-secondary);">Client Billable Hours & PDF Export</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: LIVE DEMO & CALCULATOR -->
+    <section class="section-padding" id="demo">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-label"><i class="fa-solid fa-laptop-code"></i> Try Before Downloading</span>
+                <h2 class="section-title">Interactive App Feature Simulator</h2>
+                <p class="section-sub">Aap yahan live test kar sakte hain ki app ke main tools kaise kaam karte hain:</p>
+            </div>
+
+            <div class="sim-container">
+                <div class="sim-tabs-header">
+                    <div>
+                        <h3 style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; color: var(--white);">Live Tool Demo</h3>
+                        <p style="font-size: 0.88rem; color: var(--text-secondary);">Select a tool to test below:</p>
+                    </div>
+
+                    <div class="sim-tabs-nav">
+                        <button class="sim-tab-btn active" onclick="switchSimPanel('calc', this)"><i class="fa-solid fa-calculator"></i> Salary Calculator</button>
+                        <button class="sim-tab-btn" onclick="switchSimPanel('cal', this)"><i class="fa-solid fa-calendar"></i> Attendance Grid</button>
+                        <button class="sim-tab-btn" onclick="switchSimPanel('spin', this)"><i class="fa-solid fa-dharmachakra"></i> Spin Rewards</button>
+                    </div>
+                </div>
+
+                <!-- SIM 1: Salary Calc -->
+                <div class="sim-panel active" id="sim-calc">
+                    <div class="calc-grid">
+                        <div class="calc-group">
+                            <label>Base Monthly Salary (₹)</label>
+                            <input type="number" id="calcBase" value="25000" oninput="recalcSalary()" />
+                        </div>
+
+                        <div class="calc-group">
+                            <label>Working Days in Month</label>
+                            <input type="number" id="calcDays" value="26" oninput="recalcSalary()" />
+                        </div>
+
+                        <div class="calc-group">
+                            <label>Days Present</label>
+                            <input type="number" id="calcPresent" value="24" oninput="recalcSalary()" />
+                        </div>
+
+                        <div class="calc-group">
+                            <label>Overtime Hours</label>
+                            <input type="number" id="calcOT" value="15" oninput="recalcSalary()" />
+                        </div>
+
+                        <div class="calc-group">
+                            <label>OT Rate Multiplier</label>
+                            <select id="calcOTRate" onchange="recalcSalary()">
+                                <option value="1.5">1.5x Hourly Rate</option>
+                                <option value="2.0">2.0x Double Rate</option>
+                                <option value="1.0">1.0x Normal Rate</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="calc-results">
+                        <div class="calc-res-box">
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Per Day Wage</div>
+                            <div class="amt" id="resPerDay">₹961</div>
+                        </div>
+
+                        <div class="calc-res-box">
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Base Pay (24 Days)</div>
+                            <div class="amt" id="resBasePay">₹23,076</div>
+                        </div>
+
+                        <div class="calc-res-box">
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Overtime Payout</div>
+                            <div class="amt" id="resOTPay" style="color: var(--emerald);">+₹2,704</div>
+                        </div>
+
+                        <div class="calc-res-box total">
+                            <div style="font-size: 0.8rem; color: var(--text-muted);">Total Net Salary</div>
+                            <div class="amt" id="resTotalNet">₹25,780</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ============================================================
-    FAQ
-    ============================================================ -->
-    <section class="section-padding" id="faq" aria-labelledby="faq-title" style="padding-top:0;">
-        <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <span class="section-label">FAQ</span>
-                <h2 class="section-title" id="faq-title">Frequently Asked Questions</h2>
-                <p class="section-sub">Everything you need to know about Self Attendance Pro.</p>
-            </div>
-
-            <div class="faq-list" data-aos="fade-up">
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        What is Self Attendance Pro?
-                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">Self Attendance Pro is a premium personal attendance tracking app that helps you log work hours, calculate salary, track overtime, and generate reports — all from your mobile device.</div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Is the app free to use?
-                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">Yes! Self Attendance Pro is completely free with no ads. All core features are available at no cost. Future premium features may be introduced, but the core experience will always remain free.</div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        How does the salary calculator work?
-                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">Simply set your hourly rate and work schedule. The app automatically calculates your daily, weekly, and monthly earnings based on logged hours and overtime. You can also add bonuses or deductions.</div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Is my data secure?
-                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">Absolutely. We use enterprise-grade encryption for all data. Your information is stored securely in the cloud with Firebase, and we never share your data with third parties.</div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Can I use the app offline?
-                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">Yes! Self Attendance Pro works offline. All your logs are stored locally and automatically synced to the cloud when you reconnect to the internet.</div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        What is AttenX Coin?
-                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">AttenX Coin is our loyalty reward system. You earn coins by consistently tracking your attendance. After the official launch, you'll be able to redeem them for exclusive perks and rewards.</div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        How do I export my reports?
-                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">Go to the Reports section, select your date range, and choose PDF or CSV format. Your report will be generated instantly and ready to share via email, messaging apps, or save to your device.</div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Can I track attendance for multiple jobs?
-                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">Yes! You can create multiple profiles for different jobs or clients. Each profile has its own schedule, rate, and attendance logs, making it easy to manage everything in one place.</div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        How do I reset my password?
-                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">On the login screen, tap "Forgot Password." Enter your registered email, and we'll send you a password reset link. If you used Google login, reset your password via Google account settings.</div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        When will the iOS version be available?
-                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                    </button>
-                    <div class="faq-answer">We're actively working on the iOS version and plan to release it in the coming months. Sign up for our newsletter to get notified as soon as it's available.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================================
-    CONTACT
-    ============================================================ -->
-    <section class="section-padding" id="contact" aria-labelledby="contact-title" style="padding-top:0;">
-        <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <span class="section-label">Contact</span>
-                <h2 class="section-title" id="contact-title">Get in Touch</h2>
-                <p class="section-sub">Have questions or feedback? We'd love to hear from you.</p>
-            </div>
-
-            <div class="contact-wrap" data-aos="fade-up">
-                <div class="info">
-                    <h3>Let's Talk</h3>
-                    <p>Reach out to us via email or social media. We respond within 24 hours.</p>
-                    <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
-                        <i class="fas fa-envelope" style="color:var(--primary);font-size:1.2rem;"></i>
-                        <a href="mailto:support@selfattendancepro.com" style="color:var(--text-secondary);">support@selfattendancepro.com</a>
+                <!-- SIM 3: Calendar Grid -->
+                <div class="sim-panel" id="sim-cal">
+                    <div style="text-align: center; margin-bottom: 16px;">
+                        <span style="font-size: 0.9rem; color: var(--text-secondary);">Interactive Monthly Attendance Sheet (Click any day to toggle status)</span>
                     </div>
-                    <div class="social">
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                    </div>
-                    <div class="dev">
-                        Developed by <strong>YOGESH</strong> <span style="color:var(--text-secondary);">•</span> <span style="color:var(--text-secondary);font-size:13px;">v3.2.0</span>
+
+                    <div class="cal-grid" id="simCalGrid"></div>
+                </div>
+
+                <!-- SIM 4: Spin Rewards -->
+                <div class="sim-panel" id="sim-spin">
+                    <div class="spin-game-box">
+                        <div class="section-label" style="color: var(--gold); background: rgba(255, 193, 7, 0.15); border-color: rgba(255, 193, 7, 0.3);">
+                            <i class="fa-solid fa-coins"></i> AttenX Coins: <span id="coinCount">250</span>
+                        </div>
+
+                        <div class="wheel-wrap">
+                            <div class="wheel-pointer"></div>
+                            <canvas id="wheelCanvas" width="250" height="250" class="wheel-canvas"></canvas>
+                        </div>
+
+                        <button class="btn btn-gold" onclick="spinWheel()"><i class="fa-solid fa-arrows-rotate"></i> Spin Wheel Now</button>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm" novalidate>
-                    <input type="text" placeholder="Your Name" required aria-label="Your Name" />
-                    <input type="email" placeholder="Your Email" required aria-label="Your Email" />
-                    <input type="text" placeholder="Subject" aria-label="Subject" />
-                    <textarea placeholder="Your Message" required aria-label="Your Message"></textarea>
-                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send Message</button>
-                </form>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-    LEGAL SECTIONS (Privacy Policy, Terms, Delete Account)
-    ============================================================ -->
-    <section class="section-padding" style="padding-top:0;" aria-labelledby="legal-title">
+    <!-- SECTION 4: APP SCREENSHOTS -->
+    <section class="section-padding" id="screenshots">
         <div class="container">
-            <div class="text-center" data-aos="fade-up">
-                <span class="section-label">Legal</span>
-                <h2 class="section-title" id="legal-title">Privacy &amp; Terms</h2>
+            <div class="text-center">
+                <span class="section-label"><i class="fa-solid fa-mobile-screen"></i> Real App Preview</span>
+                <h2 class="section-title">App UI Screenshots</h2>
+                <p class="section-sub">Self Attendance Pro ka clean aur user-friendly dark interface aapke daily usage ko super smooth banata hai.</p>
             </div>
 
-            <!-- Privacy Policy -->
-            <div class="legal-section" data-aos="fade-up" id="privacy">
-                <div class="toggle-header" role="button" tabindex="0" aria-expanded="false">
-                    <h3><i class="fas fa-shield-alt" style="color:var(--primary);margin-right:12px;"></i>Privacy Policy</h3>
-                    <i class="fas fa-chevron-down"></i>
+            <div class="screenshots-slider">
+                <div class="screen-card" onclick="openLightbox('assets/screen-dashboard.png')">
+                    <img src="assets/screen-dashboard.png" alt="Dashboard Screen" />
+                    <div class="screen-overlay"><span><i class="fa-solid fa-magnifying-glass-plus"></i> Dashboard</span></div>
                 </div>
-                <div class="content">
-                    <p><strong>Last updated:</strong> July 2026</p>
-                    <p>Self Attendance Pro ("we", "our", "us") respects your privacy. This Privacy Policy explains how we collect, use, and protect your personal information.</p>
 
-                    <h4>1. Information We Collect</h4>
-                    <ul>
-                        <li><strong>Account Data:</strong> Name, email address, phone number, and profile photo (if provided).</li>
-                        <li><strong>Attendance Data:</strong> Clock-in/out times, break logs, overtime records, and location (optional).</li>
-                        <li><strong>Device Data:</strong> Device model, OS version, app version, and crash reports.</li>
-                    </ul>
-
-                    <h4>2. How We Use Your Data</h4>
-                    <ul>
-                        <li>To provide and improve our attendance tracking services.</li>
-                        <li>To calculate salary, overtime, and generate reports.</li>
-                        <li>To send notifications and updates (you can opt out anytime).</li>
-                        <li>To ensure security and prevent fraud.</li>
-                    </ul>
-
-                    <h4>3. Data Storage &amp; Security</h4>
-                    <ul>
-                        <li>All data is stored securely on Firebase servers with encryption.</li>
-                        <li>We implement industry-standard security measures to protect your data.</li>
-                        <li>You can export or delete your data at any time from your account settings.</li>
-                    </ul>
-
-                    <h4>4. Third-Party Sharing</h4>
-                    <ul>
-                        <li>We do not sell, rent, or trade your personal data.</li>
-                        <li>We may share anonymized, aggregated data for analytics purposes.</li>
-                        <li>We use trusted third-party services (Firebase, Google) that comply with GDPR.</li>
-                    </ul>
-
-                    <h4>5. Your Rights</h4>
-                    <ul>
-                        <li>Access, update, or delete your personal data anytime.</li>
-                        <li>Opt out of marketing communications.</li>
-                        <li>Request a copy of your data in a portable format.</li>
-                    </ul>
-
-                    <p>For any privacy-related questions, contact us at <a href="mailto:support@selfattendancepro.com" style="color:var(--primary);">support@selfattendancepro.com</a>.</p>
+                <div class="screen-card" onclick="openLightbox('assets/screen-calendar.png')">
+                    <img src="assets/screen-calendar.png" alt="Calendar Screen" />
+                    <div class="screen-overlay"><span><i class="fa-solid fa-magnifying-glass-plus"></i> Calendar</span></div>
                 </div>
-            </div>
 
-            <!-- Terms & Conditions -->
-            <div class="legal-section" data-aos="fade-up" id="terms">
-                <div class="toggle-header" role="button" tabindex="0" aria-expanded="false">
-                    <h3><i class="fas fa-file-contract" style="color:var(--gold);margin-right:12px;"></i>Terms &amp; Conditions</h3>
-                    <i class="fas fa-chevron-down"></i>
+                <div class="screen-card" onclick="openLightbox('assets/screen-spin.png')">
+                    <img src="assets/screen-spin.png" alt="Spin Wheel Screen" />
+                    <div class="screen-overlay"><span><i class="fa-solid fa-magnifying-glass-plus"></i> Rewards</span></div>
                 </div>
-                <div class="content">
-                    <p><strong>Last updated:</strong> July 2026</p>
-                    <p>By using Self Attendance Pro, you agree to these Terms &amp; Conditions. Please read them carefully.</p>
 
-                    <h4>1. Acceptance of Terms</h4>
-                    <p>By downloading, installing, or using the app, you agree to be bound by these terms. If you do not agree, do not use the app.</p>
-
-                    <h4>2. User Account</h4>
-                    <ul>
-                        <li>You are responsible for maintaining the confidentiality of your login credentials.</li>
-                        <li>You agree to provide accurate and complete information during registration.</li>
-                        <li>You are solely responsible for all activities that occur under your account.</li>
-                    </ul>
-
-                    <h4>3. Acceptable Use</h4>
-                    <ul>
-                        <li>Use the app only for lawful purposes.</li>
-                        <li>Do not attempt to reverse-engineer, hack, or disrupt the app's functionality.</li>
-                        <li>Do not use the app to store or share illegal, harmful, or offensive content.</li>
-                    </ul>
-
-                    <h4>4. Intellectual Property</h4>
-                    <p>All content, designs, logos, and code are the property of Self Attendance Pro and are protected by copyright laws. You may not reproduce, distribute, or modify any part of the app without explicit permission.</p>
-
-                    <h4>5. Disclaimer of Warranties</h4>
-                    <p>The app is provided "as is" and "as available" without warranties of any kind. We do not guarantee that the app will be error-free, secure, or uninterrupted.</p>
-
-                    <h4>6. Limitation of Liability</h4>
-                    <p>To the fullest extent permitted by law, Self Attendance Pro shall not be liable for any direct, indirect, incidental, or consequential damages arising from your use of the app.</p>
-
-                    <h4>7. Changes to Terms</h4>
-                    <p>We reserve the right to update these terms at any time. Continued use of the app after changes constitutes acceptance of the updated terms.</p>
-
-                    <p>For questions about these terms, contact us at <a href="mailto:support@selfattendancepro.com" style="color:var(--primary);">support@selfattendancepro.com</a>.</p>
+                <div class="screen-card" onclick="openLightbox('assets/screen-login.png')">
+                    <img src="assets/screen-login.png" alt="Login Screen" />
+                    <div class="screen-overlay"><span><i class="fa-solid fa-magnifying-glass-plus"></i> Firebase Auth</span></div>
                 </div>
-            </div>
 
-            <!-- Delete Account -->
-            <div class="legal-section" data-aos="fade-up" id="delete-account">
-                <div class="toggle-header" role="button" tabindex="0" aria-expanded="false">
-                    <h3><i class="fas fa-trash-alt" style="color:#e74c3c;margin-right:12px;"></i>Delete Account</h3>
-                    <i class="fas fa-chevron-down"></i>
+                <div class="screen-card" onclick="openLightbox('assets/screen-settings.png')">
+                    <img src="assets/screen-settings.png" alt="Settings Screen" />
+                    <div class="screen-overlay"><span><i class="fa-solid fa-magnifying-glass-plus"></i> Settings</span></div>
                 </div>
-                <div class="content">
-                    <p>We're sorry to see you go. Deleting your account will permanently remove all your data, including attendance logs, salary history, and profile information. This action is <strong>irreversible</strong>.</p>
 
-                    <h4>How to Delete Your Account</h4>
-                    <ul>
-                        <li>Open the Self Attendance Pro app and go to <strong>Settings</strong>.</li>
-                        <li>Scroll down and tap on <strong>Account</strong>.</li>
-                        <li>Select <strong>Delete Account</strong> and confirm your password.</li>
-                        <li>Tap <strong>Permanently Delete</strong> to finalize.</li>
-                    </ul>
-                    <p style="color:var(--text-secondary);font-size:.95rem;margin-top:12px;">Alternatively, you can request account deletion by emailing us with the subject "Delete Account Request" from your registered email address.</p>
-
-                    <button class="btn btn-delete" id="deleteAccountBtn">
-                        <i class="fas fa-trash-alt"></i> Request Account Deletion
-                    </button>
-                    <p style="font-size:12px;color:var(--text-secondary);margin-top:10px;">A confirmation email will be sent to verify your identity.</p>
+                <div class="screen-card" onclick="openLightbox('assets/screen-splash.png')">
+                    <img src="assets/screen-splash.png" alt="Splash Screen" />
+                    <div class="screen-overlay"><span><i class="fa-solid fa-magnifying-glass-plus"></i> Welcome</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================================
-    FOOTER
-    ============================================================ -->
-    <footer class="footer" role="contentinfo">
+    <!-- SECTION 5: DOWNLOAD CTA -->
+    <section class="section-padding" id="download">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="nav-logo" style="font-size:1.2rem;">
-                        <i class="fas fa-clipboard-check"></i>
-                        Self<span>Attendance</span>Pro
+            <div class="cta-banner">
+                <h2>Download Self Attendance Pro Today!</h2>
+                <p>Aaj hi download karein aur apni attendance, overtime aur salary ka 100% accurate aur stress-free hisab shuru karein.</p>
+
+                <div class="cta-buttons">
+                    <a href="download.html" class="btn btn-gold" style="font-size: 1.1rem; padding: 16px 36px;">
+                        <i class="fa-brands fa-google-play"></i> Download Official APK / App
                     </a>
-                    <p>Track attendance, calculate salary, and export reports — all in one beautiful app.</p>
-                    <div style="display:flex;gap:12px;margin-top:16px;">
-                        <span style="font-size:12px;color:var(--text-secondary);"><i class="fas fa-check-circle text-gold"></i> v3.2.0</span>
-                        <span style="font-size:12px;color:var(--text-secondary);"><i class="fas fa-shield-alt text-gold"></i> Secure</span>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h5>Product</h5>
-                    <a href="#features">Features</a>
-                    <a href="#screenshots">Screenshots</a>
-                    <a href="#benefits">Benefits</a>
-                    <a href="#how-it-works">How It Works</a>
-                </div>
-                <div class="footer-col">
-                    <h5>Legal</h5>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms</a>
-                    <a href="delete-account.html">Delete Account</a>
-                </div>
-                <div class="footer-col">
-                    <h5>Connect</h5>
-                    <a href="#contact">Contact</a>
-                    <a href="mailto:support@selfattendancepro.com">support@selfattendancepro.com</a>
-                    <a href="#download">Download</a>
+                    <a href="#features" class="btn btn-outline" style="font-size: 1.1rem; padding: 16px 36px;">
+                        <i class="fa-solid fa-circle-info"></i> View All Features
+                    </a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; padding-bottom: 30px;">
+                <div class="nav-logo">
+                    <div class="nav-logo-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    Self Attendance <span>Pro</span>
+                </div>
+
+                <div style="display: flex; gap: 20px; font-size: 0.9rem; color: var(--text-secondary);">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </div>
+
             <div class="footer-bottom">
-                <span>&copy; 2026 Self Attendance Pro. All rights reserved.</span>
-                <span>Made with <i class="fas fa-heart" style="color:var(--gold);"></i> by <strong style="color:var(--white);">YOGESH</strong></span>
+                <div>&copy; 2026 Self Attendance Pro. All rights reserved.</div>
+                <div>Made for Workers, Salaried Employees & Freelancers.</div>
             </div>
         </div>
     </footer>
 
-    <!-- ============================================================
-    JAVASCRIPT
-    ============================================================ -->
+    <!-- LIGHTBOX MODAL -->
+    <div class="lightbox-modal" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightboxImg" src="" class="lightbox-img" alt="Enlarged Preview" />
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- FIREBASE SDK & INIT -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="js/firebase-init.js"></script>
+
+    <!-- SCRIPTS -->
     <script>
-        (function() {
-            'use strict';
+        // Navbar Scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 40) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
 
-            // ============================================================
-            // PARTICLES
-            // ============================================================
-            const canvas = document.getElementById('particles-canvas');
+        // Mobile Nav Hamburger
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Toast Helper
+        function showToast(msg, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const item = document.createElement('div');
+            item.className = 'toast-item';
+            item.innerHTML = `<i class="fa-solid fa-circle-info" style="color: var(--primary);"></i> ${msg}`;
+            container.appendChild(item);
+            setTimeout(() => item.remove(), 3500);
+        }
+
+        // Hero Screen Switcher
+        function switchHeroScreen(src, btn) {
+            document.getElementById('heroPhoneImg').src = src;
+            document.querySelectorAll('.phone-tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        // Role Content Switcher
+        function showRoleContent(roleId, btn) {
+            document.querySelectorAll('.role-content-box').forEach(box => box.style.display = 'none');
+            document.querySelectorAll('.role-tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('role-' + roleId).style.display = 'grid';
+            btn.classList.add('active');
+        }
+
+        // Simulator Tabs Switcher
+        function switchSimPanel(panelId, btn) {
+            document.querySelectorAll('.sim-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.sim-tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById('sim-' + panelId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        // Salary Calculator Logic
+        function recalcSalary() {
+            const base = parseFloat(document.getElementById('calcBase').value) || 0;
+            const daysInMonth = parseFloat(document.getElementById('calcDays').value) || 26;
+            const daysPresent = parseFloat(document.getElementById('calcPresent').value) || 0;
+            const otHours = parseFloat(document.getElementById('calcOT').value) || 0;
+            const otMult = parseFloat(document.getElementById('calcOTRate').value) || 1.5;
+
+            const perDay = base / daysInMonth;
+            const baseEarned = perDay * daysPresent;
+            const hourlyRate = perDay / 8;
+            const otEarned = otHours * (hourlyRate * otMult);
+            const total = baseEarned + otEarned;
+
+            document.getElementById('resPerDay').innerText = `₹${Math.round(perDay).toLocaleString()}`;
+            document.getElementById('resBasePay').innerText = `₹${Math.round(baseEarned).toLocaleString()}`;
+            document.getElementById('resOTPay').innerText = `+₹${Math.round(otEarned).toLocaleString()}`;
+            document.getElementById('resTotalNet').innerText = `₹${Math.round(total).toLocaleString()}`;
+        }
+
+        // Attendance Grid & Firebase Sync
+        function buildCalGrid() {
+            const grid = document.getElementById('simCalGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            days.forEach(d => {
+                const h = document.createElement('div');
+                h.className = 'cal-head';
+                h.innerText = d;
+                grid.appendChild(h);
+            });
+
+            const statuses = ['p', 'p', 'p', 'ot', 'p', 'a', 'p', 'p', 'ot', 'p', 'p', 'p', 'p', 'a', 'p', 'p', 'ot', 'p', 'p', 'p', 'p', 'p', 'ot', 'p', 'p', 'p', 'p', 'p'];
+
+            for (let i = 1; i <= 28; i++) {
+                const cell = document.createElement('div');
+                const st = statuses[i - 1] || 'p';
+                cell.className = `cal-cell ${st}`;
+                cell.innerHTML = `<div>${i}</div><div style="font-size:0.65rem; font-weight:700;">${st.toUpperCase()}</div>`;
+                cell.onclick = () => {
+                    let newStatus = 'Present';
+                    if (cell.classList.contains('p')) {
+                        cell.className = 'cal-cell ot';
+                        cell.querySelector('div:nth-child(2)').innerText = 'OT';
+                        newStatus = 'Overtime';
+                    } else if (cell.classList.contains('ot')) {
+                        cell.className = 'cal-cell a';
+                        cell.querySelector('div:nth-child(2)').innerText = 'A';
+                        newStatus = 'Absent';
+                    } else {
+                        cell.className = 'cal-cell p';
+                        cell.querySelector('div:nth-child(2)').innerText = 'P';
+                        newStatus = 'Present';
+                    }
+
+                    // Save attendance update to Firebase
+                    if (typeof saveAttendanceToFirebase === 'function') {
+                        saveAttendanceToFirebase({
+                            userId: localStorage.getItem('user_id') || 'AX-984210',
+                            date: `2026-08-${String(i).padStart(2, '0')}`,
+                            status: newStatus,
+                            overtimeHours: newStatus === 'Overtime' ? 2 : 0,
+                            dailyEarnings: newStatus === 'Absent' ? 0 : 500,
+                            notes: `Updated day ${i} status to ${newStatus}`
+                        });
+                        showToast(`Day ${i} updated to ${newStatus} & synced to Firebase!`, 'info');
+                    } else {
+                        showToast(`Day ${i} updated to ${newStatus}!`, 'info');
+                    }
+                };
+                grid.appendChild(cell);
+            }
+        }
+        buildCalGrid();
+
+        // Spin Wheel Canvas Draw
+        const canvas = document.getElementById('wheelCanvas');
+        if (canvas) {
             const ctx = canvas.getContext('2d');
-            let particles = [];
-            let w, h;
+            const rewards = ['10 Coins', '25 Coins', 'Jackpot 100', 'Try Again', '50 Coins', 'Double OT'];
+            const colors = ['#7C4DFF', '#FFC107', '#10B981', '#EF4444', '#06B6D4', '#9166FF'];
 
-            function resizeCanvas() {
-                w = canvas.width = window.innerWidth;
-                h = canvas.height = window.innerHeight;
+            for (let i = 0; i < 6; i++) {
+                const angle = (Math.PI * 2 / 6) * i;
+                ctx.beginPath();
+                ctx.fillStyle = colors[i];
+                ctx.moveTo(125, 125);
+                ctx.arc(125, 125, 120, angle, angle + (Math.PI * 2 / 6));
+                ctx.lineTo(125, 125);
+                ctx.fill();
+
+                ctx.save();
+                ctx.translate(125, 125);
+                ctx.rotate(angle + (Math.PI / 6));
+                ctx.textAlign = "right";
+                ctx.fillStyle = "#FFF";
+                ctx.font = "bold 12px sans-serif";
+                ctx.fillText(rewards[i], 100, 5);
+                ctx.restore();
             }
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
+        }
 
-            class Particle {
-                constructor() {
-                    this.reset();
-                }
-                reset() {
-                    this.x = Math.random() * w;
-                    this.y = Math.random() * h;
-                    this.vx = (Math.random() - 0.5) * 0.5;
-                    this.vy = (Math.random() - 0.5) * 0.5;
-                    this.r = Math.random() * 2 + 1;
-                    this.a = Math.random() * 0.5 + 0.1;
-                }
-                update() {
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) {
-                        this.reset();
-                    }
-                }
-                draw() {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(110,61,255,${this.a})`;
-                    ctx.fill();
-                }
-            }
+        let currentRotation = 0;
+        function spinWheel() {
+            currentRotation += 1440 + Math.floor(Math.random() * 360);
+            canvas.style.transform = `rotate(${currentRotation}deg)`;
+            setTimeout(() => {
+                const coinsEl = document.getElementById('coinCount');
+                coinsEl.innerText = parseInt(coinsEl.innerText) + 50;
+                showToast('🎉 Won +50 AttenX Bonus Coins!', 'gold');
+            }, 4000);
+        }
 
-            for (let i = 0; i < 80; i++) {
-                particles.push(new Particle());
-            }
-
-            function drawParticles() {
-                ctx.clearRect(0, 0, w, h);
-                for (const p of particles) {
-                    p.update();
-                    p.draw();
-                }
-                // Lines
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const dx = particles[i].x - particles[j].x;
-                        const dy = particles[i].y - particles[j].y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < 160) {
-                            ctx.beginPath();
-                            ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y);
-                            ctx.strokeStyle =
-                                `rgba(110,61,255,${0.12 * (1 - dist / 160)})`;
-                            ctx.lineWidth = 0.6;
-                            ctx.stroke();
-                        }
-                    }
-                }
-                requestAnimationFrame(drawParticles);
-            }
-            drawParticles();
-
-            // ============================================================
-            // NAVBAR
-            // ============================================================
-            const navbar = document.getElementById('navbar');
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.getElementById('navLinks');
-            const navAnchors = navLinks.querySelectorAll('a');
-
-            // Scroll effect
-            let lastScroll = 0;
-            window.addEventListener('scroll', function() {
-                const scrollY = window.scrollY;
-                if (scrollY > 60) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-                lastScroll = scrollY;
-                highlightActiveNav();
-            });
-
-            // Hamburger
-            hamburger.addEventListener('click', function() {
-                const isOpen = navLinks.classList.toggle('open');
-                hamburger.classList.toggle('active');
-                hamburger.setAttribute('aria-expanded', isOpen);
-            });
-
-            navAnchors.forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    if (navLinks.classList.contains('open')) {
-                        navLinks.classList.remove('open');
-                        hamburger.classList.remove('active');
-                        hamburger.setAttribute('aria-expanded', 'false');
-                    }
-                    const targetId = this.getAttribute('href');
-                    if (targetId && targetId.startsWith('#')) {
-                        e.preventDefault();
-                        const target = document.querySelector(targetId);
-                        if (target) {
-                            const offset = 80;
-                            const top = target.getBoundingClientRect().top + window.pageYOffset -
-                                offset;
-                            window.scrollTo({ top, behavior: 'smooth' });
-                        }
-                    }
-                });
-            });
-
-            // Highlight active nav
-            function highlightActiveNav() {
-                const scrollY = window.scrollY + 120;
-                let activeId = '';
-                document.querySelectorAll('section[id], div[id]').forEach(el => {
-                    const top = el.offsetTop;
-                    const height = el.offsetHeight;
-                    if (scrollY >= top && scrollY < top + height) {
-                        activeId = el.id;
-                    }
-                });
-                navAnchors.forEach(a => {
-                    a.classList.toggle('active', a.getAttribute('href') === '#' + activeId);
-                });
-            }
-
-            // ============================================================
-            // AOS SCROLL ANIMATIONS
-            // ============================================================
-            const aosElements = document.querySelectorAll('[data-aos]');
-            const aosObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const delay = parseInt(entry.target.getAttribute('data-aos-delay')) || 0;
-                        setTimeout(() => {
-                            entry.target.classList.add('aos-animate');
-                        }, delay);
-                        aosObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
-
-            aosElements.forEach(el => aosObserver.observe(el));
-
-            // ============================================================
-            // COUNTERS
-            // ============================================================
-            const counters = document.querySelectorAll('.counter-item .number');
-            let countersAnimated = false;
-
-            function animateCounters() {
-                if (countersAnimated) return;
-                const isVisible = Array.from(counters).some(c => {
-                    const rect = c.getBoundingClientRect();
-                    return rect.top < window.innerHeight && rect.bottom > 0;
-                });
-                if (!isVisible) return;
-                countersAnimated = true;
-
-                counters.forEach(counter => {
-                    const target = parseFloat(counter.getAttribute('data-count'));
-                    const isFloat = target % 1 !== 0;
-                    const duration = 2000;
-                    const startTime = performance.now();
-
-                    function update(currentTime) {
-                        const elapsed = currentTime - startTime;
-                        const progress = Math.min(elapsed / duration, 1);
-                        const eased = 1 - Math.pow(1 - progress, 3);
-                        const current = eased * target;
-                        if (isFloat) {
-                            counter.textContent = current.toFixed(1);
-                        } else {
-                            counter.textContent = Math.floor(current).toLocaleString();
-                        }
-                        if (progress < 1) {
-                            requestAnimationFrame(update);
-                        } else {
-                            if (isFloat) {
-                                counter.textContent = target.toFixed(1);
-                            } else {
-                                counter.textContent = target.toLocaleString();
-                            }
-                        }
-                    }
-                    requestAnimationFrame(update);
-                });
-            }
-
-            window.addEventListener('scroll', animateCounters);
-            window.addEventListener('load', function() {
-                setTimeout(animateCounters, 300);
-            });
-
-            // ============================================================
-            // SLIDER
-            // ============================================================
-            const track = document.getElementById('sliderTrack');
-            const prevBtn = document.getElementById('sliderPrev');
-            const nextBtn = document.getElementById('sliderNext');
-            let slideIndex = 0;
-            let slideWidth = 200;
-            let gap = 24;
-            let visibleSlides = 4;
-
-            function updateSlider() {
-                const containerWidth = track.parentElement.offsetWidth - 40;
-                if (containerWidth < 600) {
-                    visibleSlides = 2;
-                    slideWidth = 140;
-                    gap = 16;
-                } else if (containerWidth < 900) {
-                    visibleSlides = 3;
-                    slideWidth = 180;
-                    gap = 20;
-                } else {
-                    visibleSlides = 4;
-                    slideWidth = 200;
-                    gap = 24;
-                }
-                const totalSlides = track.children.length;
-                const maxIndex = Math.max(0, totalSlides - visibleSlides);
-                if (slideIndex > maxIndex) slideIndex = maxIndex;
-                const offset = slideIndex * (slideWidth + gap);
-                track.style.transform = `translateX(-${offset}px)`;
-            }
-
-            function slideNext() {
-                const totalSlides = track.children.length;
-                const maxIndex = Math.max(0, totalSlides - visibleSlides);
-                if (slideIndex < maxIndex) {
-                    slideIndex++;
-                } else {
-                    slideIndex = 0;
-                }
-                updateSlider();
-            }
-
-            function slidePrev() {
-                const totalSlides = track.children.length;
-                const maxIndex = Math.max(0, totalSlides - visibleSlides);
-                if (slideIndex > 0) {
-                    slideIndex--;
-                } else {
-                    slideIndex = maxIndex;
-                }
-                updateSlider();
-            }
-
-            nextBtn.addEventListener('click', slideNext);
-            prevBtn.addEventListener('click', slidePrev);
-
-            // Auto slide
-            let autoSlideInterval = setInterval(slideNext, 4000);
-
-            // Pause on hover
-            const sliderContainer = document.querySelector('.screenshots-slider');
-            sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
-            sliderContainer.addEventListener('mouseleave', () => {
-                clearInterval(autoSlideInterval);
-                autoSlideInterval = setInterval(slideNext, 4000);
-            });
-
-            window.addEventListener('resize', updateSlider);
-            setTimeout(updateSlider, 100);
-
-            // ============================================================
-            // FAQ ACCORDION
-            // ============================================================
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const btn = item.querySelector('.faq-question');
-                btn.addEventListener('click', function() {
-                    const isOpen = item.classList.contains('open');
-                    // Close all
-                    faqItems.forEach(i => {
-                        i.classList.remove('open');
-                        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-                    });
-                    if (!isOpen) {
-                        item.classList.add('open');
-                        btn.setAttribute('aria-expanded', 'true');
-                    }
-                });
-            });
-
-            // Open first FAQ by default
-            if (faqItems.length) {
-                faqItems[0].classList.add('open');
-                faqItems[0].querySelector('.faq-question').setAttribute('aria-expanded', 'true');
-            }
-
-            // ============================================================
-            // LEGAL TOGGLES
-            // ============================================================
-            document.querySelectorAll('.legal-section .toggle-header').forEach(header => {
-                header.addEventListener('click', function() {
-                    const section = this.closest('.legal-section');
-                    const isOpen = section.classList.contains('open');
-                    // Close all legal sections
-                    document.querySelectorAll('.legal-section').forEach(s => {
-                        s.classList.remove('open');
-                        s.querySelector('.toggle-header').setAttribute('aria-expanded', 'false');
-                    });
-                    if (!isOpen) {
-                        section.classList.add('open');
-                        this.setAttribute('aria-expanded', 'true');
-                    }
-                });
-            });
-
-            // ============================================================
-            // BUTTON RIPPLE
-            // ============================================================
-            document.querySelectorAll('.btn').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    const rect = this.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const ripple = document.createElement('span');
-                    ripple.className = 'ripple';
-                    const size = Math.max(rect.width, rect.height);
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = (x - size / 2) + 'px';
-                    ripple.style.top = (y - size / 2) + 'px';
-                    this.appendChild(ripple);
-                    setTimeout(() => ripple.remove(), 600);
-                });
-            });
-
-            // ============================================================
-            // CONTACT FORM
-            // ============================================================
-            document.getElementById('contactForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const btn = this.querySelector('.btn');
-                const original = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-                btn.disabled = true;
-                setTimeout(() => {
-                    btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
-                    btn.style.background = '#27ae60';
-                    setTimeout(() => {
-                        btn.innerHTML = original;
-                        btn.disabled = false;
-                        btn.style.background = '';
-                        this.reset();
-                    }, 2500);
-                }, 1800);
-            });
-
-            // ============================================================
-            // DELETE ACCOUNT BUTTON
-            // ============================================================
-            document.getElementById('deleteAccountBtn').addEventListener('click', function() {
-                if (confirm('Are you sure you want to request account deletion? This action is irreversible.')) {
-                    const original = this.innerHTML;
-                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Requesting...';
-                    this.disabled = true;
-                    setTimeout(() => {
-                        this.innerHTML = '<i class="fas fa-check"></i> Request Sent!';
-                        this.style.background = '#27ae60';
-                        setTimeout(() => {
-                            this.innerHTML = original;
-                            this.disabled = false;
-                            this.style.background = '';
-                        }, 2500);
-                    }, 1500);
-                }
-            });
-
-            // ============================================================
-            // KEYBOARD ACCESSIBILITY FOR LEGAL TOGGLES
-            // ============================================================
-            document.querySelectorAll('.legal-section .toggle-header').forEach(el => {
-                el.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        this.click();
-                    }
-                });
-            });
-
-            // ============================================================
-            // SMOOTH SCROLL FOR ALL ANCHOR LINKS
-            // ============================================================
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-                    const target = document.querySelector(targetId);
-                    if (target) {
-                        e.preventDefault();
-                        const offset = 80;
-                        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                        window.scrollTo({ top, behavior: 'smooth' });
-                    }
-                });
-            });
-
-            // ============================================================
-            // LOADER: remove any FOUC
-            // ============================================================
-            document.body.style.opacity = '1';
-
-            console.log('🚀 Self Attendance Pro — Premium Landing Page loaded.');
-            console.log('👨‍💻 Developed by YOGESH');
-
-        })();
+        // Lightbox Functions
+        function openLightbox(src) {
+            document.getElementById('lightboxImg').src = src;
+            document.getElementById('lightbox').classList.add('active');
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
     </script>
-
 </body>
 </html>
